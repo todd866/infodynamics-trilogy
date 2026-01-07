@@ -1,0 +1,381 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+
+\title{Time as Information Rate Through Dimensional Apertures:\\ Black Hole Phenomenology from Observer-Relative Channel Capacity}
+
+\author{Ian Todd\\
+Sydney Medical School\\
+University of Sydney\\
+Sydney, NSW, Australia\\
+\texttt{itod2305@uni.sydney.edu.au}}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We propose that time dilation is an information-theoretic phenomenon: the rate of distinguishable state change depends on the observer's \emph{dimensional aperture}---the channel capacity connecting them to the underlying dynamics. When the aperture contracts, fewer degrees of freedom are accessible, the rate of information accumulation drops, and time slows. We demonstrate this computationally using coupled oscillators with observer-relative access weights. An ``external'' observer whose aperture closes at a horizon-analogue sees: (1) dynamical dimension $k_{\mathrm{dyn}}$ collapsing substantially, (2) correlation rate $\dot{\tau}$ dropping strongly, (3) accessible entropy $S_{\mathrm{acc}}$ decreasing, and (4) Landauer erasure cost $Q$ accumulating. An ``infalling'' observer with constant aperture sees only baseline dynamical fluctuations. The same dynamics produce radically different experienced time---black hole complementarity emerges from information geometry. An outlook illustrates ringdown-like relaxation under abrupt aperture perturbations. This suggests spacetime geometry may be downstream of dimensional accessibility constraints, consistent with Jacobson's thermodynamic derivation of Einstein's equations.
+\end{abstract}
+
+\section{Introduction}
+
+What is time? Operationally, time is the rate at which distinguishable states succeed one another. A clock ticks because its states change in ways an observer can detect. But detection requires information flow---a channel connecting observer to system. If that channel has limited capacity, the rate of detectable change is bounded. (We use ``capacity'' informally to mean distinguishability throughput, not the Shannon capacity of a coded communication channel.)
+
+We propose that \textbf{time dilation is channel contraction}. An observer's \emph{dimensional aperture} $k$ measures how many degrees of freedom they can access. When $k$ drops, fewer correlations can accumulate per unit coordinate time. From the observer's perspective, time slows.
+
+This reframes black hole physics. The external observer's aperture closes at the horizon---not because spacetime ends, but because the information channel to interior degrees of freedom is squeezed. The infalling observer maintains full access and experiences normal time. Same dynamics, different channels, different clocks.
+
+The framework connects to Jacobson's thermodynamic derivation of Einstein's equations \cite{jacobson1995}: horizons are where the thermodynamic cost of maintaining a coarse-grained description becomes extreme. Our simulation makes this operational: the Landauer cost of aperture compression accumulates at the horizon.
+
+This paper provides a computational demonstration, not a derivation. We show that observer-relative dimensional apertures on high-dimensional dynamics \emph{reproduce} horizon-like phenomenology---time slowing, complementarity, thermodynamic costs---without invoking general relativity.
+
+\textbf{Contributions.} We (1) define dimensional aperture and derive two effective dimensions ($k_w$, $k_{\mathrm{dyn}}$); (2) derive a Fisher-speed time proxy $\dot{\tau}$ from a Gaussian observation model; (3) simulate coupled oscillators showing horizon-like freezing and thermodynamic accumulation; (4) verify robustness across aperture families; and (5) sketch an analogy to gravitational wave ringdown.
+
+\section{Framework}
+
+\subsection{Dimensional Aperture}
+
+Consider a system with $N$ coupled degrees of freedom. The full state is $(\mathbf{x}, \mathbf{p}) \in \mathbb{R}^{2N}$ (positions and momenta), but the aperture acts on positions only.
+
+\begin{definition}[Aperture]
+An observer's aperture is a weight vector $\mathbf{w} \in [0,1]^N$ determining access to each positional mode:
+\begin{equation}
+    \mathbf{x}_{\mathrm{obs}} = \mathbf{w} \odot \mathbf{x}
+\end{equation}
+The clock rate (Eq.~4) uses velocities $\dot{\mathbf{x}}$ with the same weights.
+\end{definition}
+
+We distinguish two measures of effective dimension:
+
+\textbf{Channel participation} (from weights alone):
+\begin{equation}
+    k_{w} = \frac{(\sum_i w_i)^2}{\sum_i w_i^2}
+\end{equation}
+
+\textbf{Dynamical dimension} (from observed state statistics):
+\begin{equation}
+    k_{\mathrm{dyn}} = \frac{(\sum_j \lambda_j)^2}{\sum_j \lambda_j^2}
+\end{equation}
+where $\{\lambda_j\}$ are eigenvalues of the observed covariance $C_{\mathrm{obs}}$.
+
+For a uniform aperture ($w_i = 1$), $k_w = N$. As weights concentrate on fewer modes, $k_w$ drops. The key prediction is that $k_{\mathrm{dyn}}$ tracks $k_w$: aperture squeezing reduces the dynamical complexity of the observed state, not just the number of accessible channels.
+
+\subsection{Time as Information Rate}
+
+We interpret $w_i$ as \textbf{measurement precision} (inverse noise variance). Consider an additive-noise observation model: the observer sees $y_i = x_i + \eta_i$ where $\eta_i \sim \mathcal{N}(0, \sigma_i^2)$ with $\sigma_i^2 = \sigma_0^2 / w_i$. The KL divergence between observations at nearby states $\mathbf{x}$ and $\mathbf{x} + \mathrm{d}\mathbf{x}$ is:
+\begin{equation}
+    D_{\mathrm{KL}} = \frac{1}{2} \mathrm{d}\mathbf{x}^T \Sigma^{-1} \mathrm{d}\mathbf{x} = \frac{1}{2\sigma_0^2} \sum_i w_i \,\mathrm{d}x_i^2
+\end{equation}
+This identifies $G = \mathrm{diag}(w_1, \ldots, w_N)/\sigma_0^2$ as the Fisher information metric. Setting $\sigma_0 = 1$ (absorbing noise scale into $w$), Eq.~(1) can be viewed as the \emph{signal} component of observation, while the weights encode \emph{precision}. We use $w$ in both roles: as a coupling strength (Eq.~1) and as precision (metric derivation). These coincide when signal access and measurement quality degrade together---the physically relevant case for horizon-like boundaries.
+
+\textbf{Why the dual role is physical, not a notational convenience.} Consider what happens when access to mode $i$ degrades ($w_i \to 0$). Two things happen simultaneously: (1) the observed signal $x_{\mathrm{obs},i} = w_i x_i$ shrinks, and (2) the ability to distinguish changes in mode $i$ shrinks (noise dominates signal). These are the same thing: a mode you cannot access is a mode you cannot measure. The dual role of $w$ reflects this physical identity. Separating ``signal strength'' from ``measurement precision'' would require a mechanism that blocks signal while preserving information---which is precisely what horizons prevent.
+
+The Cram\'{e}r-Rao bound formalizes this: for any unbiased estimator $\hat{\theta}_i$ of mode $i$, the variance satisfies $\mathrm{Var}(\hat{\theta}_i) \geq 1/I_i$ where the Fisher information $I_i \propto w_i$. As $w_i \to 0$, variance diverges---the mode becomes statistically unmeasurable regardless of estimator choice.
+
+The correlation accumulation rate is then the geodesic speed in this metric:
+\begin{equation}
+    \dot{\tau} = \sqrt{\sum_i w_i \dot{x}_i^2} = \sqrt{\dot{\mathbf{x}}^T G \dot{\mathbf{x}}}
+\end{equation}
+
+This is a \textbf{signal-to-noise speed}: how fast the observer accumulates distinguishable state changes. The framework admits two limiting regimes:
+\begin{itemize}
+    \item As $\mathbf{w} \to 0$ (aperture closes), the metric degenerates and $\dot{\tau}$ drops---time slows.
+    \item As $k_{\mathrm{dyn}} \to N$ (full access), $\dot{\tau}$ can grow large---many distinguishable states per unit coordinate time.
+\end{itemize}
+Both limits have consequences. Low-$k$ regimes conserve energy at the expense of throughput; high-$k$ regimes enable dense computation but incur steep thermodynamic costs (maintaining coherence across many dimensions requires work).
+
+This connects to information geometry \cite{amari2000}: the Fisher metric determines the maximum rate of distinguishable state change. Contracting the aperture contracts the accessible Fisher volume, reducing geodesic speed through state space. Time slows because fewer distinguishable states can be traversed per unit coordinate time.
+
+The interpretation is geometric. An observer's aperture defines not just which modes they see, but the \emph{metric} on their state space. Two observers watching identical dynamics inhabit different geometries---and therefore accumulate different Fisher time $\tau$. This is not metaphor: the induced metric $G$ literally determines path length, and path length is accumulated distinguishability.
+
+Why should correlation accumulation be ``time''? Because operationally, time is what clocks measure, and clocks are devices that accumulate distinguishable states. A clock with access to more degrees of freedom can distinguish more states per unit coordinate time---it runs faster. A clock whose aperture is closing loses access to degrees of freedom---it runs slower. At the limit, a clock with no access has no states to distinguish---time stops (modulo quantum fluctuations that maintain minimal information flow).
+
+\textbf{Operational meaning of $\tau$.} To be precise: $\tau$ is \emph{not} a new coordinate time. It is the accumulated distinguishability of successive observed states---the Fisher path length in the observer's accessible state space. ``Time dilation'' in this framework means dilation of \emph{observable state-change rate}: the rate at which the observer can resolve distinct configurations.
+
+The bridge to physical time is this: a physical clock is an information-processing device made of accessible degrees of freedom. If the aperture limits what degrees the clock can access, then its tick rate is bounded by $\dot{\tau}$. We do not claim that coordinate time itself slows; we claim that any clock \emph{built from the accessible modes} runs slow. For an observer whose entire physics is mediated by aperture-limited channels, this is operationally indistinguishable from time dilation.
+
+\textbf{Geometry vs information.} Energy flows through geometry whether or not any observer records it. But to \emph{register} that flow as information---to form a durable record---requires committing distinguishable states to memory. Each commit costs Landauer work. The rate $\dot{\tau}$ is thus a \textbf{commit rate}: how fast the observer writes records of geometric dynamics. Near a horizon, the commit rate crashes---not because geometry stops, but because the channel cannot support the measurement bandwidth needed to form records. Time freezes because commits freeze.
+
+\subsection{Thermodynamic Cost}
+
+When the aperture squeezes, degrees of freedom are traced out---information is erased. Landauer's principle \cite{landauer1961} requires minimum heat dissipation:
+\begin{equation}
+    Q_{\mathrm{heat}} \geq k_{\mathrm{B}}T \ln 2 \cdot \Delta I_{\mathrm{erased}}
+\end{equation}
+where $\Delta I$ is measured in bits.
+
+We track \textbf{accessible entropy} (in nats, dimensionless):
+\begin{equation}
+    S_{\mathrm{acc}} = \frac{1}{2}\log\det (C_{\mathrm{obs}} + \epsilon I)
+\end{equation}
+where $C_{\mathrm{obs}}$ is the covariance of accessible states and $\epsilon$ is a regularization constant ($\epsilon = 10^{-6}$ in simulations). This is a log-volume measure (differential entropy up to a constant), not Shannon entropy; it can be negative. Like all differential entropies, $S_{\mathrm{acc}}$ is coordinate-dependent; we work in the observer's induced coordinates, where volume contraction directly reflects loss of accessible structure.
+
+When $S_{\mathrm{acc}}$ decreases under aperture contraction, the accessible description volume contracts. What physical process does this represent? Consider an observer maintaining a finite-memory state estimate of the system. As the aperture contracts, some previously tracked degrees of freedom become inaccessible. To maintain a consistent reduced description, the observer's memory must ``forget'' the now-inaccessible correlations---this is logically irreversible erasure. Landauer's principle applies: the minimum heat dissipation is $k_{\mathrm{B}}T$ per nat erased (or $k_{\mathrm{B}}T \ln 2$ per bit).
+
+$Q$ is thus a \textbf{lower bound} on work required \emph{if} the observer maintains a finite-memory coarse-grained state estimate across changing apertures:
+\begin{equation}
+    Q(t) = \sum_{s \leq t} \max(0, S_{\mathrm{acc}}(s-1) - S_{\mathrm{acc}}(s))
+\end{equation}
+To obtain physical heat, multiply by $k_{\mathrm{B}}T$. Since we use natural logs, changes are in nats; to convert to bits, divide by $\ln 2$. We call $Q$ a ``Landauer proxy'' because it tracks the minimum thermodynamic cost of the coarse-graining process.
+
+This connects to \cite{todd2025infodynamics}: maintaining a low-dimensional description of a high-dimensional system requires work. Horizons are where this work grows large.
+
+The connection to black hole thermodynamics is suggestive. Bekenstein showed that black holes have entropy proportional to horizon area \cite{bekenstein1973}. In our framework, the ``horizon'' is where the external observer's aperture closes---and entropy (accessible information) drops precisely there. The thermodynamic cost of maintaining a description across the horizon grows without bound, which is another way of saying: you cannot maintain correlations with degrees of freedom you cannot access.
+
+This suggests a possible interpretation of Hawking radiation. If complete information cutoff is impossible (there is always some residual channel capacity), then the horizon would radiate---not because of quantum field theory in curved spacetime per se, but because zero information flow is unphysical. The residual channel capacity would \emph{be} Hawking radiation, viewed information-theoretically. We do not model QFT in curved spacetime; this is a conceptual bridge, not a derivation.
+
+\section{Intuition: Gravity in Flatland}
+
+Before presenting the simulation, consider a geometric intuition. Imagine Flatland: a 2D world whose inhabitants perceive two spatial dimensions. Time is their third dimension---they move through it but cannot see it directly.
+
+If Flatland has mass, their 2D space curves through time. A massive object warps the geometry so that nearby Flatlanders are pulled forward in time toward the mass. This is not a force through space; it is curvature through time. Geodesics bend toward mass because spacetime itself is curved.
+
+Now consider two Flatlanders: one near the mass, one far away. The Flatlander near the mass experiences normal local time---their clock ticks at the usual rate from their own perspective. But the distant Flatlander, watching through the curved geometry, sees that clock run slow. The channel between them---the path through curved spacetime---contracts near the mass. Fewer distinguishable signals per unit coordinate time can traverse that channel.
+
+This is complementarity. Neither clock is ``really'' slow. Each observer experiences normal local physics. The asymmetry is in the channel: the aperture connecting distant observer to near-mass degrees of freedom closes as curvature increases. At a horizon, the channel closes entirely---the distant observer sees the near-mass clock freeze, though the near-mass observer notices nothing unusual locally.
+
+The same structure applies to us. We live in 3D space; time is our fourth dimension. Mass curves our spacetime, pulling us forward in time toward gravitational sources. Near extreme curvature, the channel from outside closes. Gravity is not a force through space but curvature through time---geodesics in a geometry we move through but cannot directly perceive.
+
+\section{Simulation}
+
+\subsection{Setup}
+
+We simulate $N = 50$ coupled oscillators with Hamiltonian:
+\begin{equation}
+    H = \frac{1}{2}\sum_i p_i^2 + \frac{1}{2}\sum_i x_i^2 + \frac{\kappa}{2}\sum_{\langle ij \rangle}(x_i - x_j)^2
+\end{equation}
+plus weak damping $\dot{p}_i \to \dot{p}_i - \gamma p_i$ (coupling to a thermal bath). This makes the system open rather than purely Hamiltonian, but preserves the essential dynamics while ensuring bounded motion.
+
+\textbf{Parameters:} $N=50$ oscillators, coupling $\kappa=0.1$, damping $\gamma=0.01$, timestep $\Delta t = 0.01$ (RK4 integration), $N_{\mathrm{steps}}=1000$. Initial conditions: positions and momenta drawn i.i.d.\ from $\mathcal{N}(0,1)$. Covariance estimated over a sliding window of 200 samples after 100-sample warmup. Plots show single representative runs; qualitative features are robust across seeds.
+
+Two observers watch the same dynamics:
+
+\textbf{External observer}: Aperture depends on ``radius'' $r \in (0, 1]$:
+\begin{equation}
+    w_i(r) = r^{5f_i}, \quad f_i = i/N
+\end{equation}
+Higher-index modes are suppressed faster as $r \to 0$ (approaching horizon).
+
+The physical interpretation: external observers have \emph{finite time resolution} (sampling bandwidth). Near-horizon gravitational redshift pushes interior dynamics below that resolution threshold, making fine-scale components inaccessible first. We order modes by index $f_i$ as a proxy for scale; in a normal-mode basis this would correspond to frequency ordering.
+
+\textbf{Why high-frequency modes are suppressed first.} This ordering is not arbitrary. Gravitational redshift scales as $\sqrt{1 - r_s/r}$; emitted frequency $\nu$ is received as $\nu' = \nu \sqrt{1 - r_s/r}$. High-frequency modes fall below the observer's bandwidth threshold before low-frequency modes do. This is analogous to renormalization group flow: as you coarse-grain toward the infrared, ultraviolet modes are integrated out first. Near a horizon, the ``RG scale'' is set by the observer's temporal resolution; modes above that scale become inaccessible. Equation (10) captures this physics generically---any monotone family with stronger high-frequency suppression near the boundary produces the same qualitative phenomenology; we verify this below.
+
+\textbf{Infalling observer}: $w_i = 1$ always (full access, no bandwidth limitation).
+
+\subsection{Results}
+
+Figure~\ref{fig:time_dilation} shows the key result. As the external observer's radius decreases:
+\begin{itemize}
+    \item Both $k_w$ and $k_{\mathrm{dyn}}$ collapse substantially
+    \item $\dot{\tau}$ drops strongly as aperture closes
+    \item Accumulated Fisher time $\tau$ grows sublinearly, approaching an asymptote
+\end{itemize}
+
+Crucially, $k_{\mathrm{dyn}}$ is computed from observed state statistics (covariance eigenvalues), not from the weights directly. Its collapse is an \emph{emergent} property of the induced observation geometry: the dynamics genuinely become lower-dimensional from the external observer's perspective, not merely by definition.
+
+The infalling observer sees constant $k_{\mathrm{dyn}}$, constant $\dot{\tau}$, linear $\tau$. The underlying oscillator dynamics are unchanged across observers; only the induced metric $G = \mathrm{diag}(\mathbf{w})$ differs. Same dynamics, different apertures, different clocks.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig1_time_dilation.png}
+    \caption{Time dilation from aperture contraction. External observer (red) sees dimensional collapse and time slowing; infalling observer (cyan) maintains constant flow. This demonstrates complementarity-like observer dependence without invoking GR.}
+    \label{fig:time_dilation}
+\end{figure}
+
+Figure~\ref{fig:thermodynamics} shows the thermodynamic structure. As the aperture squeezes:
+\begin{itemize}
+    \item $S_{\mathrm{acc}}$ drops (degrees of freedom traced out)
+    \item $Q$ accumulates (Landauer cost of erasure)
+\end{itemize}
+
+The horizon is where maintaining a description becomes thermodynamically expensive---Jacobson's insight made computational.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig2_thermodynamics.png}
+    \caption{Thermodynamic cost of aperture squeezing. External observer accrues large erasure cost under aperture contraction; infalling observer shows only baseline dynamical fluctuations.}
+    \label{fig:thermodynamics}
+\end{figure}
+
+\subsection{Outlook: Perturbations of Channel Capacity}
+
+What happens when aperture structure is perturbed? Figure~\ref{fig:ligo} shows a simulated ``merger''---an abrupt aperture change followed by relaxation. The dynamics produce:
+\begin{itemize}
+    \item \textbf{Inspiral phase}: gradual aperture contraction
+    \item \textbf{Merger phase}: rapid dimensional collapse
+    \item \textbf{Ringdown phase}: damped oscillations as aperture stabilizes
+\end{itemize}
+
+We do \emph{not} model gravitational strain $h(t)$. We show that abrupt changes in channel capacity produce damped relaxation with a characteristic spectrum---qualitatively similar to the inspiral-merger-ringdown morphology observed in gravitational wave signals. If spacetime geometry reflects information accessibility, then gravitational waves would be oscillations in channel capacity, and ringdown frequencies would encode aperture stabilization timescales.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig3_ligo_connection.png}
+    \caption{Aperture perturbation dynamics. Abrupt changes produce inspiral-merger-ringdown morphology. This demonstrates the relaxation structure of channel capacity perturbations; we do not claim to model gravitational wave strain.}
+    \label{fig:ligo}
+\end{figure}
+
+\subsection{Robustness to Aperture Family}
+
+Is the phenomenology an artifact of our specific aperture function (Eq.~9)? We tested alternative monotone families:
+\begin{itemize}
+    \item Exponential: $w_i(r) = \exp(-\beta f_i / (r + \epsilon))$
+    \item Sigmoid: $w_i(r) = \sigma(\alpha(r - r_h))^{f_i}$
+\end{itemize}
+In all cases, the qualitative results persist: $k_{\mathrm{dyn}}$ collapses, $\dot{\tau}$ drops, $Q$ accumulates, and infalling observers see none of these effects. The specific functional form affects quantitative details (how fast, at what radius) but not the phenomenon itself. Any monotone frequency-dependent filter produces horizon-like phenomenology.
+
+\subsection{Boundary Behavior}
+
+Both our aperture model and Schwarzschild geometry share one structural feature: a boundary where observable time rate vanishes. In Schwarzschild, $\sqrt{1-r_s/r} \to 0$ as $r \to r_s$. In our model, $\dot{\tau} \to 0$ as aperture closes. We do not claim the functional forms match---many monotone functions collapse at a boundary. The point is that \emph{any} observer-relative channel that closes at a boundary produces horizon-like time dilation. The specific shape depends on the physics determining the aperture; the phenomenon is generic.
+
+\section{Discussion}
+
+\subsection{What This Demonstrates}
+
+We have shown that \textbf{horizon-like phenomenology} emerges from observer-relative dimensional apertures on high-dimensional dynamics.
+
+Without invoking Einstein's equations, we recovered:
+\begin{itemize}
+    \item Time slowing at a boundary (horizon-analogue)
+    \item Observer-dependent experienced time (complementarity-like)
+    \item Thermodynamic costs accumulating at boundaries
+\end{itemize}
+
+\noindent The ringdown behavior shown in Section 4.3 is illustrative: we do not claim to model gravitational wave strain. We show only that abrupt aperture perturbations produce damped relaxation with characteristic structure. Whether spacetime geometry actually tracks channel capacity in this way is an open question.
+
+The key observation: we defined the aperture constraint, but the \emph{consequences}---thermodynamics, time dilation, complementarity---emerged naturally without being programmed in.
+
+\subsection{Interpretation}
+
+This is a computational demonstration, not a claim that spacetime \emph{is} information geometry. But if Jacobson \cite{jacobson1995} is right that Einstein's equations follow from thermodynamic consistency at horizons, then our simulation provides a substrate where this is manifest: the horizon is where aperture compression cost grows large.
+
+The relationship is:
+\begin{center}
+\emph{Aperture contraction} $\to$ \emph{Information erasure} $\to$ \emph{Thermodynamic cost} $\to$ \emph{Time dilation}
+\end{center}
+
+GR produces aperture contraction via spacetime curvature. But the aperture-time relationship may be more fundamental.
+
+\subsection{Relation to Other Approaches}
+
+Several research programs have explored information-theoretic foundations for gravity:
+
+\textbf{Verlinde's entropic gravity} \cite{verlinde2011} proposes that gravity is an entropic force arising from information about material bodies. Our framework is compatible: if position information is encoded in aperture structure, then gradients in accessible information (entropy gradients) would produce effective forces. The aperture framework provides a concrete substrate where this could be realized.
+
+\textbf{ER=EPR} \cite{maldacena2013} proposes that entangled particles are connected by non-traversable wormholes. In our language, entanglement is shared aperture: two systems have correlated access to common degrees of freedom. A wormhole is then a structure that maintains this shared access across spatial separation. The horizon's role as a channel-capacity bottleneck is consistent with the ER=EPR picture.
+
+\textbf{Holographic principle} \cite{susskind1995} states that the information content of a region is bounded by its surface area. In our framework, the horizon is precisely where the aperture closes---where access is restricted to a lower-dimensional boundary. The area-entropy relationship becomes a statement about the dimensional capacity of apertures near horizons.
+
+\subsection{The High-Dimensional Regime}
+
+This paper focuses on aperture \emph{contraction} (time dilation near horizons). But the framework also predicts what happens when dimensionality \emph{expands}.
+
+Increasing $k_{\mathrm{dyn}}$ increases the instantaneous rate of distinguishable state change: more orthogonal directions are accessible, enabling high computational throughput over short wall-clock intervals. However, maintaining coherence across many degrees of freedom incurs steep thermodynamic cost---energy must be continuously injected to sustain variance across dimensions, suppress noise, and prevent decoherence.
+
+This creates a \textbf{time-energy trade-off}: low-$k$ regimes dilate time cheaply (stable, efficient, slow); high-$k$ regimes compress vast computation into short intervals at steep thermodynamic cost (dense, expensive, fast). Classical spacetime with $k \approx 3$ may represent an optimal trade-off between computational density, energy efficiency, and temporal stability.
+
+If this time-energy trade-off generalizes, implications extend beyond black holes:
+\begin{itemize}
+    \item \textbf{Inside the horizon}: If interior dynamics correspond to high-$k$ regimes, computation could proceed faster than external time---but external observers cannot access the results.
+    \item \textbf{Biological cognition}: Brains may sustain higher $k$ than simpler organisms through metabolic expenditure, accessing more dimensions per unit time rather than ``speeding up a clock.''
+    \item \textbf{Early universe}: Before structure formation, the universe may have operated in a high-$k$, high-entropy-production regime---dense ``cosmic computation'' with unstable sequencing.
+\end{itemize}
+
+\subsection{Connection to Infodynamics}
+
+This framework connects to the second law of infodynamics \cite{vopson2023}, but with a key distinction. Infodynamics treats information as physical---possessing mass-energy equivalence. We argue instead that \textbf{high-dimensional geometry is physical}; information is what observers can \emph{commit} about that geometry. The mass-information relationship Vopson identifies may reflect something real---but the ``something'' is the dimensionality of underlying geometry, not information per se. This is not pedantic: information has precise thermodynamic meaning (Landauer work, erasure, record formation), and that meaning is observer-relative. Geometry exists whether or not anyone measures it; information exists only when commits occur.
+
+With this clarification, the second law of infodynamics becomes a statement about commit rates: as apertures contract, the rate at which structure can be recorded drops, and accessible descriptions simplify. The thermodynamic cost of maintaining complex records at horizons grows without bound.
+
+Black holes are endpoints of this evolution: extreme thermodynamic cost, minimal commit rate, time severely dilated (from outside). But if the interior corresponds to a high-$k$ regime, the story could reverse: dense computation, time accelerated relative to any external reference.
+
+\subsection{Toward Einstein's Equations}
+
+If spacetime dynamics enforce thermodynamic consistency of coarse-grained descriptions at local causal boundaries (Jacobson \cite{jacobson1995,jacobson2015}), then aperture boundaries provide a natural computational substrate for that mechanism.
+
+Jacobson (1995) showed: impose $\delta Q = T\,dS$ on all local Rindler horizons, assume $S \propto A$, and Einstein's equation emerges as an equation of state \cite{jacobson1995}. In our language:
+\begin{itemize}
+    \item \textbf{Local horizon} = aperture boundary (where accessible algebra changes)
+    \item \textbf{Area-law entropy} = boundary-limited channel capacity (what our simulation demonstrates)
+    \item \textbf{Heat flux} $\delta Q$ = thermodynamic cost of coarse-graining (Landauer work)
+    \item \textbf{Temperature} = noise at the aperture boundary (Unruh or modular)
+\end{itemize}
+
+Jacobson (2015) provides an IG-friendly variant: impose that vacuum entanglement in small balls is extremal at fixed volume, and geometry emerges as the Lagrange multiplier field \cite{jacobson2015}. This reads as an information-geometric variational principle.
+
+\textbf{What we assume:} area-law entropy, local Lorentz invariance, heat flux as coarse-grained energy. \textbf{What we contribute:} replacing ``horizon'' with ``aperture boundary,'' an executable model showing the mechanism works on a substrate, and demonstration that it is substrate-agnostic.
+
+We do not derive the Einstein tensor. We show that the Jacobson mechanism is computationally realizable via aperture constraints.
+
+\subsection{Limitations}
+
+This is a toy model. We have not derived the aperture-radius relationship from first principles, shown quantitative agreement with GR, or addressed the information paradox directly. The claim is modest: the phenomenology \emph{can} emerge from aperture constraints.
+
+If the high-$k$ interior picture is correct---dense computation inaccessible to external observers---it raises questions about what structures might arise in that substrate, and whether the interior constitutes a distinct computational ecology. We leave this speculation for future work.
+
+\section{Conclusion}
+
+Time dilation is what channel contraction looks like from inside. When an observer's dimensional aperture closes, their information rate drops, and time slows. Horizon-like phenomenology---complementarity, time slowing, thermodynamic costs---emerges from this single principle without invoking general relativity.
+
+The ontology here is important. What exists is \textbf{energy flowing through high-dimensional geometry}---small gradients redistributing across many coupled degrees of freedom, like photons scattering for millennia before escaping a stellar core. Information is not fundamental; it \emph{emerges} when that flow finally reaches an observer's channel and can be committed to a durable record. A ``high-dimensional manifold'' is just a system where perturbations bounce among many modes before becoming measurable. Horizons are where the bounce time exceeds the observation time---where geometry exists but information does not.
+
+This suggests a research program: derive spacetime geometry from constraints on observer accessibility to high-dimensional dynamics. The mathematics is substrate-agnostic. If it works for coupled oscillators, it may work for spacetime.
+
+\vspace{0.5cm}
+\noindent\textbf{Code availability:} \url{https://github.com/todd866/black-hole-aperture}
+
+\vspace{0.5cm}
+\noindent\textbf{Acknowledgments:} This work was developed in conversation with Claude (Anthropic).
+
+\begin{thebibliography}{99}
+
+\bibitem{jacobson1995}
+T. Jacobson, ``Thermodynamics of spacetime: the Einstein equation of state,'' \textit{Phys. Rev. Lett.} \textbf{75}, 1260 (1995).
+
+\bibitem{jacobson2015}
+T. Jacobson, ``Entanglement equilibrium and the Einstein equation,'' \textit{Phys. Rev. Lett.} \textbf{116}, 201101 (2016). arXiv:1505.04753.
+
+\bibitem{amari2000}
+S. Amari and H. Nagaoka, \textit{Methods of Information Geometry} (AMS, 2000).
+
+\bibitem{landauer1961}
+R. Landauer, ``Irreversibility and heat generation in the computing process,'' \textit{IBM J. Res. Dev.} \textbf{5}, 183 (1961).
+
+\bibitem{todd2025infodynamics}
+I. Todd, ``A Thermodynamic Foundation for the Second Law of Infodynamics,'' \textit{IPI Letters} (2025, under review).
+
+\bibitem{bekenstein1973}
+J. D. Bekenstein, ``Black holes and entropy,'' \textit{Phys. Rev. D} \textbf{7}, 2333 (1973).
+
+\bibitem{abbott2016}
+B. P. Abbott \textit{et al.}, ``Observation of gravitational waves from a binary black hole merger,'' \textit{Phys. Rev. Lett.} \textbf{116}, 061102 (2016).
+
+\bibitem{vopson2023}
+M. M. Vopson, ``The second law of infodynamics and its implications for the simulated universe hypothesis,'' \textit{AIP Advances} \textbf{13}, 105308 (2023).
+
+\bibitem{verlinde2011}
+E. Verlinde, ``On the origin of gravity and the laws of Newton,'' \textit{JHEP} \textbf{2011}, 29 (2011).
+
+\bibitem{maldacena2013}
+J. Maldacena and L. Susskind, ``Cool horizons for entangled black holes,'' \textit{Fortsch. Phys.} \textbf{61}, 781 (2013).
+
+\bibitem{susskind1995}
+L. Susskind, ``The world as a hologram,'' \textit{J. Math. Phys.} \textbf{36}, 6377 (1995).
+
+\end{thebibliography}
+
+\end{document}

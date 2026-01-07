@@ -1,0 +1,371 @@
+\documentclass[11pt,english,twoside]{article}
+\usepackage{babel}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{titlesec}
+% \usepackage[export]{adjustbox}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{mathtools}
+\usepackage[font=scriptsize,labelfont=bf]{caption}
+\graphicspath{ {./} {./figures/} }
+\titleformat{\section}{\normalsize\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+\usepackage{geometry}
+\geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ right=20mm,
+ top=15mm,
+ bottom=20mm
+}
+
+\begin{document}
+
+\thispagestyle{empty}
+\setcounter{page}{1}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead{}
+\fancyhead[RO,LE]{\vspace{15pt}\\Thermodynamic Foundation for the Second Law of Infodynamics}
+\fancyfoot{}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[RE,LO]{\url{https://ipipublishing.org/index.php/ipil/}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\begin{minipage}{0.14\textwidth}
+\includegraphics[width=0.9\textwidth]{IPI_Pub_Logo.jpg}
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\textwidth}
+\includegraphics[width=1.05\textwidth]{IPIL_Logo.jpg}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+\begin{flushright}
+{\scriptsize
+ISSN 2976 - 730X\\
+IPI Letters 2025, Vol x (x):x-x\\
+\href{https://doi.org/10.59973/ipil.xx}{\color{blue}{https://doi.org/10.59973/ipil.xx}}\\
+\medskip
+Received: 2025-xx-xx\\
+Accepted: 2025-xx-xx\\
+Published: 2025-xx-xx\\
+}\end{flushright}
+\end{minipage}
+
+\vspace{0.5cm}
+
+\par\noindent\rule{\textwidth}{0.5pt}\\
+{\color{red}\textbf{Article}}
+
+\begin{center}
+\vspace{0.5cm}
+{\huge {\bf A Thermodynamic Foundation for the Second Law of Infodynamics}}
+\vspace{0.5cm}
+\end{center}
+
+\noindent
+{\large {\bf Ian Todd$^\bold{1,*}$}}
+
+\vspace{0.1in}
+
+\noindent
+{\footnotesize $^1$Sydney Medical School, University of Sydney, Sydney, NSW, Australia
+
+\vspace{0.1in}
+
+\noindent
+$^*$Corresponding author: \href{mailto:itod2305@uni.sydney.edu.au}{\color{blue}{itod2305@uni.sydney.edu.au}}
+}
+\vspace{1cm}
+
+\noindent
+{\small {\bf Abstract} - Vopson and Lepadatu's ``second law of infodynamics'' proposes that the information entropy of physical systems decreases over time, with high-symmetry states representing minimum information entropy. We interpret this information entropy as \emph{structure-information}: the relative entropy $I_{\mathrm{struct}} = D_{\mathrm{KL}}(p \| p_{\mathrm{iso}})$ measuring a distribution's departure from isotropic equilibrium. This paper provides a thermodynamic mechanism for the decrease of structure-information. We derive a bound showing that maintaining a low-dimensional (asymmetric) state requires continuous work input with two components: an informational term and a geometric contraction term governed by the Jacobian of the projection map. Without this work, systems relax toward high-symmetry equilibrium where $I_{\mathrm{struct}} \to 0$. The second law of infodynamics thus emerges from a thermodynamic asymmetry: symmetric states require no work to maintain, while asymmetric states are thermodynamically costly. This does not contradict the second law of thermodynamics---thermodynamic entropy increases in the bath precisely because structure-information is being dissipated.}
+
+\vspace{0.75cm}
+
+\noindent
+{\small {\bf Keywords} - Second law of infodynamics; Landauer principle; Symmetry; Dimensionality; Stochastic thermodynamics; Information entropy}
+
+\vspace{0.2cm}
+\par\noindent\rule{\textwidth}{0.5pt}
+
+\section{Introduction}
+
+The second law of thermodynamics establishes that entropy increases in isolated systems. Landauer's principle [1,2] connects this to computation: erasing one bit of information requires dissipating at least $k_{\mathrm B}T\ln 2$ of heat. This has been experimentally verified [3] and forms the foundation of the thermodynamics of information [4,5].
+
+Recently, Vopson and Lepadatu [6,7] proposed a ``second law of infodynamics'' stating that the \emph{information entropy} of physical systems decreases over time. Unlike thermodynamic entropy (which increases), information content in systems such as genetic sequences, digital data, and atomic configurations appears to evolve toward states of lower information entropy---that is, toward simpler, more symmetric configurations. This is consistent with Vopson's earlier mass-energy-information equivalence principle [8].
+
+A key observation in Vopson [7] is that high symmetry corresponds to low information entropy. Symmetric states require fewer bits to specify; a sphere is described by one parameter (radius), while an irregular shape requires many. Many equilibrium macrostates are highly symmetric, suggesting a connection between symmetry and thermodynamic stability.
+
+But what is the \emph{physical mechanism} driving this evolution? Why should information entropy decrease while thermodynamic entropy increases? And what maintains asymmetric structures when they do persist?
+
+We do not claim the second law of infodynamics is a new fundamental principle; rather, we show why it emerges from known thermodynamics. This paper proposes an answer: \textbf{maintaining asymmetric structure costs work}. We derive a thermodynamic bound showing that confining a system to a low-dimensional, asymmetric manifold requires continuous energy dissipation. Without this work input, systems naturally relax toward high-dimensional, symmetric equilibrium. The second law of infodynamics emerges as a consequence of the thermodynamic asymmetry between states that require maintenance and states that do not.
+
+\section{Symmetry, Dimensionality, and Information}
+
+We first establish the connection between symmetry, effective dimensionality, and information content.
+
+\subsection{Symmetry as Low Information Entropy}
+
+Following Vopson [7], we observe that symmetric configurations are information-sparse. Consider a probability distribution $p(x)$ over states $x \in \mathbb{R}^D$. A maximally symmetric (isotropic) distribution has the form
+\begin{align}
+    p_{\mathrm{iso}}(x) = \mathcal{N}(0, \sigma^2 I),
+\end{align}
+where $I$ is the identity matrix. This distribution is invariant under rotations and reflections; its symmetry group is $O(D)$.
+
+An asymmetric distribution breaks this symmetry. For a Gaussian with covariance $\Sigma$,
+\begin{align}
+    p(x) = \mathcal{N}(0, \Sigma),
+\end{align}
+the degree of asymmetry can be measured by the \emph{structure-information}:
+\begin{align}
+    I_{\mathrm{struct}} := D_{\mathrm{KL}}(p \,\|\, p_{\mathrm{iso}}) = \frac{1}{2}\ln\frac{\det \Sigma_{\mathrm{iso}}}{\det \Sigma},
+    \label{eq:struct_info}
+\end{align}
+where $\Sigma_{\mathrm{iso}} := \frac{\mathrm{tr}\,\Sigma}{D}I$ is the isotropic covariance with the same total variance. This quantity is non-negative and equals zero only for isotropic distributions.
+
+\textbf{Reconciling the two second laws.} To reconcile the second law of infodynamics with the second law of thermodynamics, we interpret the ``information entropy'' of a physical state as its \emph{structure-information}---its distinguishability from thermodynamic equilibrium, measured by the relative entropy $I_{\mathrm{struct}} = D_{\mathrm{KL}}(p \| p_{\mathrm{iso}})$. When a system relaxes to equilibrium, the raw differential entropy $H(p)$ increases (second law of thermodynamics), but $I_{\mathrm{struct}}$ decreases toward zero (second law of infodynamics). There is no contradiction: thermodynamic entropy increases in the bath while structure-information---the system's departure from symmetry---vanishes. This interpretation aligns with the physics of negentropy: ordered states are distinguished by their distance from the maximum-entropy baseline, and it is this distance that decays.
+
+\subsection{Effective Dimensionality}
+
+Asymmetric distributions concentrate on low-dimensional subspaces. The \emph{effective dimensionality} is given by the participation ratio of covariance eigenvalues:
+\begin{align}
+    D_{\mathrm{eff}} := \frac{(\sum_i \lambda_i)^2}{\sum_i \lambda_i^2},
+    \label{eq:deff}
+\end{align}
+where $\{\lambda_i\}$ are the eigenvalues of $\Sigma$. This ranges from $1$ (rank-1, maximally asymmetric) to $D$ (isotropic, maximally symmetric).
+
+The key relationship is:
+\begin{center}
+\emph{High symmetry} $\Leftrightarrow$ \emph{High effective dimension} $\Leftrightarrow$ \emph{Low structure-information}
+\end{center}
+An isotropic sphere has $D_{\mathrm{eff}} = D$ and $I_{\mathrm{struct}} = 0$. A line (1D manifold) has $D_{\mathrm{eff}} \approx 1$ and high $I_{\mathrm{struct}}$.
+
+\section{Thermodynamic Cost of Dimensional Confinement}
+
+We now derive a thermodynamic bound on the work required to maintain a low-dimensional representation.
+
+\subsection{Setup}
+
+Consider a system with microstate $x \in \mathbb{R}^D$ evolving under overdamped Langevin dynamics:
+\begin{align}
+    \dot{x} = \mu F(x) + \sqrt{2\mu k_{\mathrm B}T}\,\xi(t),
+\end{align}
+where $\mu$ is mobility, $T$ is temperature, and $\xi(t)$ is Gaussian white noise. Left uncontrolled, this system diffuses toward an isotropic equilibrium.
+
+A \emph{dimensional reduction} is a smooth map $\Phi: \mathbb{R}^D \to \mathbb{R}^k$ with $k < D$ that projects the high-dimensional state onto a lower-dimensional representation. Physically realizing such a projection requires confining the system to a neighborhood of the target manifold.
+
+\subsection{Derivation}
+
+The entropy production in a stochastic process is bounded by the Kullback-Leibler divergence between initial and final distributions [5]. For a projection process, the dissipated work (work beyond the free energy change) satisfies:
+\begin{align}
+    W_{\mathrm{diss}} \geq k_{\mathrm B}T \cdot D_{\mathrm{KL}}(p_{\mathrm{init}} \,\|\, \Phi^{\dagger}p_{\mathrm{final}}),
+\end{align}
+where $\Phi^{\dagger}$ is the maximum-entropy lifting of the projected distribution.
+
+Using the change-of-variables formula for probability densities under smooth maps, this KL divergence decomposes into two terms. Let $J_{\Phi}(x)$ be the $k \times D$ Jacobian of $\Phi$. The volume element transforms as $dV_k = \sqrt{\det(J_{\Phi}J_{\Phi}^\top)}\,dV_D$. Substituting into the entropy definition yields:
+\begin{align}
+    D_{\mathrm{KL}} = \underbrace{\Delta I \cdot \ln 2}_{\text{informational}} + \underbrace{C_{\Phi}}_{\text{geometric}},
+\end{align}
+where $\Delta I$ is the coarse-grained information removed (in bits) and
+\begin{align}
+    C_{\Phi} = -\frac{1}{2}\left\langle \ln\det(J_{\Phi}(x)J_{\Phi}(x)^\top)\right\rangle_p
+    \label{eq:cphi}
+\end{align}
+is the \emph{geometric contraction cost}---the average log-volume contraction under the projection, where $\langle \cdot \rangle_p$ denotes the expectation over the maintained distribution $p(x)$.
+
+\subsection{The Bound}
+
+Combining these results, the \textbf{geometric maintenance bound} is:
+\begin{align}
+    \boxed{W_{\mathrm{diss,min}} \geq k_{\mathrm B}T\bigl(\ln 2 \cdot \Delta I + C_{\Phi}\bigr)}
+    \label{eq:dlb}
+\end{align}
+
+\noindent\textbf{Interpretation.} This bound has a crucial implication: even if no logical information is erased ($\Delta I = 0$), confining a system to a low-dimensional manifold still incurs a geometric cost $C_{\Phi}$. The more severe the dimensional reduction (smaller $k$ relative to $D$), the larger this cost.
+
+For a linear projection with singular values $\sigma_1, \ldots, \sigma_k$, we have $C_{\Phi} = -\sum_i \ln\sigma_i$. An isometric projection ($\sigma_i = 1$) has $C_{\Phi} = 0$; curved or contracting projections have $C_{\Phi} > 0$.
+
+\subsection{From Formation Work to Maintenance Power}
+
+The bound in Eq.~(\ref{eq:dlb}) gives the one-time work to \emph{create} a low-dimensional state. To \emph{maintain} it against thermal relaxation, we must continuously counteract the entropy production of the diffusion process. In a steady state far from equilibrium, the controller must extract the \emph{housekeeping heat} $\dot{Q}_{\mathrm{hk}}$---the heat continuously dissipated to maintain the non-equilibrium distribution [5,9].
+
+For a system held at non-equilibrium distribution $p$ with structure-information $I_{\mathrm{struct}}$, the entropy production rate is bounded by the time-derivative of the KL divergence between $p$ and the relaxing distribution $p_t$:
+\begin{align}
+    \dot{S}_{\mathrm{prod}} \geq -\frac{d}{dt}D_{\mathrm{KL}}(p_t \| p_{\mathrm{iso}}) \bigg|_{p_t = p}.
+    \label{eq:entropy_prod}
+\end{align}
+For diffusion with coefficient $D_{\mathrm{diff}}$, this housekeeping entropy production is expected to increase with both $D_{\mathrm{diff}}$ and the contraction cost $C_{\Phi}$. The maintenance power (housekeeping heat flow) required to sustain the low-dimensional state therefore admits the qualitative dependence:
+\begin{align}
+    P_{\mathrm{maint}} \geq k_{\mathrm B}T \cdot \dot{S}_{\mathrm{prod}} \sim k_{\mathrm B}T \cdot D_{\mathrm{diff}} \cdot C_{\Phi}.
+    \label{eq:maintenance}
+\end{align}
+This connects the \emph{static} cost of dimensional reduction (Eq.~\ref{eq:dlb}) to the \emph{dynamic} cost of maintaining it: the maintenance power scales with both the geometric complexity of the projection ($C_{\Phi}$) and the rate at which diffusion would otherwise erode the structure ($D_{\mathrm{diff}}$).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/fig1_geometric_maintenance.pdf}
+    \caption{The geometric maintenance bound. Enforcing a low-dimensional representation $Y = \Phi(X)$ requires work to suppress fluctuations orthogonal to the target manifold. The minimal dissipation separates into an informational term (bits removed) and a geometric contraction term (Jacobian cost).}
+    \label{fig:decomposition}
+\end{figure}
+
+\section{Thermodynamic Basis for the Second Law of Infodynamics}
+
+The geometric maintenance bound explains why information entropy decreases over time: asymmetric states are thermodynamically \emph{expensive}, while symmetric states are thermodynamically \emph{free}.
+
+\subsection{Relaxation Toward Symmetry}
+
+Consider an initially asymmetric (low-$D_{\mathrm{eff}}$) distribution undergoing thermal diffusion. As fluctuations excite the suppressed degrees of freedom, the distribution spreads toward isotropy:
+\begin{itemize}
+    \item Effective dimensionality $D_{\mathrm{eff}}$ increases toward $D$.
+    \item Structure-information $I_{\mathrm{struct}}$ decreases toward $0$.
+    \item Symmetry increases (distribution approaches spherical).
+\end{itemize}
+
+This is illustrated in Figure~\ref{fig:relaxation} with a minimal model. An anisotropic Gaussian covariance $\Sigma_0 = \mathrm{diag}(1, 10^{-4}, \ldots, 10^{-4})$ in $D=20$ dimensions evolves under additive diffusion: $\Sigma(t) = \Sigma_0 + 2Dt\cdot I$. The effective dimension rises from $\approx 1$ toward $20$, while structure-information decays exponentially toward zero.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/fig2_dimensional_relaxation.pdf}
+    \caption{Thermal relaxation dissipates structure-information. An initially anisotropic distribution ($D_{\mathrm{eff}} \approx 1$, high $I_{\mathrm{struct}}$) diffuses toward isotropic equilibrium ($D_{\mathrm{eff}} \to D$, $I_{\mathrm{struct}} \to 0$). The left panel shows effective dimensionality $D_{\mathrm{eff}}$ computed via the participation ratio (Eq.~\ref{eq:deff}); the right panel shows structure-information $I_{\mathrm{struct}}$ computed via Eq.~(\ref{eq:struct_info}). Time is shown in units where the diffusion coefficient $D_{\mathrm{diff}} = 1$. This is the signature of the second law of infodynamics: without work input, structure-information (distinguishability from equilibrium) decreases as the system becomes more symmetric. Note that the raw differential entropy $H(p)$ \emph{increases} during this process---consistent with the second law of thermodynamics---while $I_{\mathrm{struct}} = D_{\mathrm{KL}}(p\|p_{\mathrm{iso}})$ decreases.}
+    \label{fig:relaxation}
+\end{figure}
+
+\subsection{The Work Cost of Asymmetry}
+
+Now consider a controller (biological or artificial) that maintains an asymmetric, low-dimensional state against thermal relaxation. By Eq.~(\ref{eq:maintenance}), this requires continuous power input scaling as $P_{\mathrm{maint}} \gtrsim k_{\mathrm B}T \cdot D_{\mathrm{diff}} \cdot C_{\Phi}$, where $D_{\mathrm{diff}}$ is the diffusion coefficient characterizing the rate of thermal relaxation.
+
+The larger the asymmetry (lower $D_{\mathrm{eff}}$, higher $I_{\mathrm{struct}}$, larger $C_{\Phi}$), the more power is required. Conversely, symmetric states require \emph{zero} maintenance power---they are thermodynamic attractors where the housekeeping heat vanishes.
+
+\subsection{Why Information Entropy Decreases}
+
+This provides the mechanism for Vopson's second law:
+\begin{enumerate}
+    \item \textbf{Symmetric states are stable.} An isotropic equilibrium persists indefinitely without work input.
+    \item \textbf{Asymmetric states are unstable.} Maintaining low-dimensional structure requires continuous energy expenditure.
+    \item \textbf{Selection pressure.} Over time, systems that cannot pay the maintenance cost relax to symmetry. Systems that can maintain asymmetry (living organisms, controlled machines) do so only while energy is available.
+\end{enumerate}
+
+The ``information entropy'' in Vopson's framework can be identified with our structure-information $I_{\mathrm{struct}}$. Its decrease is not a violation of thermodynamics but a consequence of it: thermodynamic entropy increases in the heat bath precisely because structure-information is being dissipated through the relaxation process.
+
+\section{Symmetry and the Minimal Description Length}
+
+Vopson emphasizes that symmetric configurations require fewer bits to describe. We can make this precise.
+
+For a distribution with covariance $\Sigma$, the differential entropy is:
+\begin{align}
+    H(p) = \frac{1}{2}\ln\det(2\pi e \Sigma).
+\end{align}
+The entropy of the isotropic reference is:
+\begin{align}
+    H(p_{\mathrm{iso}}) = \frac{D}{2}\ln\left(\frac{2\pi e\,\mathrm{tr}\,\Sigma}{D}\right).
+\end{align}
+The structure-information (Eq.~\ref{eq:struct_info}) equals $H(p_{\mathrm{iso}}) - H(p)$ when the isotropic reference has higher entropy than the asymmetric distribution (which occurs when eigenvalues are spread over fewer dimensions).
+
+In information-theoretic terms, specifying a sample from $p$ rather than from $p_{\mathrm{iso}}$ requires fewer bits by exactly $I_{\mathrm{struct}}$---but \emph{specifying the structure itself} requires those bits. The structure-information quantifies the description complexity of the asymmetry.
+
+This connects to Noether's theorem [10] and Weyl's analysis of symmetry [11]: symmetries reduce the number of independent parameters. A system with $O(D)$ symmetry (full isotropy) has one parameter (scale). A system with broken symmetry has up to $\frac{D(D+1)}{2}$ parameters (full covariance matrix).
+
+From the perspective of Landau theory [12], the thermodynamic cost of broken symmetry can be understood as the cost of stabilizing the associated Goldstone modes. When rotational symmetry is broken---confining a particle to a ring in 2D, for example---the radial degree of freedom must be suppressed. Thermal fluctuations continuously excite this ``soft mode,'' and the controller must pay the housekeeping cost to maintain the low-dimensional manifold. The more symmetries are broken, the more Goldstone-like modes must be stabilized, and the higher the maintenance power [13].
+
+This perspective also illuminates why biological measurement systems face fundamental limits in the sub-Landauer domain [14]: the work required to maintain an ordered (asymmetric) state places a floor on the energetic cost of biological information processing. The ``projection bound'' governing Maxwell's demon in continuous substrates [15] reflects the same geometric maintenance cost applied to measurement.
+
+\section{Discussion}
+
+\subsection{Relation to Vopson's Framework}
+
+Our analysis supports and extends Vopson's second law of infodynamics in several ways:
+\begin{itemize}
+    \item \textbf{Mechanistic foundation.} We provide a thermodynamic mechanism for why information entropy decreases: asymmetric states cost work to maintain.
+    \item \textbf{Symmetry preference explained.} High symmetry corresponds to thermodynamic stability, not just low information content.
+    \item \textbf{Compatibility with the second law of thermodynamics.} The decrease in information entropy is accompanied by an increase in thermodynamic entropy in the environment (heat dissipation). There is no violation.
+    \item \textbf{Quantitative bound.} The geometric maintenance bound (Eq.~\ref{eq:dlb}) provides a minimum dissipation for maintaining asymmetric structure.
+\end{itemize}
+
+\subsection{Biological Implications}
+
+Living systems are paradigmatic examples of maintained asymmetry. Cells confine molecular distributions to specific compartments; neural systems maintain low-dimensional activity manifolds [16,17]; organisms maintain thermal and chemical gradients far from equilibrium.
+
+Our framework predicts that these systems must continuously pay the dimensional maintenance cost. Death---the cessation of metabolism---leads to relaxation toward symmetric equilibrium (decomposition, thermal equilibration). The second law of infodynamics, in this view, is the thermodynamic pressure that life must continuously resist.
+
+\subsection{Limitations}
+
+The geometric maintenance bound applies to overdamped stochastic systems near equilibrium. Extensions to underdamped dynamics, strongly non-equilibrium steady states, and quantum systems remain to be developed. The connection between our continuous $I_{\mathrm{struct}}$ and discrete information measures (bits in genetic sequences, digital data) requires further formalization.
+
+\section{Conclusion}
+
+We have derived a thermodynamic bound---the geometric maintenance bound---that explains the physical basis for the second law of infodynamics. The key insight is that \textbf{asymmetry costs work}. Systems naturally relax toward symmetric, high-dimensional equilibrium states that require no energy to maintain. Maintaining low-dimensional, asymmetric structure requires continuous work input scaling with both the geometric contraction cost $C_{\Phi}$ and the diffusion rate $D_{\mathrm{diff}}$.
+
+This provides a physical mechanism for Vopson's observation that information entropy decreases over time: symmetric states are thermodynamically stable attractors. The prevalence of symmetric equilibria---from crystal structures to the eventual fate of all dissipative systems---reflects thermodynamic necessity, not merely aesthetic preference.
+
+Crucially, there is no contradiction with the second law of thermodynamics. When structure-information decreases ($I_{\mathrm{struct}} \to 0$), thermodynamic entropy increases in the heat bath---the two laws describe complementary aspects of the same relaxation process. The second law of infodynamics is thus revealed not as a new fundamental force, but as the shadow cast by the second law of thermodynamics: \emph{structure costs work, and in a dissipative universe, the path of least resistance is the path to symmetry}.
+
+\section*{Acknowledgements}
+
+The author thanks the developers of Claude Code (Anthropic) for assistance with manuscript preparation.
+
+\begin{thebibliography}{17}
+{\scriptsize
+
+\bibitem{landauer1961}
+R. Landauer, Irreversibility and heat generation in the computing process, IBM Journal of Research and Development 5(3), 183--191 (1961)
+
+\bibitem{bennett1982}
+C.H. Bennett, The thermodynamics of computation---a review, International Journal of Theoretical Physics 21(12), 905--940 (1982)
+
+\bibitem{berut2012}
+A. B\'erut, A. Arakelyan, A. Petrosyan, S. Ciliberto, R. Dillenschneider, E. Lutz, Experimental verification of Landauer's principle linking information and thermodynamics, Nature 483(7388), 187--189 (2012)
+
+\bibitem{parrondo2015}
+J.M.R. Parrondo, J.M. Horowitz, T. Sagawa, Thermodynamics of information, Nature Physics 11, 131--139 (2015)
+
+\bibitem{seifert2012}
+U. Seifert, Stochastic thermodynamics, fluctuation theorems and molecular machines, Reports on Progress in Physics 75(12), 126001 (2012)
+
+\bibitem{vopson2022}
+M.M. Vopson, S. Lepadatu, Second law of information dynamics, AIP Advances 12(7), 075310 (2022)
+
+\bibitem{vopson2023}
+M.M. Vopson, The second law of infodynamics and its implications for the simulated universe hypothesis, AIP Advances 13(10), 105308 (2023)
+
+\bibitem{vopson2019}
+M.M. Vopson, The mass-energy-information equivalence principle, AIP Advances 9(9), 095206 (2019)
+
+\bibitem{oono1998}
+Y. Oono, M. Paniconi, Steady state thermodynamics, Progress of Theoretical Physics Supplement 130, 29--44 (1998)
+
+\bibitem{noether1918}
+E. Noether, Invariante Variationsprobleme, Nachrichten von der Gesellschaft der Wissenschaften zu G\"ottingen, Mathematisch-Physikalische Klasse, 235--257 (1918)
+
+\bibitem{weyl1952}
+H. Weyl, Symmetry, Princeton University Press (1952)
+
+\bibitem{landau1937}
+L.D. Landau, On the theory of phase transitions, Zhurnal Eksperimental'noi i Teoreticheskoi Fiziki 7, 19--32 (1937)
+
+\bibitem{anderson1972}
+P.W. Anderson, More is different, Science 177(4047), 393--396 (1972)
+
+\bibitem{todd2025falsifiability}
+I. Todd, The limits of falsifiability: Dimensionality, measurement thresholds, and the sub-Landauer domain in biological systems, BioSystems, 105608 (2025)
+
+\bibitem{todd2025maxwell}
+I. Todd, Timing inaccessibility and the projection bound: Resolving Maxwell's demon for continuous biological substrates, BioSystems, 105632 (2025)
+
+\bibitem{cunningham2014}
+J.P. Cunningham, B.M. Yu, Dimensionality reduction for large-scale neural recordings, Nature Neuroscience 17(11), 1500--1509 (2014)
+
+\bibitem{gallego2017}
+J.A. Gallego, M.G. Perich, L.E. Miller, S.A. Solla, Neural manifolds for the control of movement, Neuron 94(5), 978--984 (2017)
+
+}
+\end{thebibliography}
+
+\end{document}
