@@ -1,0 +1,569 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+
+\title{Time, Mathematics, and the Relaxing Knot:\\
+A Geometric Foundation for Infodynamics}
+
+\author{Ian Todd\\
+Sydney Medical School\\
+University of Sydney\\
+Sydney, NSW, Australia\\
+\texttt{itod2305@uni.sydney.edu.au}}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We propose that time, physical law, and mathematics itself emerge from the relaxation dynamics of a constrained high-dimensional geometry. The universe originated not as creation ex nihilo but as a symmetry-breaking event that created a ``knot''---a topologically constrained configuration in a high-dimensional substrate. Time is the rate at which this knot relaxes; physical laws are the constraints defining the knot; mathematics is the structure of those constraints. This framework predicts characteristic relaxation dynamics---slow initially, accelerating through a middle epoch, slowing toward equilibrium---that may explain dark energy as ongoing relaxation pressure rather than a cosmological constant. We connect this geometric picture to infodynamics: information accumulation tracks relaxation progress, and the second law of infodynamics emerges as a consequence of constraint release. The ``unreasonable effectiveness of mathematics'' dissolves: mathematics describes physics because both are aspects of the same underlying knot topology. This provides a geometric foundation for information-theoretic approaches to fundamental physics.
+\end{abstract}
+
+\section{Introduction}
+
+What is time? The question has occupied physics and philosophy for millennia, yet standard physics treats time as a given---a dimension we move through, a parameter in equations. But this begs the question: why does time have a direction? Why does it flow? Why does it exist at all?
+
+We propose a radical reframing: \textbf{time is not fundamental}. Time is the rate at which energy redistributes through a high-dimensional geometric substrate. When energy flows, time passes. When flow ceases, time stops. The ``arrow of time'' is simply the direction of relaxation---from constrained to unconstrained, from knotted to smooth.
+
+This is not mere metaphor. We will show that treating the universe as a relaxing topological knot in a high-dimensional space:
+\begin{enumerate}
+    \item Explains why time has a direction (relaxation is irreversible)
+    \item Predicts characteristic cosmic dynamics (slow-fast-slow relaxation)
+    \item Reframes dark energy as relaxation pressure
+    \item Dissolves the puzzle of why mathematics describes physics
+    \item Provides a geometric foundation for infodynamics
+\end{enumerate}
+
+The framework connects to Jacobson's thermodynamic derivation of Einstein's equations \cite{jacobson1995}: if spacetime geometry enforces thermodynamic consistency, then geometry itself may be downstream of more fundamental constraints. We extend this: geometry, time, and even mathematics emerge from how symmetry broke in the primordial substrate.
+
+This paper is the third in a trilogy developing geometric foundations for information physics:
+
+\begin{enumerate}
+    \item \textbf{Microscopic} \cite{todd2025infodynamics}: The thermodynamic foundation for infodynamics---how dimensional apertures constrain information accumulation at the scale of individual observers and measurements.
+
+    \item \textbf{Mesoscopic} \cite{todd2025aperture}: Time as information rate through dimensional apertures---how black hole phenomenology emerges from observer-relative channel capacity, without invoking general relativity as fundamental.
+
+    \item \textbf{Cosmological} (this paper): The universe as a relaxing knot---how time, mathematics, and physical law emerge from constraint dynamics at cosmic scales, grounding the previous papers in a unified geometric ontology.
+\end{enumerate}
+
+The arc is: from observers measuring systems, to observers embedded in curved spacetime, to observers as patterns within a relaxing cosmos. Each scale inherits constraints from the one above.
+
+\section{The Substrate and the Knot}
+
+\subsection{The High-Dimensional Substrate}
+
+Consider a substrate with very high dimensionality $N \gg 4$. In its ground state, this substrate has maximal symmetry---no preferred directions, no distinguished points, no structure. It is not ``empty space''; it is the precondition for space. It is not ``before time''; it is the precondition for time.
+
+We do not specify the substrate's ultimate nature. It may be a quantum foam, a spin network, a tensor field, or something beyond current physics. What matters is the \emph{structural} claim: whatever the substrate is, it admits perturbations that break symmetry and create local constraints.
+
+This agnosticism is deliberate. The framework should be compatible with multiple approaches to quantum gravity---loop quantum gravity, string theory, causal set theory---while not depending on the details of any. What we require is only that the substrate:
+\begin{enumerate}
+    \item Has high dimensionality (many degrees of freedom)
+    \item Admits symmetry-breaking perturbations
+    \item Supports constraint structures that can relax
+\end{enumerate}
+
+\textbf{Mathematical anchoring.} What kind of object is the ``knot,'' precisely? Think of it as a constrained region in a very high-dimensional configuration space---a submanifold defined by topological obstructions that prevent direct relaxation to the ground state. In finite dimensions, analogues include: a point in a double-well potential (trapped by energy barrier), a vortex in a superfluid (topologically protected), or a defect in a crystal lattice (locally stable but globally suboptimal). The cosmological knot is the infinite-dimensional generalization: a configuration stabilized by the topology of constraint space, not merely by energy barriers. We do not require a specific realization (strings, spin foams, etc.); we require only that such constrained configurations exist and can relax.
+
+\subsection{Symmetry-Breaking as Structure Genesis}
+
+A symmetry-breaking event creates a \textbf{knot}---a topologically constrained configuration that cannot relax to the ground state without traversing an energy barrier or undergoing topological transformation.
+
+Think of a napkin. Laid flat, it has minimal structure. Crumpled into a ball, it has complex internal constraints---folds pressing against folds, fabric stretched and compressed. The crumpled napkin is a knot in the space of napkin configurations (Figure~\ref{fig:napkin}).
+
+The Big Bang, in this picture, was not creation from nothing. It was the \emph{end} of constraint creation---the moment the symmetry-breaking cascade finished knotting the substrate and relaxation began. What we call ``the universe'' is the knot in the process of relaxing.
+
+\begin{definition}[Cosmological Knot]
+A cosmological knot $\mathcal{K}$ is a constrained configuration of the high-dimensional substrate characterized by:
+\begin{itemize}
+    \item A constraint topology $\mathcal{T}$ (how regions are connected and restricted)
+    \item A constraint energy $E_{\mathcal{K}}$ (work required to create or dissolve the knot)
+    \item A relaxation manifold $\mathcal{M}$ (the space of configurations the knot can access as it relaxes)
+\end{itemize}
+\end{definition}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig1_napkin.png}
+    \caption{The napkin metaphor for cosmic relaxation. \textbf{Left}: Early universe---tightly crumpled, high constraint energy, slow initial relaxation. \textbf{Center}: Present epoch---loosening structure, fast relaxation phase. \textbf{Right}: Heat death---fully relaxed, no remaining constraints, no remaining time.}
+    \label{fig:napkin}
+\end{figure}
+
+\subsection{The Symmetry-Breaking Cascade}
+
+The knot did not form all at once. Symmetry broke in stages, each stage creating new structure (Figure~\ref{fig:cascade}):
+
+\begin{enumerate}
+    \item \textbf{Primordial break}: Creates distinction itself---something versus nothing, here versus there. This is the birth of \emph{set-theoretic} structure (membership, exclusion).
+
+    \item \textbf{Ordering break}: Creates asymmetry---before versus after, more versus less. This is the birth of \emph{ordinal} structure (sequence, magnitude).
+
+    \item \textbf{Compositional break}: Creates combination---things can aggregate, interact, compose. This is the birth of \emph{algebraic} structure (operations, groups).
+
+    \item \textbf{Locality break}: Creates neighborhood---some things are near, others far. This is the birth of \emph{topological} structure (continuity, connection).
+
+    \item \textbf{Metric break}: Creates distance---how far is far, how different is different. This is the birth of \emph{geometric} structure (length, angle, curvature).
+\end{enumerate}
+
+Each break is irreversible under normal dynamics (though not absolutely forbidden). The sequence of breaks determines the structure of the resulting knot---and therefore the structure of physics and mathematics within it.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/fig2_cascade.png}
+    \caption{The symmetry-breaking cascade. Each break creates new mathematical structure. Physical law and mathematical structure are aspects of the same knot topology.}
+    \label{fig:cascade}
+\end{figure}
+
+\section{Time as Relaxation Rate}
+
+\subsection{The Fundamental Claim}
+
+We propose:
+
+\begin{quote}
+\textbf{Time is the rate at which the cosmological knot relaxes.}
+\end{quote}
+
+This is not a definition but a physical hypothesis. It claims that what we experience as the passage of time---the succession of distinguishable moments---is the substrate redistributing energy as constraints release.
+
+\textbf{Parameterization.} To avoid circularity (using time to define time), we distinguish:
+\begin{itemize}
+    \item $s$: a substrate evolution parameter, not itself ``time'' but the fundamental coordinate along which the knot configuration changes. Think of $s$ as labeling successive states of the substrate.
+    \item $t$: experienced time, which \emph{emerges} from relaxation dynamics and is defined in terms of $s$.
+\end{itemize}
+
+Formally, let $\mathcal{K}(s)$ denote the knot configuration parameterized by $s$. The relaxation rate is:
+\begin{equation}
+    \dot{\mathcal{R}}(s) = \left\| \frac{d\mathcal{K}}{ds} \right\|_{\mathcal{M}}
+\end{equation}
+where $\|\cdot\|_{\mathcal{M}}$ is a norm on the relaxation manifold and the overdot denotes differentiation with respect to $s$. Experienced time $t$ is then defined as the integral:
+\begin{equation}
+    t(s) = \int_0^s \alpha \, \dot{\mathcal{R}}(s') \, ds'
+\end{equation}
+where $\alpha$ is a constant setting units. Equivalently, $dt/ds = \alpha \, \dot{\mathcal{R}}(s)$: experienced time accumulates in proportion to relaxation activity.
+
+When relaxation is fast, time passes quickly (many distinguishable states per unit $s$). When relaxation is slow, time passes slowly. When relaxation stops, time stops.
+
+This connects to the aperture framework developed in \cite{todd2025aperture}: an observer's experienced time depends on their information accumulation rate, which in turn depends on their access to the relaxing substrate. The cosmological relaxation rate sets an upper bound on all local time rates.
+
+\subsection{The Arrow of Time}
+
+The arrow of time is simply the direction of relaxation. The knot relaxes from constrained to unconstrained, from high energy to low energy, from ordered to disordered. This is not imposed; it is the nature of constraint release.
+
+The second law of thermodynamics follows: entropy increases because relaxation explores the accessible configuration space, and the relaxed region of configuration space is vastly larger than the constrained region. We do not need to postulate low-entropy initial conditions as a brute fact; the knot \emph{is} the low-entropy initial condition.
+
+This provides a response to the Past Hypothesis puzzle \cite{albert2000, carroll2010}: why was the early universe in such a special low-entropy state? In the knot framework, the question dissolves. The early universe was low-entropy because it was tightly knotted. A knot, by definition, is a constrained (low-entropy) configuration. Asking why the universe started knotted is like asking why a crumpled napkin is crumpled---because something crumpled it. The Big Bang was not the crumpling; it was the moment the crumpling finished and relaxation began---the release of the grip.
+
+\subsection{Slow-Fast-Slow Dynamics}
+
+Relaxation dynamics are not uniform. Consider the crumpled napkin:
+\begin{itemize}
+    \item \textbf{Initially}: The napkin is tightly crumpled. Folds resist each other. Relaxation is slow because the configuration is rigid.
+    \item \textbf{Middle phase}: Some constraints have released, creating slack. Relaxation accelerates as the structure loosens.
+    \item \textbf{Late phase}: Most constraints have released. Little tension remains. Relaxation slows as the napkin approaches flatness.
+\end{itemize}
+
+This intuition---relaxation is self-accelerating early (slack enables further release) but self-limiting late (little remains to release)---translates directly into a differential equation. Let $R(s)$ be the cumulative relaxation at substrate parameter $s$, with $R \in [0, R_{\max}]$. The simplest dynamics capturing ``accelerating early, saturating late'' is:
+\begin{equation}
+    \frac{dR}{ds} = k \, R \left(1 - \frac{R}{R_{\max}}\right)
+\end{equation}
+where $k > 0$ is a rate constant. The $R$ factor makes relaxation slow when little has occurred (rigid); the $(1 - R/R_{\max})$ factor makes it slow as saturation approaches. This is the logistic equation, with solution:
+\begin{equation}
+    R(s) = \frac{R_{\max}}{1 + e^{-k(s - s_0)}}
+\end{equation}
+where $s_0$ is the midpoint. The relaxation \emph{rate} $dR/ds$ is bell-shaped (Figure~\ref{fig:relaxation}): slow, then fast, then slow.
+
+Note that experienced time $t$ is defined in terms of this relaxation (Eq.~2), so plotting $R(t)$ would obscure the dynamics. The fundamental curve is $R(s)$; the mapping to $t$ is derived, not assumed.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig3_relaxation.png}
+    \caption{Relaxation dynamics. \textbf{(a)} Cumulative relaxation follows a logistic curve. \textbf{(b)} The relaxation rate is bell-shaped: slow initially (rigid constraints), fast in the middle (loosening), slow at the end (equilibrating). The three phases correspond to the early universe, present epoch, and heat death.}
+    \label{fig:relaxation}
+\end{figure}
+
+\subsection{Constraint Release and Knot Energy}
+
+As the knot relaxes, constraint energy decreases (Figure~\ref{fig:energy}). This energy is not destroyed; it is redistributed across the expanding relaxation manifold. What was concentrated constraint becomes diffuse thermal motion.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig4_knot.png}
+    \caption{Knot energy and constraint release. \textbf{(a)} Constraint energy decreases as the knot relaxes. \textbf{(b)} Discrete symmetry-breaking events release constraints in a cascade.}
+    \label{fig:energy}
+\end{figure}
+
+\section{Dark Energy as Relaxation Pressure}
+
+\subsection{The Standard Puzzle}
+
+Observations since 1998 indicate the universe's expansion is accelerating \cite{riess1998, perlmutter1999}. The standard explanation invokes dark energy---a mysterious component with negative pressure, often modeled as a cosmological constant $\Lambda$.
+
+But $\Lambda$ is puzzling. Its observed value is $\sim 120$ orders of magnitude smaller than quantum field theory predicts \cite{weinberg1989}. It appears finely tuned. It has no natural explanation.
+
+\subsection{Relaxation Reframing}
+
+In the knot framework, dark energy is not a substance or a constant. It is the \textbf{ongoing relaxation pressure}---the tendency of the knot to continue unwinding.
+
+The acceleration of expansion is the acceleration of relaxation. We are in (or entering) the fast phase of the slow-fast-slow curve. The knot is loosening, and the loosening is speeding up.
+
+This makes predictions (Figure~\ref{fig:dark_energy}):
+\begin{enumerate}
+    \item The dark energy equation of state $w = p/\rho$ should not be exactly $-1$ (which would indicate a true cosmological constant). It should evolve as relaxation dynamics evolve.
+
+    \item The evolution of $w(z)$ should show signatures of the relaxation curve---not arbitrary variation, but the characteristic shape of constraint release. Figure~\ref{fig:dark_energy} uses a minimal phenomenological parameterization (a localized deviation around $z \sim 1$) to illustrate the predicted qualitative signature.
+
+    \item Eventually, relaxation will slow. The ``heat death'' of the universe is the fully relaxed knot---no remaining constraints, no remaining gradients, no remaining time.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig5_dark_energy.png}
+    \caption{Dark energy predictions (illustrative). \textbf{(a)} The equation of state $w(z)$ motivated by relaxation dynamics departs from the $\Lambda$CDM prediction ($w = -1$) around the peak relaxation epoch. \textbf{(b)} This produces differences in the Hubble parameter evolution potentially detectable by next-generation surveys.}
+    \label{fig:dark_energy}
+\end{figure}
+
+Current observations are consistent with $w \approx -1$ but do not rule out evolution \cite{planck2018}. The knot framework predicts subtle departures that future observations (e.g., from the Vera Rubin Observatory, the Nancy Grace Roman Space Telescope, or the Euclid mission) could detect. Recent DESI data showing hints of dynamical dark energy \cite{desi2024} have prompted claims of ``first observational evidence for string theory'' based on UV/IR mixing mechanisms \cite{hur2025}.
+
+\textbf{Reframing UV/IR mixing.} The knot framework provides a more general explanation: UV/IR mixing is a specific instance of dimensional projection failure. ``UV'' and ``IR'' label degrees of freedom separated by scale; UV/IR mixing occurs when integrating out short-wavelength modes leaves nonlocal structure in the long-wavelength sector. This happens whenever the IR sector does not admit a low-dimensional closure---whenever coarse-graining fails to decouple scales.
+
+Effective field theory success is the special case where dimensional compression works: you integrate out fast/small modes and get a tractable theory of slow/large modes with local couplings. UV/IR mixing is what happens when compression fails---when the IR remains high-dimensional despite coarse-graining.
+
+This reframes cosmological claims about string theory. Dynamical dark energy may be evidence that the IR sector of cosmology remains high-dimensional under coarse-graining, not evidence for any specific microtheory. Many different high-dimensional substrates---string-theoretic, loop-quantum, or otherwise---would project to the same low-dimensional $w(a)$ evolution. The knot framework does not compete with string theory; it explains why string-like UV/IR effects are \emph{generic} to any high-dimensional relaxation process. Scale separation is a special case of dimensional reduction; UV/IR mixing is what you see when the reduction fails.
+
+The fine-tuning problem also dissolves. $\Lambda$ appears finely tuned because we are trying to fit a time-varying relaxation pressure with a constant. The ``coincidence problem''---why is $\Omega_\Lambda \sim \Omega_m$ now?---has a natural answer: we exist during the fast-relaxation epoch, which is also when matter and dark energy densities are comparable. This is not coincidence; it is when observers can exist.
+
+\subsection{Inflation as Initial Constraint Release}
+
+Where does inflation fit? In the knot framework, inflation is not part of the main logistic relaxation curve but its \emph{precursor}---the first rapid release of constraints immediately after the symmetry-breaking event that created the knot.
+
+Think of crumpling the napkin: the moment you release your grip, there is an initial rapid expansion as the most strained folds spring outward. This is not the slow subsequent relaxation; it is the system's immediate response to the removal of the crumpling force. Inflation is this initial spring-back---a brief period of exponential expansion as the most extreme constraints release.
+
+The inflaton field, in this picture, is the order parameter for the first symmetry break. Its potential energy is constraint energy; its roll-down is constraint release; reheating is the conversion of constraint energy into thermal motion. After inflation ends, the universe settles into the slower logistic relaxation we model here.
+
+This explains why inflation is qualitatively different from late-time acceleration: inflation is the \emph{initial condition} for relaxation (the spring-back), while dark energy is the \emph{ongoing process} of relaxation (the slow unfolding). Both are constraint release, but at different phases and timescales.
+
+\section{Mathematics as Knot Structure}
+
+\subsection{The Wigner Puzzle}
+
+In 1960, Eugene Wigner posed the question: why is mathematics so unreasonably effective in describing physics \cite{wigner1960}? Mathematical structures developed for purely abstract reasons turn out to describe physical phenomena with extraordinary precision. This seems miraculous---or at least unexplained.
+
+The puzzle has generated extensive philosophical literature \cite{steiner1998, colyvan2001}. Proposed solutions include: mathematics is empirically discovered (naturalism), mathematics constrains physics (structuralism), or the correspondence is anthropically selected (we notice the matches). None is fully satisfying.
+
+\subsection{The Dissolution}
+
+The knot framework dissolves the puzzle: \textbf{mathematics does not describe physics; mathematics is physics}.
+
+The structure of the knot---its topology, its symmetries, its constraints---is what we call ``physical law.'' But that same structure, abstracted and studied for its own sake, is what we call ``mathematics.''
+
+When we discover that group theory describes particle physics, we are not finding a mysterious correspondence between abstract math and concrete physics. We are recognizing that the symmetry-breaking pattern that created particles \emph{is} a group-theoretic structure. The math works because the math is not separate from the physics.
+
+\begin{proposition}[Structural Identity]
+Let $\mathcal{K}$ be a cosmological knot with constraint structure $\mathcal{C}$. The valid inferences within $\mathcal{K}$ (logic), the patterns that persist under deformation (mathematics), and the regularities of dynamics (physics) are all aspects of $\mathcal{C}$.
+\end{proposition}
+
+This is not to say mathematics is arbitrary or merely conventional. The constraints are real. But the constraints are not Platonic forms existing outside the universe; they are the structure of the universe itself.
+
+\subsection{Contingency of Mathematics}
+
+A striking implication: a different symmetry-breaking sequence would produce a different knot with different structure---and therefore different mathematics.
+
+In our universe, $1 + 1 = 2$ because our knot has compositional structure that makes aggregation well-defined. A knot without clean compositional breaks might not support arithmetic as we know it.
+
+This sounds radical, but it is the logical consequence of treating structure as emergent rather than eternal. We cannot directly access alternative knots, but we can recognize that our mathematics is \emph{our} knot's mathematics, not universal truth independent of physical reality.
+
+This connects to recent work on alternative foundations for mathematics \cite{baez2010, leinster2014}. Category theory and topos theory suggest that different foundational choices yield different mathematical universes with different valid theorems. The knot framework suggests these are not merely formal variations but might correspond to genuinely different physical possibilities.
+
+\subsection{Mathematical Objects as Constraint Attractors}
+
+Some mathematical objects appear ``forced''---they exist not because anyone constructed them, but because consistency requirements leave no alternative. The Monster group, exotic smooth structures on $\mathbb{R}^4$, and non-measurable sets all share this character: locally they look like arbitrary chimeras, but globally they are necessitated by the intersection of independent constraints \cite{janik2025unicorns}.
+
+In the knot framework, these ``mathematical unicorns'' are constraint attractors. Each constraint---group axioms, finiteness, simplicity, classification completeness---carves out a region of possibility space. The intersection of these regions, when non-empty, contains objects that no single constraint predicted but all constraints together require.
+
+This explains why such objects feel discovered rather than invented. The brain, as a high-dimensional constraint-satisfaction engine, converges on these forced fixed points through its own dynamics. Mathematical intuition is the phenomenology of constraint intersection.
+
+The universality question becomes precise: which mathematical structures are forced by \emph{any} sufficiently rich constraint system, and which are specific to particular constraint environments? In topos-theoretic terms, some objects exist in all topoi with natural number objects; others exist only in topoi with additional structure (e.g., the axiom of choice).
+
+In the knot framework: some mathematical structures are forced by constraints so basic---consistency, closure, finite expressibility---that any knot supporting observers would contain them. These are ``universal unicorns.'' Other structures depend on specific features of the symmetry-breaking cascade. The Monster group may be universal; exotic $\mathbb{R}^4$ structures may be knot-specific. The mathematics we discover is the forced structure of \emph{our} knot, but some of it may be shared by all possible knots.
+
+\section{Metaphysics as Knot Topology}
+
+The framework extends beyond physics and mathematics to metaphysics---the structure of concepts like causation, identity, and modality.
+
+\subsection{Causation}
+
+Causation is the asymmetric dependence of later states on earlier states. In the knot framework, this emerges from the arrow of relaxation. Constraints release in a direction; that direction defines ``before'' and ``after''; and the dependence of after-states on before-states is what we call causation.
+
+A knot that relaxed symmetrically (or not at all) would have no causation. Time and causation are co-emergent.
+
+This provides a new angle on the metaphysics of causation, complementing regularity theories \cite{hume1748}, counterfactual theories \cite{lewis1973}, and process theories \cite{salmon1984}. Causation is not a primitive relation imposed on events; it is the topological structure of constraint release.
+
+\subsection{Identity}
+
+What makes something the ``same thing'' over time? In the knot framework, identity is topological persistence---the features of the knot that survive deformation. A particle is a stable pattern in the constraint structure. A person is a more complex stable pattern. Identity is not a metaphysical primitive; it is a topological fact about what persists under relaxation.
+
+\subsection{Modality}
+
+What is possible? What is necessary? In the knot framework:
+\begin{itemize}
+    \item \textbf{Possibility} = the space of states the knot can reach via relaxation
+    \item \textbf{Necessity} = constraints the knot cannot violate without topological rupture
+    \item \textbf{Contingency} = features that depend on the relaxation path taken
+\end{itemize}
+
+Modal structure is not primitive. It emerges from the geometry of the relaxation manifold.
+
+\section{Connection to Infodynamics}
+
+\subsection{Vopson's Framework}
+
+Vopson's second law of infodynamics proposes that information content in physical systems tends toward a minimum over time \cite{vopson2022, vopson2023}. This has been framed in terms of information having mass-energy equivalence and systems evolving to reduce their information content.
+
+The second law of infodynamics states: in an isolated system, the total information content remains constant or decreases over time. This parallels the second law of thermodynamics but operates at the level of information rather than entropy.
+
+\subsection{Geometric Reinterpretation}
+
+We propose that infodynamics is the information-theoretic shadow of knot relaxation.
+
+As the knot relaxes, constraints release. Each constraint is a distinction---a bit of structure that differentiates one configuration from another. Releasing a constraint is erasing a distinction. In information terms, it is reducing the information required to specify the configuration.
+
+The second law of infodynamics, in this view, is:
+
+\begin{quote}
+\textbf{Information decreases because constraints release.}
+\end{quote}
+
+This grounds Vopson's law in geometry rather than postulating information as a primitive substance. Information is not fundamental; \emph{constraint structure} is fundamental. Information is how we describe constraint structure from inside the knot.
+
+\subsection{Information Accumulation as Relaxation Tracking}
+
+In the companion paper \cite{todd2025infodynamics}, we argued that observers accumulate information at a rate bounded by their dimensional aperture. Here we can extend this (Figure~\ref{fig:information}):
+
+The information an observer can accumulate is bounded by the relaxation rate of their local region of the knot. Fast relaxation = many distinguishable states = high information accumulation. Slow relaxation = few distinguishable states = low information accumulation.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/fig6_information.png}
+    \caption{Information accumulation tracks relaxation. The observed information accumulation rate (noisy samples) follows the theoretical relaxation rate with high correlation ($r > 0.99$). Observers are not outside the knot measuring it; they are patterns within it, participating in its relaxation.}
+    \label{fig:information}
+\end{figure}
+
+This connects the microscopic (observer information rates) to the cosmological (universal relaxation dynamics). Observers are not outside the knot measuring it; they are patterns within the knot, participating in its relaxation, their experience structured by its constraints.
+
+\subsection{The Mass-Energy-Information Equivalence}
+
+Vopson has proposed that information has mass, with $m = k_B T \ln 2 / c^2$ per bit \cite{vopson2019}. In the knot framework, this becomes:
+
+\textbf{Constraints have mass.} A distinction (a bit of structure) requires energy to create and maintain. When the distinction relaxes, that energy is released. The ``mass of information'' is the mass of constraint---the energy bound up in keeping the knot knotted.
+
+This provides a geometric interpretation of information-mass equivalence that avoids treating information as a mysterious substance. Information is not a thing; it is a description of constraint structure. The mass is real; the information is how we describe the configuration.
+
+\section{Toward Einstein's Equations}
+
+Jacobson (1995) showed that Einstein's field equations can be derived from thermodynamic assumptions applied to local horizons \cite{jacobson1995}. If we impose $\delta Q = T\,dS$ on all local Rindler horizons and assume area-law entropy, Einstein's equation emerges as an equation of state.
+
+The knot framework provides a substrate for this mechanism:
+\begin{itemize}
+    \item \textbf{Horizons} are local regions where relaxation rate changes sharply (aperture boundaries in the language of \cite{todd2025aperture})
+    \item \textbf{Heat flux} $\delta Q$ is energy redistribution during relaxation
+    \item \textbf{Entropy} $S$ is the log-volume of the accessible relaxation manifold
+    \item \textbf{Temperature} is the relaxation rate at the boundary
+\end{itemize}
+
+Einstein's equations, in this view, are not fundamental. They are the geometric consequence of thermodynamic consistency constraints on a relaxing knot. General relativity is an effective theory---extraordinarily accurate within its domain, but not the final word.
+
+Jacobson's 2015 extension \cite{jacobson2016} showed that imposing entanglement equilibrium in small balls also yields Einstein's equation. In knot language: the constraint structure must be locally consistent with its own relaxation dynamics. Geometry is not imposed; it is enforced by self-consistency.
+
+This is consistent with the expectation that GR must break down at Planck scales. The knot framework suggests what lies beneath: not quantized spacetime per se, but the high-dimensional substrate in which spacetime is a relaxation pattern.
+
+\section{Discussion}
+
+\subsection{Testable Implications}
+
+The framework makes predictions, though testing them is challenging:
+
+\begin{enumerate}
+    \item \textbf{Dark energy evolution}: $w(z)$ should show the characteristic slow-fast-slow signature, departing from $\Lambda$CDM at the 1--5\% level at precision of next-generation surveys. Specifically, $w$ should be slightly greater than $-1$ around $z \sim 1$ and approach $-1$ asymptotically at high and low $z$.
+
+    \item \textbf{Arrow of time}: The thermodynamic arrow, the cosmological arrow, and the psychological arrow of time are all the same arrow---the direction of relaxation. They should never decouple.
+
+    \item \textbf{Information bounds}: The rate of information accumulation in any physical system should be bounded by the local relaxation rate, providing a geometric interpretation of computational limits. This could be tested in quantum information experiments near the Landauer limit.
+\end{enumerate}
+
+\subsection{Relationship to Other Approaches}
+
+The framework connects to several research programs:
+
+\textbf{Entropic gravity} \cite{verlinde2011}: If gravity is an entropic force arising from information gradients, the knot framework provides the underlying geometry---gradients in constraint structure drive effective forces.
+
+\textbf{Holography} \cite{susskind1995, bousso2002}: The holographic principle states that the information content of a region is bounded by its boundary area. In the knot framework, this follows from the topology of constraint release at boundaries. The boundary encodes the constraints; the bulk is the relaxation pattern.
+
+\textbf{It from bit} \cite{wheeler1990}: Wheeler's vision of physics arising from information gets a geometric grounding---``bit'' is constraint, ``it'' is relaxation pattern.
+
+\textbf{Constructor theory} \cite{deutsch2015}: Deutsch and Marletto's constructor theory asks which transformations are possible rather than what laws govern dynamics. The knot framework answers: possible transformations are paths through the relaxation manifold.
+
+\textbf{Causal set theory} \cite{sorkin2003}: Causal sets propose that spacetime is fundamentally discrete. The knot framework is compatible: the constraint structure could be discrete at small scales while appearing continuous at large scales.
+
+\textbf{Loop quantum gravity} \cite{rovelli2004}: LQG's spin networks could be the fundamental structure of the substrate, with the knot being a particular configuration of spins. The framework does not depend on this identification but is compatible with it.
+
+\subsection{Limitations and Falsifiability}
+
+We have not derived specific equations from first principles. We have not shown that the symmetry-breaking cascade produces the Standard Model. We have not calculated the relaxation curve from knot topology.
+
+These are challenges for future work. The present paper establishes a conceptual framework---a way of thinking about time, physics, and mathematics that unifies them as aspects of a single geometric structure. Whether this framework can be made rigorous and quantitative remains to be seen.
+
+The framework is difficult to falsify directly, but it is not unfalsifiable. The following observations would break the framework:
+
+\begin{itemize}
+    \item \textbf{Decoupled arrows of time}: If the thermodynamic, cosmological, and psychological arrows of time were observed to point in different directions, this would falsify the claim that all arrows emerge from a single relaxation process.
+
+    \item \textbf{Strongly phantom dark energy}: If $w < -1$ persistently (phantom energy), this would indicate energy injection rather than relaxation, contradicting the framework's core mechanism. Transient $w < -1$ might be accommodated, but sustained phantom behavior would be fatal.
+
+    \item \textbf{Information increase in isolated systems}: If the second law of infodynamics were violated---if information content increased spontaneously in isolated systems---this would contradict the claim that information decreases as constraints release.
+
+    \item \textbf{Observer time exceeding relaxation rate}: If any physical process accumulated distinguishable states faster than the local relaxation rate permits, this would violate the proposed bound connecting experienced time to constraint dynamics.
+\end{itemize}
+
+The main predictions (dark energy evolution, information bounds) are at the edge of current observational capabilities. This is a weakness for empirical science but perhaps expected for foundational physics: fundamental frameworks often gain support indirectly through the success of theories built upon them.
+
+\subsection{What Would a Different Knot Look Like?}
+
+We cannot access other knots, but we can ask what they might contain. A different symmetry-breaking sequence might produce:
+\begin{itemize}
+    \item More or fewer spatial dimensions
+    \item Different particle spectra
+    \item Different mathematical structures (non-Archimedean arithmetic? Non-Boolean logic?)
+    \item Different metaphysics (no causation? No stable identity?)
+\end{itemize}
+
+This is not the multiverse of eternal inflation (many regions of the same substrate with different parameters). This is the possibility space of knots---fundamentally different structures that could, in principle, emerge from symmetry-breaking in the primordial substrate.
+
+We have no way to test this. But it shifts our understanding of our universe from ``the way things are'' to ``one way things could be.''
+
+\section{Conclusion}
+
+Time is not fundamental. It is the rate at which a cosmological knot---a constrained configuration in a high-dimensional substrate---relaxes toward equilibrium. Physical laws are the constraints defining the knot. Mathematics is the structure of those constraints. Metaphysical categories like causation and identity are topological features of the relaxation manifold.
+
+This framework provides a geometric foundation for infodynamics: information decreases as constraints release, and observers accumulate information at rates bounded by local relaxation dynamics. Dark energy is reframed as ongoing relaxation pressure, predicting characteristic slow-fast-slow dynamics in cosmic evolution.
+
+The ``unreasonable effectiveness of mathematics'' dissolves. Mathematics describes physics because mathematics \emph{is} physics---both are the structure of our particular knot, one of many possible, determined by how symmetry broke.
+
+We do not claim to have solved physics. We claim to have reframed its deepest questions in a way that may prove productive. If time, law, and logic are all aspects of a single geometric structure, then the project of fundamental physics is the project of understanding that structure---the knot that is our universe, slowly relaxing toward an end we call heat death but might equally call peace.
+
+\vspace{0.5cm}
+\noindent\textbf{Code availability:} Simulation code is available at \url{https://github.com/todd866/cosmic-relaxation}.
+
+\vspace{0.5cm}
+\noindent\textbf{Acknowledgments:} This work was developed in conversation with Claude (Anthropic).
+
+\begin{thebibliography}{99}
+
+\bibitem{jacobson1995}
+T. Jacobson, ``Thermodynamics of spacetime: the Einstein equation of state,'' \textit{Phys. Rev. Lett.} \textbf{75}, 1260 (1995).
+
+\bibitem{jacobson2016}
+T. Jacobson, ``Entanglement equilibrium and the Einstein equation,'' \textit{Phys. Rev. Lett.} \textbf{116}, 201101 (2016).
+
+\bibitem{riess1998}
+A. G. Riess \textit{et al.}, ``Observational evidence from supernovae for an accelerating universe and a cosmological constant,'' \textit{Astron. J.} \textbf{116}, 1009 (1998).
+
+\bibitem{perlmutter1999}
+S. Perlmutter \textit{et al.}, ``Measurements of $\Omega$ and $\Lambda$ from 42 high-redshift supernovae,'' \textit{Astrophys. J.} \textbf{517}, 565 (1999).
+
+\bibitem{weinberg1989}
+S. Weinberg, ``The cosmological constant problem,'' \textit{Rev. Mod. Phys.} \textbf{61}, 1 (1989).
+
+\bibitem{planck2018}
+Planck Collaboration, ``Planck 2018 results. VI. Cosmological parameters,'' \textit{Astron. Astrophys.} \textbf{641}, A6 (2020).
+
+\bibitem{desi2024}
+DESI Collaboration, ``DESI 2024 VI: Cosmological constraints from the measurements of baryon acoustic oscillations,'' arXiv:2404.03002 (2024).
+
+\bibitem{hur2025}
+T. Hur, V. Jejjala, M. Kavic, D. Minic, and T. Takeuchi, ``Dynamical dark energy, dual spacetime, and DESI,'' arXiv:2503.20854 (2025).
+
+\bibitem{wigner1960}
+E. P. Wigner, ``The unreasonable effectiveness of mathematics in the natural sciences,'' \textit{Commun. Pure Appl. Math.} \textbf{13}, 1 (1960).
+
+\bibitem{steiner1998}
+M. Steiner, \textit{The Applicability of Mathematics as a Philosophical Problem} (Harvard University Press, 1998).
+
+\bibitem{colyvan2001}
+M. Colyvan, ``The miracle of applied mathematics,'' \textit{Synthese} \textbf{127}, 265 (2001).
+
+\bibitem{albert2000}
+D. Z. Albert, \textit{Time and Chance} (Harvard University Press, 2000).
+
+\bibitem{carroll2010}
+S. Carroll, \textit{From Eternity to Here: The Quest for the Ultimate Theory of Time} (Dutton, 2010).
+
+\bibitem{vopson2019}
+M. M. Vopson, ``The mass-energy-information equivalence principle,'' \textit{AIP Advances} \textbf{9}, 095206 (2019).
+
+\bibitem{vopson2022}
+M. M. Vopson, ``The second law of infodynamics,'' \textit{AIP Advances} \textbf{12}, 075310 (2022).
+
+\bibitem{vopson2023}
+M. M. Vopson, ``The second law of infodynamics and its implications for the simulated universe hypothesis,'' \textit{AIP Advances} \textbf{13}, 105308 (2023).
+
+\bibitem{todd2025infodynamics}
+I. Todd, ``A Thermodynamic Foundation for the Second Law of Infodynamics,'' \textit{IPI Letters} (2025, under review).
+
+\bibitem{todd2025aperture}
+I. Todd, ``Time as Information Rate Through Dimensional Apertures: Black Hole Phenomenology from Observer-Relative Channel Capacity,'' \textit{IPI Letters} (2025, in preparation).
+
+\bibitem{verlinde2011}
+E. Verlinde, ``On the origin of gravity and the laws of Newton,'' \textit{JHEP} \textbf{2011}, 29 (2011).
+
+\bibitem{susskind1995}
+L. Susskind, ``The world as a hologram,'' \textit{J. Math. Phys.} \textbf{36}, 6377 (1995).
+
+\bibitem{bousso2002}
+R. Bousso, ``The holographic principle,'' \textit{Rev. Mod. Phys.} \textbf{74}, 825 (2002).
+
+\bibitem{wheeler1990}
+J. A. Wheeler, ``Information, physics, quantum: the search for links,'' in \textit{Complexity, Entropy, and the Physics of Information}, ed. W. H. Zurek (Addison-Wesley, 1990).
+
+\bibitem{deutsch2015}
+D. Deutsch and C. Marletto, ``Constructor theory of information,'' \textit{Proc. R. Soc. A} \textbf{471}, 20140540 (2015).
+
+\bibitem{sorkin2003}
+R. D. Sorkin, ``Causal sets: discrete gravity,'' in \textit{Lectures on Quantum Gravity}, ed. A. Gomberoff and D. Marolf (Springer, 2005).
+
+\bibitem{rovelli2004}
+C. Rovelli, \textit{Quantum Gravity} (Cambridge University Press, 2004).
+
+\bibitem{baez2010}
+J. C. Baez and M. Stay, ``Physics, topology, logic and computation: a Rosetta Stone,'' in \textit{New Structures for Physics}, ed. B. Coecke (Springer, 2010).
+
+\bibitem{leinster2014}
+T. Leinster, \textit{Basic Category Theory} (Cambridge University Press, 2014).
+
+\bibitem{janik2025unicorns}
+J. A. Janik, ``Monsters \& Unicorns: Mathematical Objects from Constraint Coherence,'' Zenodo (2025). \url{https://doi.org/10.5281/zenodo.18107469}
+
+\bibitem{hume1748}
+D. Hume, \textit{An Enquiry Concerning Human Understanding} (1748).
+
+\bibitem{lewis1973}
+D. Lewis, ``Causation,'' \textit{J. Phil.} \textbf{70}, 556 (1973).
+
+\bibitem{salmon1984}
+W. Salmon, \textit{Scientific Explanation and the Causal Structure of the World} (Princeton University Press, 1984).
+
+\end{thebibliography}
+
+\end{document}
