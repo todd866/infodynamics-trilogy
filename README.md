@@ -29,30 +29,35 @@ Three papers extending Vopson's infodynamics framework, scaling from microscopic
 
 ## Simulations
 
-All figures are generated from reproducible Python code:
+All figures are generated from reproducible Python code. Each paper has one consolidated simulation file:
 
 ```bash
 cd code
 pip install -r requirements.txt
 
-# Paper 1: Thermal relaxation dissipates structure-information
-python paper1_relaxation.py
+# Paper 1: All figures (geometric maintenance, relaxation, Landauer verification)
+python paper1_simulations.py
 
-# Paper 2: Core aperture simulation
-python black_hole_aperture_sim.py
+# Paper 2: All figures (time dilation, Schwarzschild R²=0.99, complementarity 3×)
+python paper2_simulations.py
 
-# Paper 2: Schwarzschild comparison (R² = 0.99 match!)
-python paper2_schwarzschild_comparison.py
+# Paper 3: All figures (napkin metaphor, cascade, w(z) predictions, DESI)
+python paper3_simulations.py
 
-# Paper 2: Hawking-like thermal residual at horizon
-python paper2_hawking_residual.py
-
-# Paper 2: Multi-observer complementarity (3× time dilation)
-python paper2_complementarity.py
-
-# Paper 3: Cosmic relaxation dynamics
-python paper3_cosmic.py
+# Individual figures (use --figure flag)
+python paper1_simulations.py --figure 3   # Landauer verification only
+python paper2_simulations.py --figure 2   # Schwarzschild comparison only
+python paper3_simulations.py --figure 6   # DESI predictions only
 ```
+
+### Key Results
+
+| Paper | Key Simulation | Result |
+|-------|---------------|--------|
+| 1 | Landauer verification | R² = 0.97 bound scaling |
+| 2 | Schwarzschild comparison | R² = 0.99 match to GR |
+| 2 | Complementarity | 3× time dilation across observers |
+| 3 | DESI prediction | 5-9% w(z) departure at low z |
 
 ### Flagship Simulation (GPU cluster)
 
@@ -62,30 +67,23 @@ For high-precision results with full statistical analysis:
 # Test run (laptop, ~10 min)
 python flagship_simulation.py --n_oscillators 500 --n_radius 100 --cpu
 
-# Full run (GPU cluster, ~4-8 hours, $200-500 compute)
+# Full run (GPU cluster, ~4-8 hours)
 python flagship_simulation.py --n_oscillators 10000 --n_radius 2000 --gpu
 ```
-
-The flagship simulation produces:
-- **Schwarzschild comparison**: 2000 radius points, bootstrap error bars
-- **Hawking analysis**: 500 aperture values, thermality testing
-- **Quasinormal modes**: 50 perturbations, frequency/damping extraction
-- **Complementarity**: 100 observers at different radii
-- **Entanglement**: Mutual information across closing aperture
 
 ## Structure
 
 ```
 ├── papers/
-│   ├── 01_thermodynamic_foundation.tex
+│   ├── 01_thermodynamic_foundation.tex   # Accepted w/ minor revisions
 │   ├── 02_black_hole_aperture.tex
 │   └── 03_cosmic_relaxation.tex
 ├── code/
-│   ├── paper1_relaxation.py
-│   ├── black_hole_aperture_sim.py
-│   ├── flatland_visualization.py
-│   └── paper3_cosmic.py
-├── figures/
+│   ├── paper1_simulations.py    # All Paper 1 figures
+│   ├── paper2_simulations.py    # All Paper 2 figures
+│   ├── paper3_simulations.py    # All Paper 3 figures
+│   └── flagship_simulation.py   # GPU cluster version
+├── figures/                     # 20+ generated figures
 └── README.md
 ```
 
