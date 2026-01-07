@@ -38,12 +38,40 @@ pip install -r requirements.txt
 # Paper 1: Thermal relaxation dissipates structure-information
 python paper1_relaxation.py
 
-# Paper 2: Aperture contraction produces time dilation
+# Paper 2: Core aperture simulation
 python black_hole_aperture_sim.py
+
+# Paper 2: Schwarzschild comparison (R² = 0.99 match!)
+python paper2_schwarzschild_comparison.py
+
+# Paper 2: Hawking-like thermal residual at horizon
+python paper2_hawking_residual.py
+
+# Paper 2: Multi-observer complementarity (3× time dilation)
+python paper2_complementarity.py
 
 # Paper 3: Cosmic relaxation dynamics
 python paper3_cosmic.py
 ```
+
+### Flagship Simulation (GPU cluster)
+
+For high-precision results with full statistical analysis:
+
+```bash
+# Test run (laptop, ~10 min)
+python flagship_simulation.py --n_oscillators 500 --n_radius 100 --cpu
+
+# Full run (GPU cluster, ~4-8 hours, $200-500 compute)
+python flagship_simulation.py --n_oscillators 10000 --n_radius 2000 --gpu
+```
+
+The flagship simulation produces:
+- **Schwarzschild comparison**: 2000 radius points, bootstrap error bars
+- **Hawking analysis**: 500 aperture values, thermality testing
+- **Quasinormal modes**: 50 perturbations, frequency/damping extraction
+- **Complementarity**: 100 observers at different radii
+- **Entanglement**: Mutual information across closing aperture
 
 ## Structure
 
