@@ -229,6 +229,39 @@ We do \emph{not} model gravitational strain $h(t)$. We show that abrupt changes 
     \label{fig:ligo}
 \end{figure}
 
+\subsection{Quantitative Schwarzschild Comparison}
+
+How closely does the aperture model match actual GR predictions? Figure~\ref{fig:schwarzschild} compares the simulated $\dot{\tau}(r)$ against the Schwarzschild time dilation factor $\sqrt{1 - r_s/r}$. We find $R^2 = 0.99$---the information-geometric time proxy quantitatively matches the GR prediction over the full range of radii above the horizon.
+
+This is striking: we derived $\dot{\tau}$ from Fisher geometry without any reference to Einstein's equations, yet it reproduces Schwarzschild time dilation to high precision. This supports the interpretation that spacetime geometry may be downstream of information-accessibility constraints.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_schwarzschild_comparison.pdf}
+    \caption{Schwarzschild comparison. \textbf{Left}: Time rate $\dot{\tau}$ vs radius for the aperture model and Schwarzschild prediction. \textbf{Right}: Direct comparison with $R^2 = 0.99$. The information-geometric model quantitatively matches GR without invoking Einstein's equations.}
+    \label{fig:schwarzschild}
+\end{figure}
+
+\subsection{Multi-Observer Complementarity}
+
+To demonstrate complementarity explicitly, we simulate 21 observers at different radii watching the same underlying dynamics (Figure~\ref{fig:complementarity}). Each observer's aperture closes at a rate determined by their radius: near-horizon observers see rapid dimensional collapse, while distant observers maintain broad access.
+
+The simulation confirms:
+\begin{itemize}
+    \item Same dynamics produce divergent experienced times across observers
+    \item Time dilation ratio reaches $3\times$ between near-horizon and distant observers
+    \item An ``infalling'' observer with constant aperture sees linear time accumulation while external observers see sublinear growth
+\end{itemize}
+
+This is complementarity without GR: same physics, different channels, different clocks.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_complementarity.pdf}
+    \caption{Multi-observer complementarity. \textbf{(A)} Accumulated Fisher time $\tau$ for 21 observers at different radii. Near-horizon observers (purple) accumulate time slowly; distant observers (yellow) accumulate faster; infalling observer (dashed) sees linear time. \textbf{(B)} Clock rate vs radius on log scale, matching Schwarzschild shape. \textbf{(C)} Time dilation ratio relative to infalling observer reaches $3\times$. \textbf{(D)} Snapshots at different times confirm persistent structure.}
+    \label{fig:complementarity}
+\end{figure}
+
 \subsection{Robustness to Aperture Family}
 
 Is the phenomenology an artifact of our specific aperture function (Eq.~9)? We tested alternative monotone families:
