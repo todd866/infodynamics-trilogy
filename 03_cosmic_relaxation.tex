@@ -179,7 +179,11 @@ This intuition---relaxation is self-accelerating early (slack enables further re
 \begin{equation}
     \frac{dR}{ds} = k \, R \left(1 - \frac{R}{R_{\max}}\right)
 \end{equation}
-where $k > 0$ is a rate constant. The $R$ factor makes relaxation slow when little has occurred (rigid); the $(1 - R/R_{\max})$ factor makes it slow as saturation approaches. This is the logistic equation, with solution:
+where $k > 0$ is a rate constant. The $R$ factor makes relaxation slow when little has occurred (rigid); the $(1 - R/R_{\max})$ factor makes it slow as saturation approaches.
+
+\textbf{Why logistic?} This is the \emph{minimal phenomenological model} capturing ``slow-fast-slow'' dynamics. Any model with two generic features---autocatalytic acceleration (slack enables further release) and saturation (constraints exhaust)---produces a unimodal rate curve. The logistic is the simplest closed-form realization. Alternative models (Gompertz, Richards, etc.) would produce qualitatively similar behavior; the specific functional form affects quantitative details but not the phenomenon. The prediction is the \emph{shape class} (localized deviation around a transition), not the exact curve.
+
+This is the logistic equation, with solution:
 \begin{equation}
     R(s) = \frac{R_{\max}}{1 + e^{-k(s - s_0)}}
 \end{equation}
@@ -223,10 +227,53 @@ This makes predictions (Figure~\ref{fig:dark_energy}):
 \begin{enumerate}
     \item The dark energy equation of state $w = p/\rho$ should not be exactly $-1$ (which would indicate a true cosmological constant). It should evolve as relaxation dynamics evolve.
 
-    \item The evolution of $w(z)$ should show signatures of the relaxation curve---not arbitrary variation, but the characteristic shape of constraint release. Figure~\ref{fig:dark_energy} uses a minimal phenomenological parameterization (a localized deviation around $z \sim 1$) to illustrate the predicted qualitative signature.
+    \item The evolution of $w(z)$ should show signatures of the relaxation curve---not arbitrary variation, but the characteristic shape of constraint release.
 
     \item Eventually, relaxation will slow. The ``heat death'' of the universe is the fully relaxed knot---no remaining constraints, no remaining gradients, no remaining time.
 \end{enumerate}
+
+\subsection{Deriving $w(a)$ from Relaxation Energy}
+
+Rather than parameterizing $w(z)$ phenomenologically, we can derive it from the constraint energy ansatz. Let the constraint energy density have a relaxing component:
+\begin{equation}
+    \rho_K(s) = \rho_\infty + \Delta\rho\,(1 - R(s))
+    \label{eq:rho_K}
+\end{equation}
+where $\rho_\infty$ is the residual (constant) component, $\Delta\rho$ is the amplitude of the dynamic component, and $R(s)$ is the logistic relaxation function from Eq.~(4). At early times ($s \to -\infty$), $R \to 0$ and $\rho_K \to \rho_\infty + \Delta\rho$; at late times ($s \to +\infty$), $R \to 1$ and $\rho_K \to \rho_\infty$.
+
+To connect to cosmology, we need a mapping between substrate parameter $s$ and scale factor $a$. The natural choice is that substrate evolution is monotonic in cosmic expansion:
+\begin{equation}
+    s(a) = s_0 + \beta \ln\left(\frac{a}{a_{\mathrm{trans}}}\right)
+\end{equation}
+where $\beta > 0$ controls the mapping rate and $a_{\mathrm{trans}} = 1/(1+z_{\mathrm{trans}})$ is the scale factor at the transition epoch. This gives $s = s_0$ (the relaxation midpoint) when $a = a_{\mathrm{trans}}$.
+
+Substituting the logistic form $R(s) = 1/(1 + e^{-k(s-s_0)})$:
+\begin{equation}
+    \rho_K(a) = \rho_\infty + \frac{\Delta\rho}{1 + (a/a_{\mathrm{trans}})^{k\beta}}
+\end{equation}
+
+The equation of state is defined by the conservation equation $d\rho/d(\ln a) = -3(1+w)\rho$, giving:
+\begin{equation}
+    w(a) = -1 - \frac{1}{3}\frac{d\ln\rho_K}{d\ln a}
+\end{equation}
+
+Computing the derivative:
+\begin{equation}
+    \frac{d\rho_K}{d\ln a} = -\Delta\rho \cdot \frac{k\beta\, u}{(1+u)^2}, \quad \text{where } u \equiv \left(\frac{a}{a_{\mathrm{trans}}}\right)^{k\beta}
+\end{equation}
+
+This yields:
+\begin{equation}
+    w(a) = -1 + \frac{k\beta}{3} \cdot \frac{\Delta\rho}{\rho_K(a)} \cdot \frac{u}{(1+u)^2}
+    \label{eq:w_derived}
+\end{equation}
+
+The function $u/(1+u)^2$ is maximized at $u = 1$ (i.e., $a = a_{\mathrm{trans}}$, corresponding to $z = z_{\mathrm{trans}}$), where it equals $1/4$. Thus the maximum departure from $w = -1$ occurs at the transition epoch:
+\begin{equation}
+    \Delta w_{\max} = w(a_{\mathrm{trans}}) - (-1) = \frac{k\beta}{12} \cdot \frac{\Delta\rho}{\rho_\infty + \Delta\rho/2}
+\end{equation}
+
+This derivation shows that the $w(z)$ bump is not an arbitrary parameterization but emerges from the logistic relaxation ansatz. The shape is fixed by the relaxation dynamics; only the amplitude $\Delta w_{\max}$ (set by $k$, $\beta$, and $\Delta\rho/\rho_\infty$) remains to be constrained by observation. Figure~\ref{fig:dark_energy} uses this derived form with illustrative parameter values.
 
 \begin{figure}[H]
     \centering
@@ -235,23 +282,23 @@ This makes predictions (Figure~\ref{fig:dark_energy}):
     \label{fig:dark_energy}
 \end{figure}
 
-\textbf{Quantitative predictions.} To make the relaxation framework testable, we compute specific $w(z)$ predictions comparable to DESI DR1 data (Figure~\ref{fig:desi_prediction}). The logistic relaxation curve predicts:
+\textbf{Quantitative predictions.} To make the relaxation framework testable, we compute $w(z)$ predictions using the derived form (Eq.~\ref{eq:w_derived}) with illustrative parameters (Figure~\ref{fig:desi_prediction}):
 \begin{itemize}
-    \item Maximum departure from $w = -1$ of approximately $9\%$ at $z \approx 0$
-    \item At DESI redshift bins: $\Delta w \approx 5.5\%$ at $z = 0.3$, declining to $\Delta w \approx 0.5\%$ at $z = 2.5$
-    \item Hubble parameter deviations of $1$--$3\%$ from $\Lambda$CDM, within BAO precision
+    \item The \textbf{functional form} is derived from the relaxation ansatz---a localized bump around the transition redshift---not an arbitrary parameterization.
+    \item The \textbf{amplitude} depends on three quantities: $k$ (relaxation rate), $\beta$ (mapping speed), and $\Delta\rho/\rho_\infty$ (dynamic/constant ratio). These are constrained by observation.
+    \item With illustrative parameters ($k = 0.5$, $\beta = 2$, $\Delta\rho/\rho_\infty = 0.35$): peak $\Delta w \approx 2.5\%$ at $z \approx 0.55$; Hubble deviations up to $\sim 0.6\%$ from $\Lambda$CDM.
 \end{itemize}
 
-These predictions are at the edge of current observational sensitivity. DESI's $\sim 2\%$ precision on $w$ should begin to resolve the predicted departure at low redshift.
+These deviations are at the edge of current DESI sensitivity ($\sim 2\%$ precision on $w$). The key prediction is the \emph{shape}---a smooth bump centered near the transition epoch---which distinguishes relaxation dynamics from both $\Lambda$CDM ($w = -1$ exactly) and simple $w_0$--$w_a$ parameterizations.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_desi_prediction.pdf}
-    \caption{DESI-testable predictions. \textbf{(A)} The equation of state $w(z)$ from relaxation dynamics (blue) vs $\Lambda$CDM (dashed). The transition redshift $z \approx 0.8$ marks peak relaxation rate. \textbf{(B)} Percentage departure from $w = -1$; maximum $\approx 9\%$ at present. \textbf{(C)} Hubble parameter evolution. \textbf{(D)} Fractional difference from $\Lambda$CDM; detectable with BAO $\sim 1\%$ precision.}
+    \caption{DESI-testable predictions from derived $w(z)$ (Eq.~\ref{eq:w_derived}). \textbf{(A)} The equation of state $w(z)$ from relaxation dynamics (blue) vs $\Lambda$CDM (dashed). \textbf{(B)} Percentage departure from $w = -1$; peak $\approx 2.5\%$ at $z \approx 0.55$ with illustrative parameters. \textbf{(C)} Hubble parameter evolution. \textbf{(D)} Fractional difference from $\Lambda$CDM ($\lesssim 1\%$). The functional form (localized bump) is \emph{derived} from the relaxation ansatz; the amplitude is set by $k$, $\beta$, and $\Delta\rho/\rho_\infty$.}
     \label{fig:desi_prediction}
 \end{figure}
 
-Current observations are consistent with $w \approx -1$ but do not rule out evolution \cite{planck2018}. The knot framework predicts subtle departures that future observations (e.g., from the Vera Rubin Observatory, the Nancy Grace Roman Space Telescope, or the Euclid mission) could detect. Recent DESI data showing hints of dynamical dark energy \cite{desi2024} have prompted claims of ``first observational evidence for string theory'' based on UV/IR mixing mechanisms \cite{hur2025}.
+Current observations are consistent with $w \approx -1$ but do not rule out evolution \cite{planck2018}. The knot framework predicts subtle departures that future observations (e.g., from the Vera Rubin Observatory, the Nancy Grace Roman Space Telescope, or the Euclid mission) could detect.\footnote{Recent DESI data \cite{desi2024} have motivated discussion of dynamical dark energy and possible connections to UV/IR mixing \cite{hur2025}. The knot framework offers a substrate-agnostic interpretation that does not require specific microtheory commitments.}
 
 \textbf{Reframing UV/IR mixing.} The knot framework provides a more general explanation: UV/IR mixing is a specific instance of dimensional projection failure. ``UV'' and ``IR'' label degrees of freedom separated by scale; UV/IR mixing occurs when integrating out short-wavelength modes leaves nonlocal structure in the long-wavelength sector. This happens whenever the IR sector does not admit a low-dimensional closure---whenever coarse-graining fails to decouple scales.
 
@@ -271,7 +318,37 @@ The inflaton field, in this picture, is the order parameter for the first symmet
 
 This explains why inflation is qualitatively different from late-time acceleration: inflation is the \emph{initial condition} for relaxation (the spring-back), while dark energy is the \emph{ongoing process} of relaxation (the slow unfolding). Both are constraint release, but at different phases and timescales.
 
+\subsection{Structure Formation as Dimensional Resistance}
+
+Why did the universe produce structure at all? After symmetry breaking, the most thermodynamically probable outcome was immediate collapse to thermal equilibrium---maximal entropy, minimal information, uniform temperature. The universe ``should'' have become boring instantly.
+
+Instead, it produced galaxies, stars, planets, chemistry, life. Why?
+
+The answer lies in high-dimensional dynamics \cite{todd2026intelligence}. Systems with many coupled degrees of freedom do not relax uniformly. They explore constraint surfaces, find local minima, and get trapped in metastable configurations. The ``shortest path'' to equilibrium is exponentially hard to find when the state space is high-dimensional.
+
+This is not fine-tuning. It is the generic behavior of high-dimensional constraint relaxation:
+\begin{itemize}
+    \item \textbf{Uniform collapse is combinatorially unlikely}: In a high-$N$ landscape, synchronized collapse requires coordinating many degrees of freedom. Local collapses happen; global collapse takes exponentially longer.
+
+    \item \textbf{Structure is metastability}: Particles, atoms, molecules, organisms are all metastable configurations in the relaxation manifold. They are not ``designed''; they are attractors that high-dimensional exploration finds cheaply.
+
+    \item \textbf{Electroweak symmetry breaking enables chemistry}: The universe ``chose'' a vacuum where electromagnetic and weak forces separate. This separation creates the window where chemistry operates---interactions strong enough to hold atoms together, weak enough to allow reactions. Had relaxation taken a different path, this window might not exist.
+\end{itemize}
+
+The connection to intelligence is not metaphorical. In the companion paper \cite{todd2026intelligence}, we argued that biological intelligence is high-dimensional constraint navigation---systems that preserve degrees of freedom while satisfying environmental demands. The early universe did exactly this: navigating the constraint landscape of symmetry breaking in ways that preserved structure rather than collapsing immediately to uniformity.
+
+From this perspective, the ``fine-tuning'' of physical constants dissolves. High-dimensional systems generically resist low-dimensional collapse. Configurations that enable persistent structure (and observers to notice it) are not improbable accidents; they are the natural outcome of high-dimensional exploration. This is anthropic reasoning, but grounded in dimensional dynamics rather than multiverse metaphysics.
+
+The apparent ``intelligent design'' of the universe---the exquisite balance of forces, the emergence of complexity, the conditions for life---is not design at all. It is what high-dimensional relaxation looks like from inside.
+
+\textbf{High-dimensional dynamics then and now.} The same class of high-dimensional constraint-navigation dynamics appears in early-universe structure formation and in biological intelligence \cite{todd2026intelligence}. This is not a claim about ``awareness'' as a cosmic property, but a structural observation: the dynamical regime that enables complex biological information processing (many coupled degrees of freedom, metastable configurations, constraint satisfaction) was more prevalent in the early universe than it is today.
+
+From the first autocatalytic cycles to neural computation, biological systems operate in a high-dimensional regime that the early universe briefly occupied globally. What we call ``intelligence'' may be a dynamical niche---a region of parameter space where high-dimensional exploration remains accessible in matter, even as the universe as a whole relaxes toward lower-dimensional equilibrium.
+
 \section{Mathematics as Knot Structure}
+
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{%
+\textbf{Scope note.} Sections 5--6 are philosophical extensions of the physical framework. The core claims of this paper (dark energy as relaxation pressure, time as relaxation rate) do not depend on these sections. Readers focused on testable physics may skip to Section 7 (Connection to Infodynamics).}}
 
 \subsection{The Wigner Puzzle}
 
@@ -281,9 +358,9 @@ The puzzle has generated extensive philosophical literature \cite{steiner1998, c
 
 \subsection{The Dissolution}
 
-The knot framework dissolves the puzzle: \textbf{mathematics does not describe physics; mathematics is physics}.
+The knot framework dissolves the puzzle: \textbf{mathematics and physics are both aspects of constraint structure}.
 
-The structure of the knot---its topology, its symmetries, its constraints---is what we call ``physical law.'' But that same structure, abstracted and studied for its own sake, is what we call ``mathematics.''
+The structure of the knot---its topology, its symmetries, its constraints---is what we call ``physical law.'' The same structure, abstracted and studied for its own properties, is what we call ``mathematics.'' Their alignment is explained not by mysterious correspondence but by common origin.
 
 When we discover that group theory describes particle physics, we are not finding a mysterious correspondence between abstract math and concrete physics. We are recognizing that the symmetry-breaking pattern that created particles \emph{is} a group-theoretic structure. The math works because the math is not separate from the physics.
 
@@ -388,7 +465,7 @@ The information an observer can accumulate is bounded by the relaxation rate of 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{figures/fig6_information.png}
-    \caption{Information accumulation tracks relaxation. The observed information accumulation rate (noisy samples) follows the theoretical relaxation rate with high correlation ($r > 0.99$). Observers are not outside the knot measuring it; they are patterns within it, participating in its relaxation.}
+    \caption{Accumulated information tracks cumulative relaxation. The observed information (noisy samples) follows the theoretical cumulative relaxation with high correlation ($r > 0.99$). Observers are not outside the knot measuring it; they are patterns within it, participating in its relaxation.}
     \label{fig:information}
 \end{figure}
 
@@ -433,7 +510,13 @@ The framework makes predictions, though testing them is challenging:
 
     \item \textbf{Information bounds}: The rate of information accumulation in any physical system should be bounded by the local relaxation rate, providing a geometric interpretation of computational limits. This could be tested in quantum information experiments near the Landauer limit.
 
-    \item \textbf{Abiogenesis and code complexity}: High-dimensional systems find solutions to constraint-satisfaction problems at costs far below naive combinatorial estimates \cite{todd2025intelligence}. This applies to the early universe: if prebiotic chemistry operated in a high-dimensional state space (many coupled molecular species, reaction networks, spatial degrees of freedom), then complex codes---genetic, metabolic, regulatory---could emerge not despite thermodynamic improbability but \emph{because} high-dimensional exploration makes them accessible. The genetic code is ``found'' the same way solutions are found in high-dimensional neural spaces: through thermodynamically cheap exploration of constraint surfaces, not through improbable random assembly. This predicts that the complexity of early codes should exceed what naive attractor-basin combinatorics would suggest---a testable claim against origin-of-life models that assume low-dimensional assembly dynamics.
+    \item \textbf{``Structure forms too early'' as generic prediction}: High-dimensional systems find solutions to constraint-satisfaction problems at costs far below naive combinatorial estimates \cite{todd2026intelligence}. This applies wherever structure appears ``too fast'':
+
+    \textbf{Abiogenesis}: If prebiotic chemistry operated in a high-dimensional state space (many coupled molecular species, reaction networks, spatial degrees of freedom), then complex codes---genetic, metabolic, regulatory---could emerge not despite thermodynamic improbability but \emph{because} high-dimensional exploration makes them accessible. The genetic code is ``found'' through thermodynamically cheap exploration of constraint surfaces, not through improbable random assembly.
+
+    \textbf{Early cosmic structure}: Recent JWST observations reveal galaxies at $z > 10$ that appear ``too mature''---too massive, too metal-rich, too morphologically settled for their cosmic age under standard $\Lambda$CDM structure formation. The knot framework predicts this: high-dimensional gravitational dynamics (many coupled density modes, nonlinear feedback, multi-scale interactions) find structural solutions faster than low-dimensional linear perturbation theory suggests. The ``impossible'' early galaxies are not anomalies requiring exotic physics; they are what high-dimensional constraint relaxation looks like.
+
+    \textbf{General prediction}: Wherever we see structure forming ``too early''---whether chemical (life), gravitational (galaxies), or social (complexity in early hominin populations)---the explanation may be the same: we are underestimating the exploration efficiency of high-dimensional dynamics. Low-dimensional models systematically overestimate the time required for structure formation.
 \end{enumerate}
 
 \subsection{Relationship to Other Approaches}
@@ -561,8 +644,8 @@ I. Todd, ``A Thermodynamic Foundation for the Second Law of Infodynamics,'' \tex
 \bibitem{todd2025aperture}
 I. Todd, ``Time as Information Rate Through Dimensional Apertures: Black Hole Phenomenology from Observer-Relative Channel Capacity,'' \textit{IPI Letters} (2025, in preparation).
 
-\bibitem{todd2025intelligence}
-I. Todd, ``Dimensional constraints on biological intelligence: Why high-dimensional systems solve problems that exhaust low-dimensional ones,'' \textit{BioSystems} (2025, in press).
+\bibitem{todd2026intelligence}
+I. Todd, ``Intelligence as High-Dimensional Coherence: The Observable Dimensionality Bound and Computational Tractability,'' \textit{BioSystems} \textbf{260C}, 105704 (2026). \href{https://doi.org/10.1016/j.biosystems.2026.105704}{doi:10.1016/j.biosystems.2026.105704}
 
 \bibitem{verlinde2011}
 E. Verlinde, ``On the origin of gravity and the laws of Newton,'' \textit{JHEP} \textbf{2011}, 29 (2011).

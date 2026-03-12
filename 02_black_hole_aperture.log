@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.12)  7 JAN 2026 19:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.12)  8 JAN 2026 11:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -343,8 +343,7 @@ ef
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count305
 \l__pdf_internal_box=\box56
-)
-No file 02_black_hole_aperture.aux.
+) (./02_black_hole_aperture.aux)
 \openout1 = `02_black_hole_aperture.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
@@ -365,6 +364,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 26.
 LaTeX Font Info:    ... okay on input line 26.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 26.
 LaTeX Font Info:    ... okay on input line 26.
+
 (/usr/local/texlive/2025basic/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count306
@@ -390,6 +390,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package hyperref Info: Link coloring OFF on input line 26.
+ (./02_black_hole_aperture.out) (./02_black_hole_aperture.out)
 \@outlinefile=\write3
 \openout3 = `02_black_hole_aperture.out'.
 
@@ -439,10 +440,6 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 29.
 (/usr/local/texlive/2025basic/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-
-LaTeX Warning: Citation `jacobson1995' on page 1 undefined on input line 42.
-
-
 Overfull \hbox (1.23761pt too wide) in paragraph at lines 44--45
 []\T1/cmr/m/n/10.95 This pa-per pro-vides a com-pu-ta-tional demon-stra-tion, n
 ot a deriva-tion. We show that observer-
@@ -463,43 +460,23 @@ ics \T1/cmr/m/it/10.95 re-pro-duce \T1/cmr/m/n/10.95 horizon-like phenomenology
 
 [2]
 
-LaTeX Warning: Citation `amari2000' on page 3 undefined on input line 101.
-
-
-LaTeX Warning: Citation `landauer1961' on page 3 undefined on input line 115.
-
-
-
 [3]
-
-LaTeX Warning: Citation `todd2025infodynamics' on page 4 undefined on input lin
-e 135.
-
-
-LaTeX Warning: Citation `bekenstein1973' on page 4 undefined on input line 137.
-
-
-
 
 [4]
 
-LaTeX Warning: Reference `fig:time_dilation' on page 5 undefined on input line 
-181.
-
-
-
 [5]
-<figures/fig1_time_dilation.png, id=67, 713.5458pt x 569.9694pt>
+<figures/fig1_time_dilation.png, id=179, 1011.78pt x 289.08pt>
 File: figures/fig1_time_dilation.png Graphic file (type png)
 <use figures/fig1_time_dilation.png>
-Package pdftex.def Info: figures/fig1_time_dilation.png  used on input line 194
+Package pdftex.def Info: figures/fig1_time_dilation.png  used on input line 199
 .
-(pdftex.def)             Requested size: 452.9679pt x 361.82219pt.
-
-
-LaTeX Warning: Reference `fig:thermodynamics' on page 6 undefined on input line
- 199.
-
+(pdftex.def)             Requested size: 452.9679pt x 129.41873pt.
+<figures/fig2_thermodynamics.png, id=182, 1011.78pt x 289.08pt>
+File: figures/fig2_thermodynamics.png Graphic file (type png)
+<use figures/fig2_thermodynamics.png>
+Package pdftex.def Info: figures/fig2_thermodynamics.png  used on input line 21
+4.
+(pdftex.def)             Requested size: 452.9679pt x 129.41873pt.
 
 
 [6
@@ -507,24 +484,19 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.206 
+l.218 
        <./figures/fig1_time_dilation.png>]
-<figures/fig2_thermodynamics.png, id=76, 860.013pt x 280.8894pt>
-File: figures/fig2_thermodynamics.png Graphic file (type png)
-<use figures/fig2_thermodynamics.png>
-Package pdftex.def Info: figures/fig2_thermodynamics.png  used on input line 20
-9.
-(pdftex.def)             Requested size: 452.9679pt x 147.94489pt.
+Overfull \hbox (3.03816pt too wide) in paragraph at lines 221--222
+\T1/cmr/bx/n/10.95 Speculative note: \T1/cmr/m/n/10.95 Any bounded in-for-ma-ti
+on chan-nel ex-hibits damped re-lax-ation when abruptly
+ []
 
-
-LaTeX Warning: Reference `fig:ligo' on page 7 undefined on input line 216.
-
-<figures/fig3_ligo_connection.png, id=77, 714.5094pt x 569.4876pt>
-File: figures/fig3_ligo_connection.png Graphic file (type png)
-<use figures/fig3_ligo_connection.png>
-Package pdftex.def Info: figures/fig3_ligo_connection.png  used on input line 2
-27.
-(pdftex.def)             Requested size: 452.9679pt x 361.02971pt.
+<figures/fig_schwarzschild_comparison.pdf, id=192, 867.24pt x 361.35pt>
+File: figures/fig_schwarzschild_comparison.pdf Graphic file (type pdf)
+<use figures/fig_schwarzschild_comparison.pdf>
+Package pdftex.def Info: figures/fig_schwarzschild_comparison.pdf  used on inpu
+t line 231.
+(pdftex.def)             Requested size: 452.9679pt x 188.73566pt.
 
 
 [7
@@ -532,133 +504,122 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.231 
+l.235 
        <./figures/fig2_thermodynamics.png>]
+<figures/fig_complementarity.pdf, id=201, 1011.78pt x 722.7pt>
+File: figures/fig_complementarity.pdf Graphic file (type pdf)
+<use figures/fig_complementarity.pdf>
+Package pdftex.def Info: figures/fig_complementarity.pdf  used on input line 25
+1.
+(pdftex.def)             Requested size: 452.9679pt x 323.54683pt.
+
 
 [8
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.245 \section
-              {Discussion} <./figures/fig3_ligo_connection.png>]
-Overfull \hbox (20.27618pt too wide) in paragraph at lines 260--261
+l.255 
+       <./figures/fig_schwarzschild_comparison.pdf>]
+
+[9
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.268 
+       <./figures/fig_complementarity.pdf>]
+Overfull \hbox (20.27618pt too wide) in paragraph at lines 284--285
 []\T1/cmr/m/n/10.95 The key ob-ser-va-tion: we de-fined the aper-ture con-strai
 nt, but the \T1/cmr/m/it/10.95 con-se-quences\T1/cmr/m/n/10.95 ---thermodynamic
 s,
  []
 
 
-LaTeX Warning: Citation `jacobson1995' on page 9 undefined on input line 264.
-
-
-LaTeX Warning: Citation `verlinde2011' on page 9 undefined on input line 277.
-
-
-LaTeX Warning: Citation `maldacena2013' on page 9 undefined on input line 279.
-
-
-LaTeX Warning: Citation `susskind1995' on page 9 undefined on input line 281.
-
-
-
-[9]
-
-LaTeX Warning: Citation `vopson2023' on page 10 undefined on input line 300.
-
-
-LaTeX Warning: Citation `jacobson1995' on page 10 undefined on input line 308.
-
-
-LaTeX Warning: Citation `jacobson2015' on page 10 undefined on input line 308.
-
-
-LaTeX Warning: Citation `jacobson1995' on page 10 undefined on input line 310.
-
-
 
 [10]
 
-LaTeX Warning: Citation `jacobson2015' on page 11 undefined on input line 318.
-
-
-Overfull \hbox (5.40791pt too wide) in paragraph at lines 328--329
+[11]
+Overfull \hbox (5.40791pt too wide) in paragraph at lines 352--353
 []\T1/cmr/m/n/10.95 If the high-$\OML/cmm/m/it/10.95 k$ \T1/cmr/m/n/10.95 in-te
 -rior pic-ture is correct---dense com-pu-ta-tion in-ac-ces-si-ble to ex-ter-nal
  observers---
  []
 
 
-Overfull \hbox (2.58537pt too wide) in paragraph at lines 334--335
+
+[12]
+Overfull \hbox (2.58537pt too wide) in paragraph at lines 374--375
 []\T1/cmr/m/n/10.95 The on-tol-ogy here is im-por-tant. What ex-ists is \T1/cmr
 /bx/n/10.95 en-ergy flow-ing through high-dimensional
  []
 
 
+Underfull \hbox (badness 6842) in paragraph at lines 405--406
+[]\T1/cmr/m/n/10.95 I. Todd, ``Co-her-ence time in neu-ral os-cil-la-tor as-sem
+-blies sets the speed of
+ []
 
-[11]
 
-[12] (./02_black_hole_aperture.aux)
+
+[13]
+
+[14] (./02_black_hole_aperture.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
+Package rerunfilecheck Info: File `02_black_hole_aperture.out' has not changed.
 
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `02_black_hole_aperture.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `02_black_hole_aperture.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  1DDCC3899E6BCDB44F08E08BDA5A69BF;3196.
+(rerunfilecheck)             Checksum: 1AE6CC422E64D08FCBF84B74483CCCF3;3703.
  ) 
 Here is how much of TeX's memory you used:
- 10750 strings out of 474662
- 163415 string characters out of 5751108
- 563157 words of memory out of 5000000
- 33596 multiletter control sequences out of 15000+600000
- 576943 words of font info for 85 fonts, out of 8000000 for 9000
+ 10840 strings out of 474662
+ 164971 string characters out of 5751108
+ 565055 words of memory out of 5000000
+ 33652 multiletter control sequences out of 15000+600000
+ 583241 words of font info for 102 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 75i,6n,79p,1283b,565s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,8n,79p,1283b,567s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen
 /ec/ectt1095.600pk> </Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/p
 k/ljfour/jknappen/ec/tcrm1095.600pk> </Users/iantodd/Library/texlive/2025basic/
-texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/iantodd/Library/t
-exlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/
-iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx109
-5.600pk> </Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jk
-nappen/ec/ecrm1095.600pk> </Users/iantodd/Library/texlive/2025basic/texmf-var/f
-onts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/iantodd/Library/texlive/2025
-basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </Users/iantodd/Lib
-rary/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </
+texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> </Users/iantodd/Library/t
+exlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </Users/
+iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm080
+0.600pk> </Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jk
+nappen/ec/ecbx1200.600pk> </Users/iantodd/Library/texlive/2025basic/texmf-var/f
+onts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/iantodd/Library/texlive/2025
+basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/iantodd/Lib
+rary/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </
 Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/e
-cbx1000.600pk> </Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljf
-our/jknappen/ec/ectt1200.600pk> </Users/iantodd/Library/texlive/2025basic/texmf
--var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </Users/iantodd/Library/texliv
-e/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/local/te
-xlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/loca
-l/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/
-local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
-></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.
-pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr7.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr8.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmsy8.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/a
-msfonts/symbols/msbm10.pfb>
-Output written on 02_black_hole_aperture.pdf (12 pages, 640398 bytes).
+cbx1440.600pk> </Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljf
+our/jknappen/ec/ecti1000.600pk> </Users/iantodd/Library/texlive/2025basic/texmf
+-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </Users/iantodd/Library/texliv
+e/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </Users/ianto
+dd/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600
+pk> </Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappe
+n/ec/ecrm1200.600pk> </Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/
+pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/local/texlive/2025basic/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025basic/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025basic/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025basic/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025bas
+ic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025
+basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2
+025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texl
+ive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/t
+exlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local
+/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/loc
+al/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/l
+ocal/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
+sr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+</usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/symbols/ms
+bm10.pfb>
+Output written on 02_black_hole_aperture.pdf (14 pages, 565731 bytes).
 PDF statistics:
- 663 PDF objects out of 1000 (max. 8388607)
- 190 compressed objects within 2 object streams
- 60 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 976 PDF objects out of 1000 (max. 8388607)
+ 348 compressed objects within 4 object streams
+ 73 named destinations out of 1000 (max. 500000)
+ 213 words of extra memory for PDF output out of 10000 (max. 10000000)
 

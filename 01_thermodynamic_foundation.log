@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.12)  7 JAN 2026 19:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.12)  8 JAN 2026 11:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -439,8 +439,7 @@ ef
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count306
 \l__pdf_internal_box=\box58
-)
-No file 01_thermodynamic_foundation.aux.
+) (./01_thermodynamic_foundation.aux)
 \openout1 = `01_thermodynamic_foundation.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
@@ -462,8 +461,11 @@ LaTeX Font Info:    ... okay on input line 28.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 28.
 LaTeX Font Info:    ... okay on input line 28.
 Package hyperref Info: Link coloring OFF on input line 28.
+ (./01_thermodynamic_foundation.out)
+(./01_thermodynamic_foundation.out)
 \@outlinefile=\write3
 \openout3 = `01_thermodynamic_foundation.out'.
+
 
 (/usr/local/texlive/2025basic/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -526,7 +528,7 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<IPI_Pub_Logo.jpg, id=4, 384.6872pt x 383.93437pt>
+<IPI_Pub_Logo.jpg, id=84, 384.6872pt x 383.93437pt>
 File: IPI_Pub_Logo.jpg Graphic file (type jpg)
 <use IPI_Pub_Logo.jpg>
 Package pdftex.def Info: IPI_Pub_Logo.jpg  used on input line 43.
@@ -542,7 +544,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
 (/usr/local/texlive/2025basic/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<IPIL_Logo.jpg, id=5, 903.375pt x 157.33781pt>
+<IPIL_Logo.jpg, id=85, 903.375pt x 157.33781pt>
 File: IPIL_Logo.jpg Graphic file (type jpg)
 <use IPIL_Logo.jpg>
 Package pdftex.def Info: IPIL_Logo.jpg  used on input line 47.
@@ -572,10 +574,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [2]
 
-LaTeX Warning: Reference `eq:dlb' on page 3 undefined on input line 198.
-
-
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 32.68004pt, for example:
@@ -584,39 +582,28 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-20.68004pt}.
 
 [3]
-
-LaTeX Warning: Reference `eq:dlb' on page 4 undefined on input line 210.
-
-<figures/fig1_geometric_maintenance.pdf, id=58, 686.565pt x 237.04561pt>
+<figures/fig1_geometric_maintenance.pdf, id=130, 686.565pt x 237.04561pt>
 File: figures/fig1_geometric_maintenance.pdf Graphic file (type pdf)
 <use figures/fig1_geometric_maintenance.pdf>
 Package pdftex.def Info: figures/fig1_geometric_maintenance.pdf  used on input 
-line 214.
+line 245.
 (pdftex.def)             Requested size: 459.51054pt x 158.64972pt.
 
-LaTeX Warning: Reference `fig:relaxation' on page 4 undefined on input line 232
-.
 
-<figures/fig2_dimensional_relaxation.pdf, id=59, 857.66075pt x 321.36563pt>
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 32.68004pt, for example:
+(fancyhdr)                \setlength{\headheight}{32.68004pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-20.68004pt}.
+
+[4]
+<figures/fig2_dimensional_relaxation.pdf, id=142, 857.66583pt x 312.66112pt>
 File: figures/fig2_dimensional_relaxation.pdf Graphic file (type pdf)
 <use figures/fig2_dimensional_relaxation.pdf>
 Package pdftex.def Info: figures/fig2_dimensional_relaxation.pdf  used on input
- line 236.
-(pdftex.def)             Requested size: 459.51054pt x 172.17654pt.
-
-LaTeX Warning: Reference `eq:deff' on page 4 undefined on input line 237.
-
-
-LaTeX Warning: Reference `eq:struct_info' on page 4 undefined on input line 237
-.
-
-
-LaTeX Warning: Reference `eq:deff' on page 4 undefined on input line 237.
-
-
-LaTeX Warning: Reference `eq:struct_info' on page 4 undefined on input line 237
-.
-
+ line 267.
+(pdftex.def)             Requested size: 459.51054pt x 167.51297pt.
 
 
 
@@ -626,28 +613,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-20.68004pt}.
 
-[4 <./figures/fig1_geometric_maintenance.pdf>]
-
-LaTeX Warning: Reference `eq:maintenance' on page 5 undefined on input line 243
-.
-
-
-LaTeX Warning: Reference `eq:struct_info' on page 5 undefined on input line 270
-.
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 32.68004pt, for example:
-(fancyhdr)                \setlength{\headheight}{32.68004pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-20.68004pt}.
-
-[5 <./figures/fig2_dimensional_relaxation.pdf>]
-
-LaTeX Warning: Reference `eq:dlb' on page 6 undefined on input line 289.
-
+[5 <./figures/fig1_geometric_maintenance.pdf> <./figures/fig2_dimensional_relax
+ation.pdf>]
+<figures/fig_bound_illustration.pdf, id=317, 1004.3529pt x 316.2101pt>
+File: figures/fig_bound_illustration.pdf Graphic file (type pdf)
+<use figures/fig_bound_illustration.pdf>
+Package pdftex.def Info: figures/fig_bound_illustration.pdf  used on input line
+ 280.
+(pdftex.def)             Requested size: 459.51054pt x 144.67194pt.
 
 
 
@@ -657,7 +630,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-20.68004pt}.
 
-[6]
+[6 <./figures/fig_bound_illustration.pdf>]
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -675,36 +648,36 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-20.68004pt}.
 
-[8] (./01_thermodynamic_foundation.aux)
+[8]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 32.68004pt, for example:
+(fancyhdr)                \setlength{\headheight}{32.68004pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-20.68004pt}.
+
+[9] (./01_thermodynamic_foundation.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-
-Package rerunfilecheck Warning: File `01_thermodynamic_foundation.out' has chan
-ged.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `01_thermodynamic_foundation.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  458BABE458BFD880AF3D6DF016A52B9B;3559.
+Package rerunfilecheck Info: File `01_thermodynamic_foundation.out' has not cha
+nged.
+(rerunfilecheck)             Checksum: 2180FE6815116BB763C7755234DE60AC;3751.
  ) 
 Here is how much of TeX's memory you used:
- 14480 strings out of 474662
- 232789 string characters out of 5751108
- 653858 words of memory out of 5000000
- 37285 multiletter control sequences out of 15000+600000
+ 14520 strings out of 474662
+ 233729 string characters out of 5751108
+ 656659 words of memory out of 5000000
+ 37316 multiletter control sequences out of 15000+600000
  572904 words of font info for 89 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 75i,15n,79p,1273b,658s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,15n,79p,1273b,678s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen
 /ec/tcrm1095.600pk></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/pub
@@ -728,10 +701,10 @@ ocal/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></u
 sr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/symbols/msam1
 0.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/symb
 ols/msbm10.pfb>
-Output written on 01_thermodynamic_foundation.pdf (8 pages, 419493 bytes).
+Output written on 01_thermodynamic_foundation.pdf (9 pages, 445037 bytes).
 PDF statistics:
- 402 PDF objects out of 1000 (max. 8388607)
- 202 compressed objects within 3 object streams
- 63 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 534 PDF objects out of 1000 (max. 8388607)
+ 290 compressed objects within 3 object streams
+ 66 named destinations out of 1000 (max. 500000)
+ 186 words of extra memory for PDF output out of 10000 (max. 10000000)
 

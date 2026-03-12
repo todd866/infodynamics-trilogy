@@ -7,13 +7,13 @@ Generates all figures for "A Thermodynamic Foundation for the Second Law of Info
 Figures:
   - fig1_geometric_maintenance.pdf: Schematic of the geometric maintenance bound
   - fig2_dimensional_relaxation.pdf: D_eff and I_struct evolution during relaxation
-  - fig_landauer_verification.pdf: Numerical verification of the bound
+  - fig_bound_illustration.pdf: Illustration of bound scaling (sanity-check)
 
 Usage:
   python paper1_simulations.py              # Generate all figures
   python paper1_simulations.py --figure 1   # Generate only figure 1
   python paper1_simulations.py --figure 2   # Generate only figure 2
-  python paper1_simulations.py --figure 3   # Generate only Landauer verification
+  python paper1_simulations.py --figure 3   # Generate bound illustration
 """
 
 from __future__ import annotations
@@ -26,7 +26,7 @@ import os
 
 # Ensure figures directory exists
 SCRIPT_DIR = Path(__file__).resolve().parent
-FIGURES_DIR = SCRIPT_DIR.parent / "figures"
+FIGURES_DIR = SCRIPT_DIR / "figures"
 FIGURES_DIR.mkdir(exist_ok=True)
 
 
@@ -159,7 +159,7 @@ def fig2_dimensional_relaxation():
 
 
 # =============================================================================
-# Figure 3: Landauer Verification
+# Figure 3: Bound Illustration (Sanity-Check)
 # =============================================================================
 
 @dataclass
@@ -174,10 +174,23 @@ class LandauerConfig:
             self.D_low_range = list(range(1, self.D_high, 3))
 
 
-def compute_projection_costs(D_high: int, D_low: int, n_samples: int) -> dict:
-    """Compute informational and geometric costs of projection."""
-    P = np.random.randn(D_low, D_high)
-    P = P / np.linalg.norm(P, axis=1, keepdims=True)
+def compute_projection_costs(D_high: int, D_low: int, n_samples: int,
+                              isometric: bool = True) -> dict:
+    """
+    Compute informational and geometric costs of projection.
+
+    Args:
+        isometric: If True, use orthonormal projection (C_phi = 0 for isometric).
+                   If False, use random non-isometric projection.
+    """
+    if isometric:
+        # Orthonormal projection via QR decomposition
+        Q, _ = np.linalg.qr(np.random.randn(D_high, D_low))
+        P = Q.T  # D_low x D_high, rows are orthonormal
+    else:
+        # Random non-isometric projection
+        P = np.random.randn(D_low, D_high)
+        P = P / np.linalg.norm(P, axis=1, keepdims=True)
 
     X_high = np.random.randn(n_samples, D_high)
     X_low = X_high @ P.T
@@ -208,14 +221,14 @@ def compute_projection_costs(D_high: int, D_low: int, n_samples: int) -> dict:
     }
 
 
-def fig3_landauer_verification():
-    """Numerical verification of the geometric maintenance bound."""
+def fig3_bound_illustration():
+    """Illustration of the geometric maintenance bound scaling (sanity-check, not verification)."""
     plt = ensure_matplotlib()
 
     cfg = LandauerConfig()
     results = []
 
-    print("  Running Landauer verification...")
+    print("  Running bound illustration...")
     for D_low in cfg.D_low_range:
         trial_results = [compute_projection_costs(cfg.D_high, D_low, cfg.n_samples)
                         for _ in range(cfg.n_trials)]
@@ -246,32 +259,32 @@ def fig3_landauer_verification():
     axes[0].legend()
     axes[0].grid(True, alpha=0.3)
 
-    # Panel B: Bound vs actual
+    # Panel B: Bound vs simulated process cost
     axes[1].scatter(W_bound, W_actual, c=D_removed, cmap='viridis', s=60)
     axes[1].plot([0, max(W_bound)], [0, max(W_bound)], 'k--', lw=2)
     axes[1].set_xlabel('Theoretical bound')
-    axes[1].set_ylabel('Actual dissipation')
-    axes[1].set_title('(B) Bound is tight')
+    axes[1].set_ylabel('Simulated process cost')
+    axes[1].set_title('(B) Bound structure')
     axes[1].grid(True, alpha=0.3)
 
-    # Panel C: Efficiency
+    # Panel C: Bound/cost ratio (illustrative)
     efficiency = W_bound / W_actual
     axes[2].bar(D_removed, efficiency, color='C3', alpha=0.7)
     axes[2].axhline(1.0, color='k', ls='--')
     axes[2].set_xlabel('Dimensions removed')
-    axes[2].set_ylabel('Efficiency')
-    axes[2].set_title('(C) Process efficiency')
+    axes[2].set_ylabel('Bound / Cost')
+    axes[2].set_title('(C) Ratio (illustrative)')
     axes[2].set_ylim(0, 1.1)
     axes[2].grid(True, alpha=0.3)
 
     plt.tight_layout()
-    fig.savefig(FIGURES_DIR / "fig_landauer_verification.pdf", dpi=150, bbox_inches="tight")
-    fig.savefig(FIGURES_DIR / "fig_landauer_verification.png", dpi=150, bbox_inches="tight")
+    fig.savefig(FIGURES_DIR / "fig_bound_illustration.pdf", dpi=150, bbox_inches="tight")
+    fig.savefig(FIGURES_DIR / "fig_bound_illustration.png", dpi=150, bbox_inches="tight")
     plt.close(fig)
 
     r2 = np.corrcoef(D_removed, W_bound)[0,1]**2
     print(f"  R² = {r2:.4f}")
-    print("  Generated: fig_landauer_verification.pdf")
+    print("  Generated: fig_bound_illustration.pdf")
 
 
 # =============================================================================
@@ -293,7 +306,7 @@ def main():
     if args.figure is None or args.figure == 2:
         fig2_dimensional_relaxation()
     if args.figure is None or args.figure == 3:
-        fig3_landauer_verification()
+        fig3_bound_illustration()
 
     print("=" * 60)
     print("Done!")

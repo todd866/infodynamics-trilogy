@@ -29,71 +29,31 @@ Three papers extending Vopson's infodynamics framework, scaling from microscopic
 
 ## Simulations
 
-All figures are generated from reproducible Python code. Each paper has one consolidated simulation file:
+All figures are generated from reproducible Python code:
 
 ```bash
-cd code
 pip install -r requirements.txt
 
-# Paper 1: All figures (geometric maintenance, relaxation, Landauer verification)
-python paper1_simulations.py
-
-# Paper 2: All figures (time dilation, Schwarzschild R²=0.99, complementarity 3×)
-python paper2_simulations.py
-
-# Paper 3: All figures (napkin metaphor, cascade, w(z) predictions, DESI)
-python paper3_simulations.py
-
-# Individual figures (use --figure flag)
-python paper1_simulations.py --figure 3   # Landauer verification only
-python paper2_simulations.py --figure 2   # Schwarzschild comparison only
-python paper3_simulations.py --figure 6   # DESI predictions only
+python paper1_simulations.py   # Paper 1 figures
+python paper2_simulations.py   # Paper 2 figures
+python paper3_simulations.py   # Paper 3 figures
 ```
 
 ### Key Results
 
 | Paper | Key Simulation | Result |
 |-------|---------------|--------|
-| 1 | Landauer verification | R² = 0.97 bound scaling |
-| 2 | Schwarzschild comparison | R² = 0.99 match to GR |
-| 2 | Complementarity | 3× time dilation across observers |
-| 3 | DESI prediction | 5-9% w(z) departure at low z |
-
-### Flagship Simulation (GPU cluster)
-
-For high-precision results with full statistical analysis:
-
-```bash
-# Test run (laptop, ~10 min)
-python flagship_simulation.py --n_oscillators 500 --n_radius 100 --cpu
-
-# Full run (GPU cluster, ~4-8 hours)
-python flagship_simulation.py --n_oscillators 10000 --n_radius 2000 --gpu
-```
-
-## Structure
-
-```
-├── papers/
-│   ├── 01_thermodynamic_foundation.tex   # Accepted w/ minor revisions
-│   ├── 02_black_hole_aperture.tex
-│   └── 03_cosmic_relaxation.tex
-├── code/
-│   ├── paper1_simulations.py    # All Paper 1 figures
-│   ├── paper2_simulations.py    # All Paper 2 figures
-│   ├── paper3_simulations.py    # All Paper 3 figures
-│   └── flagship_simulation.py   # GPU cluster version
-├── figures/                     # 20+ generated figures
-└── README.md
-```
+| 1 | Landauer illustration | R² = 0.97 bound scaling |
+| 2 | Schwarzschild comparison | R² = 0.97 match to GR |
+| 2 | Complementarity | 3.4× time dilation across observers |
+| 3 | DESI prediction | 15% w(z) departure at z=0.8, 3.4% H(z) deviation |
 
 ## Building PDFs
 
 ```bash
-cd papers
-pdflatex 01_thermodynamic_foundation.tex
-pdflatex 02_black_hole_aperture.tex
-pdflatex 03_cosmic_relaxation.tex
+pdflatex 01_thermodynamic_foundation.tex && pdflatex 01_thermodynamic_foundation.tex
+pdflatex 02_black_hole_aperture.tex && pdflatex 02_black_hole_aperture.tex
+pdflatex 03_cosmic_relaxation.tex && pdflatex 03_cosmic_relaxation.tex
 ```
 
 ## Citation

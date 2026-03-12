@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.12)  7 JAN 2026 19:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.12)  8 JAN 2026 11:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -342,8 +342,7 @@ ef
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count304
 \l__pdf_internal_box=\box56
-)
-No file 03_cosmic_relaxation.aux.
+) (./03_cosmic_relaxation.aux)
 \openout1 = `03_cosmic_relaxation.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
@@ -364,6 +363,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 26.
 LaTeX Font Info:    ... okay on input line 26.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 26.
 LaTeX Font Info:    ... okay on input line 26.
+
 (/usr/local/texlive/2025basic/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count305
@@ -389,6 +389,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package hyperref Info: Link coloring OFF on input line 26.
+ (./03_cosmic_relaxation.out) (./03_cosmic_relaxation.out)
 \@outlinefile=\write3
 \openout3 = `03_cosmic_relaxation.out'.
 
@@ -439,35 +440,16 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 29.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-LaTeX Warning: Citation `jacobson1995' on page 1 undefined on input line 49.
-
-
-
 [1
 
 {/usr/local/texlive/2025basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Citation `todd2025infodynamics' on page 2 undefined on input lin
-e 54.
-
-
-LaTeX Warning: Citation `todd2025aperture' on page 2 undefined on input line 56
-.
-
-
-
 [2]
-
-LaTeX Warning: Reference `fig:napkin' on page 3 undefined on input line 84.
-
-<figures/fig1_napkin.png, id=40, 989.6172pt x 378.9357pt>
+<figures/fig1_napkin.png, id=197, 1011.78pt x 361.35pt>
 File: figures/fig1_napkin.png Graphic file (type png)
 <use figures/fig1_napkin.png>
 Package pdftex.def Info: figures/fig1_napkin.png  used on input line 99.
-(pdftex.def)             Requested size: 452.9679pt x 173.44522pt.
-
-LaTeX Warning: Reference `fig:cascade' on page 3 undefined on input line 106.
-
+(pdftex.def)             Requested size: 452.9679pt x 161.77342pt.
 
 
 [3
@@ -477,11 +459,11 @@ s been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.118 \end{enumerate}
                       <./figures/fig1_napkin.png>]
-<figures/fig2_cascade.png, id=56, 857.8449pt x 569.0058pt>
+<figures/fig2_cascade.png, id=213, 686.565pt x 459.1554pt>
 File: figures/fig2_cascade.png Graphic file (type png)
 <use figures/fig2_cascade.png>
 Package pdftex.def Info: figures/fig2_cascade.png  used on input line 124.
-(pdftex.def)             Requested size: 407.66833pt x 270.4108pt.
+(pdftex.def)             Requested size: 407.66833pt x 272.63686pt.
 
 
 [4
@@ -492,35 +474,17 @@ s been already used, duplicate ignored
 l.150 \end{equation}
                      <./figures/fig2_cascade.png>]
 
-LaTeX Warning: Citation `todd2025aperture' on page 5 undefined on input line 15
-9.
-
-
-LaTeX Warning: Citation `albert2000' on page 5 undefined on input line 167.
-
-
-LaTeX Warning: Citation `carroll2010' on page 5 undefined on input line 167.
-
-
-
 [5]
-
-LaTeX Warning: Reference `fig:relaxation' on page 6 undefined on input line 186
-.
-
-<figures/fig3_relaxation.png, id=79, 858.0858pt x 351.9549pt>
+<figures/fig3_relaxation.png, id=237, 867.24pt x 361.35pt>
 File: figures/fig3_relaxation.png Graphic file (type png)
 <use figures/fig3_relaxation.png>
-Package pdftex.def Info: figures/fig3_relaxation.png  used on input line 192.
-(pdftex.def)             Requested size: 452.9679pt x 185.79408pt.
-
-LaTeX Warning: Reference `fig:energy' on page 6 undefined on input line 199.
-
-<figures/fig4_knot.png, id=80, 857.604pt x 351.9549pt>
+Package pdftex.def Info: figures/fig3_relaxation.png  used on input line 196.
+(pdftex.def)             Requested size: 452.9679pt x 188.73566pt.
+<figures/fig4_knot.png, id=239, 578.16pt x 361.35pt>
 File: figures/fig4_knot.png Graphic file (type png)
 <use figures/fig4_knot.png>
-Package pdftex.def Info: figures/fig4_knot.png  used on input line 203.
-(pdftex.def)             Requested size: 452.9679pt x 185.89613pt.
+Package pdftex.def Info: figures/fig4_knot.png  used on input line 207.
+(pdftex.def)             Requested size: 452.9679pt x 283.10349pt.
 
 
 [6
@@ -528,31 +492,16 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.207 
+l.211 
        <./figures/fig3_relaxation.png>]
 
-LaTeX Warning: Citation `riess1998' on page 7 undefined on input line 212.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 235.
 
 
-LaTeX Warning: Citation `perlmutter1999' on page 7 undefined on input line 212.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 235.
 
-
-
-LaTeX Warning: Citation `weinberg1989' on page 7 undefined on input line 214.
-
-
-LaTeX Warning: Reference `fig:dark_energy' on page 7 undefined on input line 22
-2.
-
-
-LaTeX Warning: Reference `fig:dark_energy' on page 7 undefined on input line 22
-6.
-
-<figures/fig5_dark_energy.png, id=90, 857.8449pt x 351.714pt>
-File: figures/fig5_dark_energy.png Graphic file (type png)
-<use figures/fig5_dark_energy.png>
-Package pdftex.def Info: figures/fig5_dark_energy.png  used on input line 233.
-(pdftex.def)             Requested size: 452.9679pt x 185.7206pt.
 
 
 [7
@@ -560,137 +509,80 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.237 
-       <./figures/fig4_knot.png>]
-
-LaTeX Warning: Citation `planck2018' on page 8 undefined on input line 238.
-
-
-LaTeX Warning: Citation `desi2024' on page 8 undefined on input line 238.
-
-
-LaTeX Warning: Citation `hur2025' on page 8 undefined on input line 238.
+l.241 \end{equation}
+                     <./figures/fig4_knot.png>]
+<figures/fig5_dark_energy.png, id=267, 867.24pt x 361.35pt>
+File: figures/fig5_dark_energy.png Graphic file (type png)
+<use figures/fig5_dark_energy.png>
+Package pdftex.def Info: figures/fig5_dark_energy.png  used on input line 280.
+(pdftex.def)             Requested size: 452.9679pt x 188.73566pt.
 
 
+[8]
+<figures/fig_desi_prediction.pdf, id=283, 867.24pt x 722.7pt>
+File: figures/fig_desi_prediction.pdf Graphic file (type pdf)
+<use figures/fig_desi_prediction.pdf>
+Package pdftex.def Info: figures/fig_desi_prediction.pdf  used on input line 29
+6.
+(pdftex.def)             Requested size: 452.9679pt x 377.47131pt.
 
-[8
+
+[9
 pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.251 
+l.300 
        <./figures/fig5_dark_energy.png>]
 
-LaTeX Warning: Citation `wigner1960' on page 9 undefined on input line 262.
-
-
-LaTeX Warning: Citation `steiner1998' on page 9 undefined on input line 264.
-
-
-LaTeX Warning: Citation `colyvan2001' on page 9 undefined on input line 264.
-
-
-
-[9]
-
-LaTeX Warning: Citation `baez2010' on page 10 undefined on input line 288.
-
-
-LaTeX Warning: Citation `leinster2014' on page 10 undefined on input line 288.
-
-
-LaTeX Warning: Citation `janik2025unicorns' on page 10 undefined on input line 
-292.
-
-
-LaTeX Warning: Citation `hume1748' on page 10 undefined on input line 312.
-
-
-LaTeX Warning: Citation `lewis1973' on page 10 undefined on input line 312.
-
-
-LaTeX Warning: Citation `salmon1984' on page 10 undefined on input line 312.
-
-
-
-[10]
-
-LaTeX Warning: Citation `vopson2022' on page 11 undefined on input line 333.
-
-
-LaTeX Warning: Citation `vopson2023' on page 11 undefined on input line 333.
-
-
-LaTeX Warning: Citation `todd2025infodynamics' on page 11 undefined on input li
-ne 353.
-
-
-LaTeX Warning: Reference `fig:information' on page 11 undefined on input line 3
-53.
-
-<figures/fig6_information.png, id=128, 713.5458pt x 429.7656pt>
-File: figures/fig6_information.png Graphic file (type png)
-<use figures/fig6_information.png>
-Package pdftex.def Info: figures/fig6_information.png  used on input line 359.
-(pdftex.def)             Requested size: 407.66833pt x 245.53944pt.
-
-
-[11]
-
-LaTeX Warning: Citation `vopson2019' on page 12 undefined on input line 368.
-
-
-LaTeX Warning: Citation `jacobson1995' on page 12 undefined on input line 376.
-
-
-LaTeX Warning: Citation `todd2025aperture' on page 12 undefined on input line 3
-80.
-
-
-
-[12
+[10
 pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.387 
-       <./figures/fig6_information.png>]
+l.308 
+       <./figures/fig_desi_prediction.pdf>]
 
-LaTeX Warning: Citation `jacobson2016' on page 13 undefined on input line 388.
-
-
-LaTeX Warning: Citation `verlinde2011' on page 13 undefined on input line 410.
-
-
-LaTeX Warning: Citation `susskind1995' on page 13 undefined on input line 412.
+[11]
+Overfull \hbox (12.5892pt too wide) in paragraph at lines 344--345
+[]\T1/cmr/bx/n/10.95 High-dimensional dy-nam-ics then and now. \T1/cmr/m/n/10.9
+5 The same class of high-dimensional constraint-
+ []
 
 
-LaTeX Warning: Citation `bousso2002' on page 13 undefined on input line 412.
 
-
-LaTeX Warning: Citation `wheeler1990' on page 13 undefined on input line 414.
-
-
-LaTeX Warning: Citation `deutsch2015' on page 13 undefined on input line 416.
-
-
-LaTeX Warning: Citation `sorkin2003' on page 13 undefined on input line 418.
-
-
-LaTeX Warning: Citation `rovelli2004' on page 13 undefined on input line 420.
-
-
+[12]
 
 [13]
-Overfull \hbox (0.15645pt too wide) in paragraph at lines 426--427
+
+[14]
+<figures/fig6_information.png, id=434, 722.7pt x 361.35pt>
+File: figures/fig6_information.png Graphic file (type png)
+<use figures/fig6_information.png>
+Package pdftex.def Info: figures/fig6_information.png  used on input line 467.
+(pdftex.def)             Requested size: 407.66833pt x 203.8323pt.
+
+
+[15]
+
+[16
+pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.497 
+       <./figures/fig6_information.png>]
+
+[17]
+Overfull \hbox (0.15645pt too wide) in paragraph at lines 542--543
 []\T1/cmr/m/n/10.95 These are chal-lenges for fu-ture work. The present pa-per 
 es-tab-lishes a con-cep-tual framework---
  []
 
 
 
-[14]
-Overfull \hbox (40.40846pt too wide) in paragraph at lines 467--468
+[18]
+Overfull \hbox (40.40846pt too wide) in paragraph at lines 583--584
 \T1/cmr/bx/n/10.95 Code avail-abil-ity: \T1/cmr/m/n/10.95 Sim-u-la-tion code is
  avail-able at []$\T1/cmtt/m/n/10.95 https : / / github . com / todd866 / cosmi
 c-[]relaxation$[]\T1/cmr/m/n/10.95 . 
@@ -698,66 +590,65 @@ c-[]relaxation$[]\T1/cmr/m/n/10.95 .
 
 
 
-[15]
+[19]
 
-[16] (./03_cosmic_relaxation.aux)
+[20]
+
+[21] (./03_cosmic_relaxation.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-
-Package rerunfilecheck Warning: File `03_cosmic_relaxation.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `03_cosmic_relaxation.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  3E8B5E863DB7DE616FC27111F044052C;6474.
+Package rerunfilecheck Info: File `03_cosmic_relaxation.out' has not changed.
+(rerunfilecheck)             Checksum: 4E4042A19BDCE8D6C1716E3B9403D039;7325.
  ) 
 Here is how much of TeX's memory you used:
- 10834 strings out of 474662
- 164800 string characters out of 5751108
- 563062 words of memory out of 5000000
- 33628 multiletter control sequences out of 15000+600000
- 573629 words of font info for 73 fonts, out of 8000000 for 9000
+ 10934 strings out of 474662
+ 166380 string characters out of 5751108
+ 566554 words of memory out of 5000000
+ 33693 multiletter control sequences out of 15000+600000
+ 578114 words of font info for 85 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 75i,6n,79p,1196b,563s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,8n,79p,1196b,563s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen
 /ec/ectt1095.600pk> </Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/p
-k/ljfour/jknappen/ec/tcrm1095.600pk> </Users/iantodd/Library/texlive/2025basic/
-texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/iantodd/Library/t
-exlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/
-iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx109
+k/ljfour/jknappen/ec/ecrm0900.600pk> </Users/iantodd/Library/texlive/2025basic/
+texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </Users/iantodd/Library/t
+exlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/
+iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm109
 5.600pk> </Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jk
-nappen/ec/ecrm1095.600pk> </Users/iantodd/Library/texlive/2025basic/texmf-var/f
-onts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/iantodd/Library/texlive/2025
-basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </Users/iantodd/Lib
-rary/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </
+nappen/ec/ecti1095.600pk> </Users/iantodd/Library/texlive/2025basic/texmf-var/f
+onts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/iantodd/Library/texlive/2025
+basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/iantodd/Lib
+rary/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </
 Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/e
-ctt1200.600pk> </Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljf
-our/jknappen/ec/ecrm1200.600pk> </Users/iantodd/Library/texlive/2025basic/texmf
--var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/local/texlive/2025basic/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025bas
-ic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/202
-5basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/
-2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texli
-ve/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/tex
-live/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/t
-exlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loc
-al/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/
-local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.p
-fb>
-Output written on 03_cosmic_relaxation.pdf (16 pages, 2168671 bytes).
+cbx1440.600pk> </Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljf
+our/jknappen/ec/ecrm1000.600pk> </Users/iantodd/Library/texlive/2025basic/texmf
+-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </Users/iantodd/Library/texliv
+e/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </Users/ianto
+dd/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600
+pk> </Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappe
+n/ec/ecrm1728.600pk></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025basic/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025basic/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025basic/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2025basic/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025basic/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025basic/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025bas
+ic/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texliv
+e/2025basic/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on 03_cosmic_relaxation.pdf (21 pages, 1179294 bytes).
 PDF statistics:
- 755 PDF objects out of 1000 (max. 8388607)
- 260 compressed objects within 3 object streams
- 118 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1116 PDF objects out of 1200 (max. 8388607)
+ 490 compressed objects within 5 object streams
+ 138 named destinations out of 1000 (max. 500000)
+ 340 words of extra memory for PDF output out of 10000 (max. 10000000)
 

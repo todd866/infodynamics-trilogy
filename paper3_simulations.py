@@ -11,26 +11,28 @@ Figures:
   - fig3_relaxation.png: Logistic slow-fast-slow dynamics
   - fig4_knot.png: Knot energy decrease
   - fig5_dark_energy.png: w(z) prediction vs ΛCDM
-  - fig_desi_prediction.pdf: Quantitative DESI testable predictions
-  - fig6_information.png: Information accumulation tracks relaxation
+  - fig_desi_prediction.pdf: Quantitative DESI testable predictions (Figure 6 in paper)
+  - fig6_information.png: Information accumulation (also referenced as Figure 6 in paper)
 
 Usage:
   python paper3_simulations.py              # Generate all figures
   python paper3_simulations.py --figure 1   # Napkin metaphor only
   python paper3_simulations.py --figure 5   # Dark energy only
   python paper3_simulations.py --figure 6   # DESI predictions only
+  python paper3_simulations.py --seed 42    # Set random seed
 """
 
 import argparse
 import numpy as np
+import matplotlib
+matplotlib.use("Agg")  # Headless backend for reproducibility
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Circle
-from scipy.integrate import quad
-from scipy.interpolate import interp1d
+# Note: scipy.integrate.quad no longer needed - using explicit ρ_K(a) form
 from dataclasses import dataclass
 from pathlib import Path
 
-FIGURES_DIR = Path(__file__).resolve().parent.parent / "figures"
+FIGURES_DIR = Path(__file__).resolve().parent / "figures"
 FIGURES_DIR.mkdir(exist_ok=True)
 
 
@@ -40,26 +42,38 @@ FIGURES_DIR.mkdir(exist_ok=True)
 
 @dataclass
 class RelaxationModel:
-    """Parameters for the cosmic relaxation model."""
-    s_0: float = 0.5          # Midpoint of relaxation
-    k: float = 3.0            # Relaxation rate constant
+    """Parameters for the cosmic relaxation model.
+
+    The w(a) equation of state is derived from relaxation energy:
+
+        ρ_K(a) = ρ_∞ + Δρ / (1 + (a/a_trans)^(k*β))
+
+        w(a) = -1 + (k*β/3) * (Δρ/ρ_K) * u/(1+u)²
+
+    where u = (a/a_trans)^(k*β).
+    """
+    s_0: float = 10.0         # Midpoint of relaxation (substrate parameter)
+    k: float = 0.5            # Relaxation rate constant
     R_max: float = 1.0        # Maximum relaxation
-    w_inf: float = -1.0       # Asymptotic equation of state
-    delta_w_max: float = 0.15 # Maximum departure from w = -1
     z_transition: float = 0.8 # Transition redshift
+    # Derived w(a) parameters
+    beta: float = 2.0         # Mapping rate s ↔ ln(a)
+    delta_rho_ratio: float = 0.35  # Δρ/ρ_∞ ratio of dynamic to constant component
 
 
-def logistic_relaxation(s: np.ndarray, s_0: float = 10, k: float = 0.5,
-                        R_max: float = 1.0) -> np.ndarray:
+def logistic_relaxation(s: np.ndarray, model: RelaxationModel = None) -> np.ndarray:
     """Logistic relaxation: R(s) = R_max / (1 + exp(-k(s - s_0)))"""
-    return R_max / (1 + np.exp(-k * (s - s_0)))
+    if model is None:
+        model = RelaxationModel()
+    return model.R_max / (1 + np.exp(-model.k * (s - model.s_0)))
 
 
-def relaxation_rate(s: np.ndarray, s_0: float = 10, k: float = 0.5,
-                    R_max: float = 1.0) -> np.ndarray:
+def relaxation_rate(s: np.ndarray, model: RelaxationModel = None) -> np.ndarray:
     """dR/ds = k * R * (1 - R/R_max) — bell-shaped curve"""
-    R = logistic_relaxation(s, s_0, k, R_max)
-    return k * R * (1 - R / R_max)
+    if model is None:
+        model = RelaxationModel()
+    R = logistic_relaxation(s, model)
+    return model.k * R * (1 - R / model.R_max)
 
 
 # =============================================================================
@@ -209,13 +223,83 @@ def fig4_knot():
 # =============================================================================
 
 def w_from_relaxation(z: float, model: RelaxationModel) -> float:
-    """Equation of state from relaxation dynamics."""
-    s = -np.log(1 + z) / np.log(1 + model.z_transition) * model.s_0
-    R = model.R_max / (1 + np.exp(-model.k * (s - model.s_0)))
-    dR_ds = model.k * R * (1 - R / model.R_max)
-    rate_max = model.k * model.R_max / 4
-    delta_w = model.delta_w_max * (dR_ds / rate_max)
-    return model.w_inf + delta_w
+    """
+    Equation of state derived from relaxation energy.
+
+    From the constraint energy ansatz:
+        ρ_K(a) = ρ_∞ + Δρ / (1 + u)
+        where u = (a/a_trans)^(k*β)
+
+    The conservation equation dρ/d(ln a) = -3(1+w)ρ gives:
+        w(a) = -1 + (k*β/3) * (Δρ/ρ_K) * u/(1+u)²
+
+    This is NOT an arbitrary parameterization but emerges from the
+    logistic relaxation ansatz.
+    """
+    # Scale factor: a = 1/(1+z)
+    a = 1.0 / (1.0 + z)
+    a_trans = 1.0 / (1.0 + model.z_transition)
+
+    # u = (a/a_trans)^(k*β)
+    k_beta = model.k * model.beta
+    u = (a / a_trans) ** k_beta
+
+    # Energy density ratio: ρ_K / ρ_∞ = 1 + (Δρ/ρ_∞) / (1 + u)
+    rho_ratio = 1.0 + model.delta_rho_ratio / (1.0 + u)
+
+    # Derived w(a) from Eq. (11) in paper:
+    # w = -1 + (k*β/3) * (Δρ/ρ_K) * u/(1+u)²
+    #   = -1 + (k*β/3) * (Δρ/ρ_∞) / rho_ratio * u/(1+u)²
+    delta_w = (k_beta / 3.0) * (model.delta_rho_ratio / rho_ratio) * u / (1.0 + u)**2
+
+    return -1.0 + delta_w
+
+
+def compute_dark_energy_density(z_array: np.ndarray, model: RelaxationModel) -> np.ndarray:
+    """
+    Compute dark energy density evolution using the explicit form:
+
+        ρ_K(a) = ρ_∞ + Δρ / (1 + u)
+        where u = (a/a_trans)^(k*β)
+
+    Returns ρ_DE(z) / ρ_DE(0) for use in Hubble parameter calculation.
+    """
+    # Scale factor at each redshift
+    a = 1.0 / (1.0 + z_array)
+    a_trans = 1.0 / (1.0 + model.z_transition)
+    a_0 = 1.0  # today
+
+    k_beta = model.k * model.beta
+
+    # u at each redshift and at z=0
+    u = (a / a_trans) ** k_beta
+    u_0 = (a_0 / a_trans) ** k_beta
+
+    # ρ_K / ρ_∞ at each z and at z=0
+    rho_ratio = 1.0 + model.delta_rho_ratio / (1.0 + u)
+    rho_ratio_0 = 1.0 + model.delta_rho_ratio / (1.0 + u_0)
+
+    # Return ρ_DE(z) / ρ_DE(0)
+    return rho_ratio / rho_ratio_0
+
+
+def compute_hubble(z_array: np.ndarray, model: RelaxationModel,
+                   Omega_m: float = 0.3) -> tuple[np.ndarray, np.ndarray]:
+    """
+    Compute H(z)/H_0 for both relaxation model and ΛCDM.
+
+    H²(z)/H₀² = Ω_m(1+z)³ + Ω_DE * ρ_DE(z)/ρ_DE(0)
+    """
+    Omega_de = 1 - Omega_m
+
+    # Relaxation model: propagate w(z) into dark energy density
+    rho_de_ratio = compute_dark_energy_density(z_array, model)
+    H_relaxation = np.sqrt(Omega_m * (1 + z_array)**3 + Omega_de * rho_de_ratio)
+
+    # ΛCDM: constant w = -1, so ρ_DE = const
+    H_lcdm = np.sqrt(Omega_m * (1 + z_array)**3 + Omega_de)
+
+    return H_relaxation, H_lcdm
 
 
 def fig5_dark_energy():
@@ -269,10 +353,9 @@ def fig6_desi_prediction():
     w_fine = np.array([w_from_relaxation(zi, model) for zi in z_fine])
     w_lcdm = np.ones_like(z_fine) * (-1.0)
 
-    # Hubble evolution (simplified)
-    Omega_m = 0.3
-    H_relaxation = np.sqrt(Omega_m * (1 + z_fine)**3 + (1 - Omega_m))
-    H_lcdm = H_relaxation.copy()
+    # Proper Hubble evolution with w(z) integration
+    print("    Computing H(z) with proper w(z) propagation...")
+    H_relaxation, H_lcdm = compute_hubble(z_fine, model)
 
     fig, axes = plt.subplots(2, 2, figsize=(12, 10))
 
@@ -280,12 +363,13 @@ def fig6_desi_prediction():
     axes[0,0].plot(z_fine, w_fine, 'C0-', lw=2.5, label='Relaxation')
     axes[0,0].plot(z_fine, w_lcdm, 'k--', lw=2, label=r'$\Lambda$CDM')
     axes[0,0].scatter(z_desi, w_desi, c='C0', s=80, zorder=5, edgecolor='white')
-    axes[0,0].axvline(model.z_transition, color='C1', ls=':', alpha=0.7)
+    axes[0,0].axvline(model.z_transition, color='C1', ls=':', alpha=0.7,
+                     label=f'$z_{{trans}}$ = {model.z_transition}')
     axes[0,0].set_xlabel('Redshift z')
     axes[0,0].set_ylabel('w(z)')
     axes[0,0].set_title('(A) Dark energy equation of state')
     axes[0,0].legend()
-    axes[0,0].set_ylim(-1.1, -0.8)
+    axes[0,0].set_ylim(-1.05, -0.8)
     axes[0,0].grid(True, alpha=0.3)
 
     # Panel B: Departure
@@ -297,11 +381,12 @@ def fig6_desi_prediction():
     axes[0,1].set_ylabel(r'$\Delta w$ [%]')
     axes[0,1].set_title('(B) Departure from cosmological constant')
     axes[0,1].legend()
-    axes[0,1].set_ylim(-5, 15)
+    axes[0,1].set_ylim(-2, 18)
     axes[0,1].grid(True, alpha=0.3)
 
     max_idx = np.argmax(delta_w)
-    axes[0,1].annotate(f'Max: {delta_w[max_idx]:.1f}%', xy=(z_fine[max_idx], delta_w[max_idx]),
+    axes[0,1].annotate(f'Peak: {delta_w[max_idx]:.1f}% at z={z_fine[max_idx]:.2f}',
+                      xy=(z_fine[max_idx], delta_w[max_idx]),
                       xytext=(z_fine[max_idx]+0.5, delta_w[max_idx]+2),
                       arrowprops=dict(arrowstyle='->', color='C0'))
 
@@ -314,30 +399,33 @@ def fig6_desi_prediction():
     axes[1,0].legend()
     axes[1,0].grid(True, alpha=0.3)
 
-    # Panel D: Table of predictions
-    axes[1,1].axis('off')
-    table_data = [[f'{z:.1f}', f'{w:.4f}', f'{(w+1)*100:.2f}%']
-                  for z, w in zip(z_desi, w_desi)]
-    table = axes[1,1].table(cellText=table_data,
-                            colLabels=['z', 'w(z)', 'Δw'],
-                            loc='center', cellLoc='center')
-    table.auto_set_font_size(False)
-    table.set_fontsize(10)
-    table.scale(1.2, 1.5)
-    axes[1,1].set_title('(D) DESI bin predictions', pad=20)
+    # Panel D: H(z) fractional difference
+    delta_H = (H_relaxation - H_lcdm) / H_lcdm * 100
+    axes[1,1].plot(z_fine, delta_H, 'C3-', lw=2.5)
+    axes[1,1].axhline(0, color='k', ls='--')
+    axes[1,1].fill_between(z_fine, -1, 1, alpha=0.2, color='C1', label='BAO ~1%')
+    axes[1,1].set_xlabel('Redshift z')
+    axes[1,1].set_ylabel(r'$\Delta H/H$ [%]')
+    axes[1,1].set_title('(D) Hubble parameter difference')
+    axes[1,1].legend()
+    axes[1,1].grid(True, alpha=0.3)
 
     plt.tight_layout()
     plt.savefig(FIGURES_DIR / 'fig_desi_prediction.pdf', dpi=150)
     plt.savefig(FIGURES_DIR / 'fig_desi_prediction.png', dpi=150)
     plt.close()
+
+    # Print summary
+    print(f"    Peak w deviation: {delta_w[max_idx]:.1f}% at z={z_fine[max_idx]:.2f}")
+    print(f"    Max H deviation: {np.max(np.abs(delta_H)):.2f}%")
     print("  Generated: fig_desi_prediction.pdf")
 
 
 # =============================================================================
-# Figure 7: Information Accumulation
+# Figure 6b: Information Accumulation (fig6_information.png in paper)
 # =============================================================================
 
-def fig7_information():
+def fig6b_information():
     """Information accumulation tracks relaxation."""
     s = np.linspace(0, 20, 500)
     dR = relaxation_rate(s)
@@ -350,7 +438,7 @@ def fig7_information():
     I_obs = I_acc + 0.02 * np.random.randn(len(s))
 
     fig, ax = plt.subplots(figsize=(10, 5))
-    ax.plot(s, I_acc, 'C0-', lw=2.5, label='Theoretical (relaxation rate)')
+    ax.plot(s, I_acc, 'C0-', lw=2.5, label='Theoretical (cumulative relaxation)')
     ax.scatter(s[::20], I_obs[::20], c='C1', s=30, alpha=0.6, label='Observed (noisy)')
     ax.set_xlabel('Substrate parameter s')
     ax.set_ylabel('Accumulated information I')
@@ -376,7 +464,13 @@ def main():
     parser = argparse.ArgumentParser(description="Generate Paper 3 figures")
     parser.add_argument("--figure", type=int, choices=[1, 2, 3, 4, 5, 6, 7],
                        help="Generate only specific figure")
+    parser.add_argument("--seed", type=int, default=42,
+                       help="Random seed for reproducibility (default: 42)")
     args = parser.parse_args()
+
+    # Set global seed for reproducibility
+    np.random.seed(args.seed)
+    print(f"Using random seed: {args.seed}")
 
     print("=" * 60)
     print("PAPER 3: COSMIC RELAXATION - SIMULATIONS")
@@ -389,7 +483,7 @@ def main():
         4: fig4_knot,
         5: fig5_dark_energy,
         6: fig6_desi_prediction,
-        7: fig7_information,
+        7: fig6b_information,
     }
 
     if args.figure is not None:

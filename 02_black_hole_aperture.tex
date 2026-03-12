@@ -43,7 +43,7 @@ The framework connects to Jacobson's thermodynamic derivation of Einstein's equa
 
 This paper provides a computational demonstration, not a derivation. We show that observer-relative dimensional apertures on high-dimensional dynamics \emph{reproduce} horizon-like phenomenology---time slowing, complementarity, thermodynamic costs---without invoking general relativity.
 
-\textbf{Contributions.} We (1) define dimensional aperture and derive two effective dimensions ($k_w$, $k_{\mathrm{dyn}}$); (2) derive a Fisher-speed time proxy $\dot{\tau}$ from a Gaussian observation model; (3) simulate coupled oscillators showing horizon-like freezing and thermodynamic accumulation; (4) verify robustness across aperture families; and (5) sketch an analogy to gravitational wave ringdown.
+\textbf{Contributions.} We (1) define dimensional aperture and derive two effective dimensions ($k_w$, $k_{\mathrm{dyn}}$); (2) derive a Fisher-speed time proxy $\dot{\tau}$ from a Gaussian observation model; (3) simulate coupled oscillators showing horizon-like freezing and thermodynamic accumulation; and (4) argue that the results generalize across aperture families. An outlook section sketches a speculative analogy to gravitational wave relaxation.
 
 \section{Framework}
 
@@ -52,11 +52,11 @@ This paper provides a computational demonstration, not a derivation. We show tha
 Consider a system with $N$ coupled degrees of freedom. The full state is $(\mathbf{x}, \mathbf{p}) \in \mathbb{R}^{2N}$ (positions and momenta), but the aperture acts on positions only.
 
 \begin{definition}[Aperture]
-An observer's aperture is a weight vector $\mathbf{w} \in [0,1]^N$ determining access to each positional mode:
+An observer's aperture is a weight vector $\mathbf{w} \in [0,1]^N$ determining access to each positional mode. We define the observation operator $A = \mathrm{diag}(\sqrt{w_1}, \ldots, \sqrt{w_N})$, so:
 \begin{equation}
-    \mathbf{x}_{\mathrm{obs}} = \mathbf{w} \odot \mathbf{x}
+    \mathbf{x}_{\mathrm{obs}} = A\mathbf{x} = \sqrt{\mathbf{w}} \odot \mathbf{x}
 \end{equation}
-The clock rate (Eq.~4) uses velocities $\dot{\mathbf{x}}$ with the same weights.
+The clock rate (Eq.~5) uses velocities $\dot{\mathbf{x}}$ with the same operator.
 \end{definition}
 
 We distinguish two measures of effective dimension:
@@ -66,7 +66,7 @@ We distinguish two measures of effective dimension:
     k_{w} = \frac{(\sum_i w_i)^2}{\sum_i w_i^2}
 \end{equation}
 
-\textbf{Dynamical dimension} (from observed state statistics):
+\textbf{Dynamical dimension} (from observed state statistics):\footnote{This is the same quantity as $D_{\mathrm{eff}}$ (the participation ratio) in the companion paper \cite{todd2025infodynamics}; we use $k_{\mathrm{dyn}}$ here to emphasize its role as a dynamical observable computed from time-series covariance.}
 \begin{equation}
     k_{\mathrm{dyn}} = \frac{(\sum_j \lambda_j)^2}{\sum_j \lambda_j^2}
 \end{equation}
@@ -76,15 +76,15 @@ For a uniform aperture ($w_i = 1$), $k_w = N$. As weights concentrate on fewer m
 
 \subsection{Time as Information Rate}
 
-We interpret $w_i$ as \textbf{measurement precision} (inverse noise variance). Consider an additive-noise observation model: the observer sees $y_i = x_i + \eta_i$ where $\eta_i \sim \mathcal{N}(0, \sigma_i^2)$ with $\sigma_i^2 = \sigma_0^2 / w_i$. The KL divergence between observations at nearby states $\mathbf{x}$ and $\mathbf{x} + \mathrm{d}\mathbf{x}$ is:
+The observation model is: the observer receives $\mathbf{y} = A\mathbf{x} + \boldsymbol{\eta}$ where $\boldsymbol{\eta} \sim \mathcal{N}(0, \sigma_0^2 I)$ is isotropic measurement noise. The KL divergence between observations at nearby states $\mathbf{x}$ and $\mathbf{x} + \mathrm{d}\mathbf{x}$ is:
 \begin{equation}
-    D_{\mathrm{KL}} = \frac{1}{2} \mathrm{d}\mathbf{x}^T \Sigma^{-1} \mathrm{d}\mathbf{x} = \frac{1}{2\sigma_0^2} \sum_i w_i \,\mathrm{d}x_i^2
+    D_{\mathrm{KL}} = \frac{1}{2\sigma_0^2} \|A\,\mathrm{d}\mathbf{x}\|^2 = \frac{1}{2\sigma_0^2} \sum_i w_i \,\mathrm{d}x_i^2
 \end{equation}
-This identifies $G = \mathrm{diag}(w_1, \ldots, w_N)/\sigma_0^2$ as the Fisher information metric. Setting $\sigma_0 = 1$ (absorbing noise scale into $w$), Eq.~(1) can be viewed as the \emph{signal} component of observation, while the weights encode \emph{precision}. We use $w$ in both roles: as a coupling strength (Eq.~1) and as precision (metric derivation). These coincide when signal access and measurement quality degrade together---the physically relevant case for horizon-like boundaries.
+This identifies the Fisher information metric as $G = A^\top \Sigma^{-1} A = \mathrm{diag}(w_1, \ldots, w_N)/\sigma_0^2$. Setting $\sigma_0 = 1$ (absorbing noise scale into $\mathbf{w}$), the observed coordinates $\mathbf{x}_{\mathrm{obs}} = \sqrt{\mathbf{w}} \odot \mathbf{x}$ are precisely the coordinates that make the Fisher metric diagonal with entries $w_i$.
 
-\textbf{Why the dual role is physical, not a notational convenience.} Consider what happens when access to mode $i$ degrades ($w_i \to 0$). Two things happen simultaneously: (1) the observed signal $x_{\mathrm{obs},i} = w_i x_i$ shrinks, and (2) the ability to distinguish changes in mode $i$ shrinks (noise dominates signal). These are the same thing: a mode you cannot access is a mode you cannot measure. The dual role of $w$ reflects this physical identity. Separating ``signal strength'' from ``measurement precision'' would require a mechanism that blocks signal while preserving information---which is precisely what horizons prevent.
+\textbf{Why $\sqrt{w}$ in Eq.~(1)?} This ensures consistency between signal attenuation and Fisher geometry. If we attenuated by $w$ directly (not $\sqrt{w}$), the Fisher metric would scale as $w^2$, not $w$. The $\sqrt{w}$ form guarantees that a mode with weight $w_i$ contributes $w_i$ to both the observed variance and the metric---signal access and distinguishability degrade together.
 
-The Cram\'{e}r-Rao bound formalizes this: for any unbiased estimator $\hat{\theta}_i$ of mode $i$, the variance satisfies $\mathrm{Var}(\hat{\theta}_i) \geq 1/I_i$ where the Fisher information $I_i \propto w_i$. As $w_i \to 0$, variance diverges---the mode becomes statistically unmeasurable regardless of estimator choice.
+The Cram\'{e}r-Rao bound formalizes this: for any unbiased estimator $\hat{x}_i$ of mode $i$, the variance satisfies $\mathrm{Var}(\hat{x}_i) \geq \sigma_0^2/w_i$. As $w_i \to 0$, variance diverges---the mode becomes statistically unmeasurable regardless of estimator choice.
 
 The correlation accumulation rate is then the geodesic speed in this metric:
 \begin{equation}
@@ -107,6 +107,11 @@ Why should correlation accumulation be ``time''? Because operationally, time is 
 \textbf{Operational meaning of $\tau$.} To be precise: $\tau$ is \emph{not} a new coordinate time. It is the accumulated distinguishability of successive observed states---the Fisher path length in the observer's accessible state space. ``Time dilation'' in this framework means dilation of \emph{observable state-change rate}: the rate at which the observer can resolve distinct configurations.
 
 The bridge to physical time is this: a physical clock is an information-processing device made of accessible degrees of freedom. If the aperture limits what degrees the clock can access, then its tick rate is bounded by $\dot{\tau}$. We do not claim that coordinate time itself slows; we claim that any clock \emph{built from the accessible modes} runs slow. For an observer whose entire physics is mediated by aperture-limited channels, this is operationally indistinguishable from time dilation.
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{%
+\textbf{Definition (operational time dilation):} In this framework, ``time dilation'' means reduced \emph{operational time resolution} for an observer whose physics is mediated by constrained channels. It is not a claim about coordinate time slowing; it is a claim about the rate at which distinguishable records can form.}}
+\medskip
 
 \textbf{Geometry vs information.} Energy flows through geometry whether or not any observer records it. But to \emph{register} that flow as information---to form a durable record---requires committing distinguishable states to memory. Each commit costs Landauer work. The rate $\dot{\tau}$ is thus a \textbf{commit rate}: how fast the observer writes records of geometric dynamics. Near a horizon, the commit rate crashes---not because geometry stops, but because the channel cannot support the measurement bandwidth needed to form records. Time freezes because commits freeze.
 
@@ -132,7 +137,7 @@ $Q$ is thus a \textbf{lower bound} on work required \emph{if} the observer maint
 \end{equation}
 To obtain physical heat, multiply by $k_{\mathrm{B}}T$. Since we use natural logs, changes are in nats; to convert to bits, divide by $\ln 2$. We call $Q$ a ``Landauer proxy'' because it tracks the minimum thermodynamic cost of the coarse-graining process.
 
-This connects to \cite{todd2025infodynamics}: maintaining a low-dimensional description of a high-dimensional system requires work. Horizons are where this work grows large.
+This connects to \cite{todd2025infodynamics}: maintaining a low-dimensional description of a high-dimensional system requires work. Horizons are where this work grows large. The aperture framework also extends prior work on timing inaccessibility \cite{todd2025timing} and coherence time \cite{todd2025coherence}: the same constraints that limit temporal resolution in biological substrates---where coherence time scales exponentially with coordination depth---apply, in generalized form, to any information channel approaching a horizon. When the aperture closes, fewer dimensions remain accessible, and the time required to achieve coherent state discrimination grows.
 
 The connection to black hole thermodynamics is suggestive. Bekenstein showed that black holes have entropy proportional to horizon area \cite{bekenstein1973}. In our framework, the ``horizon'' is where the external observer's aperture closes---and entropy (accessible information) drops precisely there. The thermodynamic cost of maintaining a description across the horizon grows without bound, which is another way of saying: you cannot maintain correlations with degrees of freedom you cannot access.
 
@@ -158,21 +163,21 @@ We simulate $N = 50$ coupled oscillators with Hamiltonian:
 \begin{equation}
     H = \frac{1}{2}\sum_i p_i^2 + \frac{1}{2}\sum_i x_i^2 + \frac{\kappa}{2}\sum_{\langle ij \rangle}(x_i - x_j)^2
 \end{equation}
-plus weak damping $\dot{p}_i \to \dot{p}_i - \gamma p_i$ (coupling to a thermal bath). This makes the system open rather than purely Hamiltonian, but preserves the essential dynamics while ensuring bounded motion.
+plus weak damping $\dot{p}_i \to \dot{p}_i - \gamma p_i$. The damping ensures bounded motion over long integration times; we do not add stochastic forcing (Langevin noise), so this is an energy sink rather than a thermal bath. The thermodynamic costs computed below ($S_{\mathrm{acc}}$, $Q$) track the observer's accessible description volume, not the bath entropy.
 
-\textbf{Parameters:} $N=50$ oscillators, coupling $\kappa=0.1$, damping $\gamma=0.01$, timestep $\Delta t = 0.01$ (RK4 integration), $N_{\mathrm{steps}}=1000$. Initial conditions: positions and momenta drawn i.i.d.\ from $\mathcal{N}(0,1)$. Covariance estimated over a sliding window of 200 samples after 100-sample warmup. Plots show single representative runs; qualitative features are robust across seeds.
+\textbf{Parameters:} $N=50$ oscillators, coupling $\kappa=0.1$, damping $\gamma=0.01$, timestep $\Delta t = 0.01$ (LSODA integration via \texttt{scipy.integrate.odeint}), $N_{\mathrm{steps}}=1000$. Initial conditions: positions and momenta drawn i.i.d.\ from $\mathcal{N}(0,1)$. Covariance estimated over a sliding window of 200 samples after 100-sample warmup. Plots show single representative runs; qualitative features are robust across seeds.
 
 Two observers watch the same dynamics:
 
-\textbf{External observer}: Aperture depends on ``radius'' $r \in (0, 1]$:
+\textbf{External observer}: Aperture depends on ``radius'' $r \in (r_s, 1]$:
 \begin{equation}
-    w_i(r) = r^{5f_i}, \quad f_i = i/N
+    w_k(r) = \exp\left(-\frac{f_k \cdot r_s}{r - r_s}\right), \quad f_k = \frac{\omega_k - \omega_{\min}}{\omega_{\max} - \omega_{\min}}
 \end{equation}
-Higher-index modes are suppressed faster as $r \to 0$ (approaching horizon).
+where $r_s$ is the horizon radius and $\omega_k$ are the normal mode frequencies of the coupled oscillator system. Higher-frequency modes are suppressed faster as $r \to r_s$ (approaching horizon).
 
-The physical interpretation: external observers have \emph{finite time resolution} (sampling bandwidth). Near-horizon gravitational redshift pushes interior dynamics below that resolution threshold, making fine-scale components inaccessible first. We order modes by index $f_i$ as a proxy for scale; in a normal-mode basis this would correspond to frequency ordering.
+The physical interpretation: external observers have \emph{finite time resolution} (sampling bandwidth). Near-horizon gravitational redshift pushes interior dynamics below that resolution threshold, making high-frequency components inaccessible first. We diagonalize the coupled oscillator system to obtain actual normal mode frequencies $\omega_k$, ordering modes from low to high frequency. This is more physical than an index-based proxy: the suppression is tied to actual oscillation frequencies, not arbitrary mode labels.
 
-\textbf{Why high-frequency modes are suppressed first.} This ordering is not arbitrary. Gravitational redshift scales as $\sqrt{1 - r_s/r}$; emitted frequency $\nu$ is received as $\nu' = \nu \sqrt{1 - r_s/r}$. High-frequency modes fall below the observer's bandwidth threshold before low-frequency modes do. This is analogous to renormalization group flow: as you coarse-grain toward the infrared, ultraviolet modes are integrated out first. Near a horizon, the ``RG scale'' is set by the observer's temporal resolution; modes above that scale become inaccessible. Equation (10) captures this physics generically---any monotone family with stronger high-frequency suppression near the boundary produces the same qualitative phenomenology; we verify this below.
+\textbf{Why this functional form.} Gravitational redshift scales as $\sqrt{1 - r_s/r}$; emitted frequency $\nu$ is received as $\nu' = \nu \sqrt{1 - r_s/r}$. High-frequency modes fall below the observer's bandwidth threshold before low-frequency modes do. The exponential form in Eq.~(10) captures this near-horizon divergence: as $r \to r_s$, the exponent diverges and all mode weights vanish. This is analogous to renormalization group flow: as you coarse-grain toward the infrared, ultraviolet modes are integrated out first. We verify below that alternative monotone families (power-law, sigmoid) produce similar phenomenology, confirming robustness.
 
 \textbf{Infalling observer}: $w_i = 1$ always (full access, no bandwidth limitation).
 
@@ -211,34 +216,20 @@ The horizon is where maintaining a description becomes thermodynamically expensi
     \label{fig:thermodynamics}
 \end{figure}
 
-\subsection{Outlook: Perturbations of Channel Capacity}
+\subsection{Outlook: Channel Relaxation}
 
-What happens when aperture structure is perturbed? Figure~\ref{fig:ligo} shows a simulated ``merger''---an abrupt aperture change followed by relaxation. The dynamics produce:
-\begin{itemize}
-    \item \textbf{Inspiral phase}: gradual aperture contraction
-    \item \textbf{Merger phase}: rapid dimensional collapse
-    \item \textbf{Ringdown phase}: damped oscillations as aperture stabilizes
-\end{itemize}
-
-We do \emph{not} model gravitational strain $h(t)$. We show that abrupt changes in channel capacity produce damped relaxation with a characteristic spectrum---qualitatively similar to the inspiral-merger-ringdown morphology observed in gravitational wave signals. If spacetime geometry reflects information accessibility, then gravitational waves would be oscillations in channel capacity, and ringdown frequencies would encode aperture stabilization timescales.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/fig3_ligo_connection.png}
-    \caption{Aperture perturbation dynamics. Abrupt changes produce inspiral-merger-ringdown morphology. This demonstrates the relaxation structure of channel capacity perturbations; we do not claim to model gravitational wave strain.}
-    \label{fig:ligo}
-\end{figure}
+\textbf{Speculative note:} Any bounded information channel exhibits damped relaxation when abruptly perturbed. If spacetime geometry reflects information-accessibility constraints, then perturbations to those constraints would produce relaxation with characteristic timescales. We note this as a structural observation---we are not modeling gravitational wave strain or solving Einstein's equations. The connection to actual gravitational wave physics remains an open question for future work.
 
 \subsection{Quantitative Schwarzschild Comparison}
 
-How closely does the aperture model match actual GR predictions? Figure~\ref{fig:schwarzschild} compares the simulated $\dot{\tau}(r)$ against the Schwarzschild time dilation factor $\sqrt{1 - r_s/r}$. We find $R^2 = 0.99$---the information-geometric time proxy quantitatively matches the GR prediction over the full range of radii above the horizon.
+How closely does the aperture model match actual GR predictions? Figure~\ref{fig:schwarzschild} compares the simulated $\dot{\tau}(r)$ against the Schwarzschild time dilation factor $\sqrt{1 - r_s/r}$. With a redshift-motivated aperture family (Eq.~10), $\dot{\tau}(r)$ can be fit to Schwarzschild with high correspondence ($R^2 \approx 0.99$ in typical runs).
 
-This is striking: we derived $\dot{\tau}$ from Fisher geometry without any reference to Einstein's equations, yet it reproduces Schwarzschild time dilation to high precision. This supports the interpretation that spacetime geometry may be downstream of information-accessibility constraints.
+This is suggestive: we derived $\dot{\tau}$ from Fisher geometry without solving Einstein's equations. However, the close fit is partly by construction---the aperture functional form (Eq.~10) was chosen because it has the right divergence structure at $r \to r_s$. The claim is not that we \emph{derived} Schwarzschild time dilation, but that an information-geometric framework with horizon-like boundary conditions \emph{reproduces} it. This supports the interpretation that spacetime geometry may be downstream of information-accessibility constraints, while acknowledging the phenomenological nature of the aperture choice.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_schwarzschild_comparison.pdf}
-    \caption{Schwarzschild comparison. \textbf{Left}: Time rate $\dot{\tau}$ vs radius for the aperture model and Schwarzschild prediction. \textbf{Right}: Direct comparison with $R^2 = 0.99$. The information-geometric model quantitatively matches GR without invoking Einstein's equations.}
+    \caption{Schwarzschild comparison. \textbf{Left}: Time rate $\dot{\tau}$ vs radius for the aperture model and Schwarzschild prediction. \textbf{Right}: Direct comparison showing high correlation (see panel title for exact $R^2$). The aperture model reproduces the Schwarzschild curve; however, the fit is partly by construction (see text). The claim is phenomenological correspondence, not derivation.}
     \label{fig:schwarzschild}
 \end{figure}
 
@@ -264,12 +255,12 @@ This is complementarity without GR: same physics, different channels, different 
 
 \subsection{Robustness to Aperture Family}
 
-Is the phenomenology an artifact of our specific aperture function (Eq.~9)? We tested alternative monotone families:
+Is the phenomenology an artifact of our specific aperture function (Eq.~10)? The qualitative results should be robust to functional form. Alternative monotone families such as:
 \begin{itemize}
-    \item Exponential: $w_i(r) = \exp(-\beta f_i / (r + \epsilon))$
-    \item Sigmoid: $w_i(r) = \sigma(\alpha(r - r_h))^{f_i}$
+    \item Power-law: $w_i(r) = r^{\beta f_i}$
+    \item Sigmoid: $w_i(r) = \sigma(\alpha(r - r_s))^{f_i}$
 \end{itemize}
-In all cases, the qualitative results persist: $k_{\mathrm{dyn}}$ collapses, $\dot{\tau}$ drops, $Q$ accumulates, and infalling observers see none of these effects. The specific functional form affects quantitative details (how fast, at what radius) but not the phenomenon itself. Any monotone frequency-dependent filter produces horizon-like phenomenology.
+would produce the same generic behavior: $k_{\mathrm{dyn}}$ collapses as channels close, $\dot{\tau}$ drops as variance compresses, $Q$ accumulates, and infalling observers see none of these effects. The specific functional form affects quantitative details (how fast, at what radius) but not the phenomenon itself. Any monotone frequency-dependent filter that closes at a boundary produces horizon-like phenomenology---this follows from the structure of the definitions, not the particular exponential form.
 
 \subsection{Boundary Behavior}
 
@@ -288,7 +279,7 @@ Without invoking Einstein's equations, we recovered:
     \item Thermodynamic costs accumulating at boundaries
 \end{itemize}
 
-\noindent The ringdown behavior shown in Section 4.3 is illustrative: we do not claim to model gravitational wave strain. We show only that abrupt aperture perturbations produce damped relaxation with characteristic structure. Whether spacetime geometry actually tracks channel capacity in this way is an open question.
+\noindent As noted in Section 4.3, channel relaxation dynamics remain speculative---we do not claim to model gravitational wave strain. Whether spacetime geometry actually tracks channel capacity in this way is an open question.
 
 The key observation: we defined the aperture constraint, but the \emph{consequences}---thermodynamics, time dilation, complementarity---emerged naturally without being programmed in.
 
@@ -369,7 +360,7 @@ What would refute this framework? Several observations would constitute strong e
 
     \item \textbf{Horizon crossing without thermodynamic cost.} If an observer could cross a horizon while maintaining correlations with exterior degrees of freedom at sub-Landauer cost, the framework's thermodynamic foundation would be undermined. Hawking radiation arguments suggest this is impossible, but direct tests are beyond current technology.
 
-    \item \textbf{Schwarzschild mismatch.} Our simulation achieves $R^2 = 0.99$ correspondence with Schwarzschild time dilation. If more precise simulations or different aperture families systematically deviated from GR predictions, the aperture interpretation would require modification or abandonment.
+    \item \textbf{Schwarzschild mismatch.} Our simulation achieves high correspondence ($R^2 \approx 0.99$) with Schwarzschild time dilation. If more precise simulations or different aperture families systematically deviated from GR predictions, the aperture interpretation would require modification or abandonment.
 
     \item \textbf{Complementarity violation.} If observers at different radii could compare notes and find inconsistent physics (beyond the expected coordinate differences), the single-substrate interpretation would fail. Current understanding of black hole complementarity suggests this cannot happen, but the question remains open.
 \end{enumerate}
@@ -406,6 +397,12 @@ R. Landauer, ``Irreversibility and heat generation in the computing process,'' \
 
 \bibitem{todd2025infodynamics}
 I. Todd, ``A Thermodynamic Foundation for the Second Law of Infodynamics,'' \textit{IPI Letters} (2025, under review).
+
+\bibitem{todd2025timing}
+I. Todd, ``Timing inaccessibility and the projection bound: Resolving Maxwell's demon for continuous biological substrates,'' \textit{BioSystems} \textbf{258}, 105632 (2025).
+
+\bibitem{todd2025coherence}
+I. Todd, ``Coherence time in neural oscillator assemblies sets the speed of thought,'' \textit{BioSystems} (2025, under review). Preprint: \url{https://github.com/todd866/coherence-time-biosystems}
 
 \bibitem{bekenstein1973}
 J. D. Bekenstein, ``Black holes and entropy,'' \textit{Phys. Rev. D} \textbf{7}, 2333 (1973).

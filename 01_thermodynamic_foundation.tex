@@ -106,7 +106,14 @@ A key observation in Vopson [7] is that high symmetry corresponds to low informa
 
 But what is the \emph{physical mechanism} driving this evolution? Why should information entropy decrease while thermodynamic entropy increases? And what maintains asymmetric structures when they do persist?
 
-We do not claim the second law of infodynamics is a new fundamental principle; rather, we show why it emerges from known thermodynamics. This paper proposes an answer: \textbf{maintaining asymmetric structure costs work}. We derive a thermodynamic bound showing that confining a system to a low-dimensional, asymmetric manifold requires continuous energy dissipation. Without this work input, systems naturally relax toward high-dimensional, symmetric equilibrium. The second law of infodynamics emerges as a consequence of the thermodynamic asymmetry between states that require maintenance and states that do not.
+We do not claim the second law of infodynamics is a new fundamental principle; rather, we show why it emerges from known thermodynamics. This paper proposes an answer: \textbf{maintaining asymmetric structure costs work}.
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{%
+\textbf{Terminology.} Throughout this paper, ``information entropy'' refers to \emph{structure-information}: the relative entropy $I_{\mathrm{struct}} = D_{\mathrm{KL}}(p \| p_{\mathrm{iso}})$ measuring a distribution's departure from isotropic equilibrium---\textbf{not} Shannon entropy of microstates. When structure-information decreases, the system becomes more symmetric; raw differential entropy may increase simultaneously.}}
+\medskip
+
+We derive a thermodynamic bound showing that confining a system to a low-dimensional, asymmetric manifold requires continuous energy dissipation. Without this work input, systems naturally relax toward high-dimensional, symmetric equilibrium. The second law of infodynamics emerges as a consequence of the thermodynamic asymmetry between states that require maintenance and states that do not.
 
 \section{Symmetry, Dimensionality, and Information}
 
@@ -162,6 +169,20 @@ where $\mu$ is mobility, $T$ is temperature, and $\xi(t)$ is Gaussian white nois
 
 A \emph{dimensional reduction} is a smooth map $\Phi: \mathbb{R}^D \to \mathbb{R}^k$ with $k < D$ that projects the high-dimensional state onto a lower-dimensional representation. Physically realizing such a projection requires confining the system to a neighborhood of the target manifold.
 
+\textbf{Physical implementation.} The projection $\Phi$ represents an externally enforced coarse-graining: a measurement apparatus, biological controller, or feedback system that maintains the system near a low-dimensional manifold. The controller must continuously suppress fluctuations orthogonal to the target subspace.
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{%
+\textbf{Assumptions.} The bound derived below (Eq.~9) holds under:
+\begin{itemize}
+\item \emph{Overdamped Langevin dynamics}: inertial terms negligible, noise dominates acceleration.
+\item \emph{Near-equilibrium}: fluctuations small enough that linear response applies.
+\item \emph{Smooth projection}: $\Phi$ is differentiable with well-defined Jacobian $J_\Phi$.
+\item \emph{Physical coarse-graining}: the projection is implemented via a physical constraint (e.g., confining potential, feedback controller) with finite thickness, not a mathematical abstraction.
+\end{itemize}
+The \textbf{maximum-entropy lifting} $\Phi^\dagger p$ is defined as follows: given a low-dimensional distribution $p_{\mathrm{low}}$ on the projected space, $\Phi^\dagger p_{\mathrm{low}}$ is the distribution in the high-dimensional space that (i) projects to $p_{\mathrm{low}}$ under $\Phi$, and (ii) has maximum entropy among all such distributions. This is the ``least informative'' lift consistent with the projection.}}
+\medskip
+
 \subsection{Derivation}
 
 The entropy production in a stochastic process is bounded by the Kullback-Leibler divergence between initial and final distributions [5]. For a projection process, the dissipated work (work beyond the free energy change) satisfies:
@@ -180,6 +201,16 @@ where $\Delta I$ is the coarse-grained information removed (in bits) and
     \label{eq:cphi}
 \end{align}
 is the \emph{geometric contraction cost}---the average log-volume contraction under the projection, where $\langle \cdot \rangle_p$ denotes the expectation over the maintained distribution $p(x)$.
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{%
+\textbf{Clarification: $\Delta I$ vs $I_{\mathrm{struct}}$.} These quantities are related but distinct:
+\begin{itemize}
+\item $I_{\mathrm{struct}} = D_{\mathrm{KL}}(p \| p_{\mathrm{iso}})$ measures how far a distribution is from isotropy---its \emph{structural asymmetry}.
+\item $\Delta I$ measures the information \emph{removed by projection}---the difference in description complexity between high-D and low-D representations.
+\end{itemize}
+An isotropic distribution has $I_{\mathrm{struct}} = 0$ but can still have $\Delta I > 0$ under projection (you lose degrees of freedom even if the state was symmetric). Conversely, maintaining asymmetry requires $I_{\mathrm{struct}} > 0$, which contributes to dissipation via the bound. The geometric term $C_{\Phi}$ captures costs beyond either---the work to \emph{confine} the system to a low-dimensional manifold.}}
+\medskip
 
 \subsection{The Bound}
 
@@ -238,15 +269,17 @@ This is illustrated in Figure~\ref{fig:relaxation} with a minimal model. An anis
     \label{fig:relaxation}
 \end{figure}
 
-\subsection{Numerical Verification}
+\subsection{Illustration of the Bound}
 
-To verify the geometric maintenance bound (Eq.~\ref{eq:dlb}), we simulate random projections from $D_{\mathrm{high}} = 50$ to various target dimensions $D_{\mathrm{low}}$ (Figure~\ref{fig:landauer_verification}). For each projection, we compute the informational cost $\ln 2 \cdot \Delta I$ and the geometric contraction cost $C_{\Phi}$ from the projection Jacobian. The simulation confirms: (1) both costs scale linearly with the number of dimensions removed, (2) the total bound $W_{\mathrm{bound}}$ is always less than or equal to the actual dissipation $W_{\mathrm{actual}}$, and (3) the bound becomes tight (efficiency $\to 1$) for optimal processes. The $R^2 = 0.97$ correlation between dimensions removed and work required validates the scaling predicted by Eq.~(\ref{eq:dlb}).
+To illustrate the geometric maintenance bound (Eq.~\ref{eq:dlb}), we simulate random projections from $D_{\mathrm{high}} = 50$ to various target dimensions $D_{\mathrm{low}}$ (Figure~\ref{fig:landauer_illustration}). For each projection, we compute the informational cost $\ln 2 \cdot \Delta I$ and the geometric contraction cost $C_{\Phi}$ from the projection Jacobian. The illustration demonstrates: (1) both cost components scale linearly with the number of dimensions removed, and (2) the decomposition correctly partitions the total cost into informational and geometric terms as predicted by Eq.~(\ref{eq:dlb}). The $R^2 = 0.97$ correlation between dimensions removed and bound value confirms the expected linear scaling.
+
+\textbf{Note on scope.} This simulation is a \emph{sanity-check} of the bound's scaling behavior---it illustrates how the informational and geometric terms scale with dimensional reduction. It does not constitute empirical verification, which would require measuring actual heat dissipation in a controlled thermodynamic process (as in the Landauer experiments of \cite{berut2012}). Such verification remains an experimental challenge for future work.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\textwidth]{figures/fig_landauer_verification.pdf}
-    \caption{Numerical verification of the geometric maintenance bound. \textbf{(A)} The informational term (bits removed) and geometric term (Jacobian contraction cost) both scale linearly with dimensional reduction. \textbf{(B)} Actual dissipation always exceeds the theoretical bound---the bound is tight. \textbf{(C)} Process efficiency approaches optimal (reversible) for well-chosen projections. Simulations use 10,000 samples and 20 trials per target dimension.}
-    \label{fig:landauer_verification}
+    \includegraphics[width=0.95\textwidth]{figures/fig_bound_illustration.pdf}
+    \caption{Sanity-check of the geometric maintenance bound's scaling. \textbf{(A)} The informational term (bits removed) and geometric term (Jacobian contraction cost) both scale linearly with dimensional reduction. \textbf{(B)} The bound components correctly partition the total cost. \textbf{(C)} The decomposition structure is consistent across projection types. Simulations use 10,000 samples and 20 trials per target dimension. This illustrates the bound's structure; empirical verification requires thermodynamic experiments.}
+    \label{fig:landauer_illustration}
 \end{figure}
 
 \subsection{The Work Cost of Asymmetry}
